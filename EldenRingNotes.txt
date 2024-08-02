@@ -1,0 +1,30 @@
+Elden ring notes,
+
+Made the camera rotation bool activated with mouse right button
+Dodge is little different on keyboard
+>>> Dodge animation needs to change
+
+
+>>> Movement gets absurd when looking the char from above
+
+>>> when we are standing and jump an we try to move in air with W or S, we can't, (A and D is okay)
+
+ >>> Reset on air timer on landing
+
+
+Character controls are awful terrible it is just not okay not, really just not, just don't, what is this?
+
+Create asset menu feature is awesome
+
+
+Can't jump ahead while looking from above
+
+
+Solved:
+Researched a lot about character's feet is not touching the ground, found out the animation transforms are the cause setted offsets for Y transform, it resolved
+
+
+Player was not spawning, I added start network as host/client at the world loading function, 
+>>> But now the character is not in the don't destroy on load list STILL NOT THERE BUT SURVİVES FROM MAİN MENU SCENE TO WORLD SCENE
+ >>>>> Solved, added start host function to the press start button
+>>>>> Character falling down on start also resolved with this
