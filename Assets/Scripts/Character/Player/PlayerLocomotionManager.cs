@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using static UnityEngine.GridBrushBase;
+using UnityEngine.InputSystem;
 
 
 namespace AS
@@ -37,7 +38,10 @@ namespace AS
         [Header("Dodge")]
         private Vector3 rollDirection;
         [SerializeField] float dodgeStaminaCost = 25f;
-        
+
+
+
+
 
         protected override void Awake()
         {
@@ -139,9 +143,15 @@ namespace AS
             {
                 Vector3 freeFallDirection;
 
-                freeFallDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
-                freeFallDirection = PlayerCamera.instance.transform.right * PlayerInputManager.instance.horizontalInput;
-                freeFallDirection.y = 0;
+                //freeFallDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
+                //freeFallDirection = PlayerCamera.instance.transform.right * PlayerInputManager.instance.horizontalInput;
+                //freeFallDirection.y = 0;
+
+                Vector3 cameraFixedForward = CalculateFixedCameraForward();
+                Vector3 cameraRight = PlayerCamera.instance.cameraObject.transform.right;
+
+
+                freeFallDirection = (cameraFixedForward * PlayerInputManager.instance.verticalInput + cameraRight * PlayerInputManager.instance.horizontalInput).normalized;
 
                 player.characterController.Move(freeFallDirection * freeFallSpeed * Time.deltaTime);
             }
@@ -419,16 +429,11 @@ namespace AS
 
             player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
 
-            Quaternion cameraRotation = PlayerCamera.instance.cameraObject.transform.rotation;
-
-            // Adjust the rotation to create a fixed rotation where y-component is set to zero
-            Quaternion cameraFixedRotation = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z);
-
-            // Get the forward direction of this fixed rotation
-            Vector3 cameraForward = cameraFixedRotation * Vector3.forward;
+            Vector3 cameraFixedForward =  CalculateFixedCameraForward();
             Vector3 cameraRight = PlayerCamera.instance.cameraObject.transform.right;
 
-            jumpDirection = (cameraForward * PlayerInputManager.instance.verticalInput + cameraRight * PlayerInputManager.instance.horizontalInput).normalized;
+
+            jumpDirection = (cameraFixedForward * PlayerInputManager.instance.verticalInput + cameraRight * PlayerInputManager.instance.horizontalInput).normalized;
 
             //jumpDirection = PlayerCamera.instance.cameraObject.transform.forward * PlayerInputManager.instance.verticalInput;
             //jumpDirection += PlayerCamera.instance.cameraObject.transform.right * PlayerInputManager.instance.horizontalInput;
@@ -475,6 +480,18 @@ namespace AS
             yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
         }
 
+        private Vector3 CalculateFixedCameraForward()
+        {
+            Quaternion cameraRotation = PlayerCamera.instance.cameraObject.transform.rotation;
+
+            // Adjust the rotation to create a fixed rotation where y-component is set to zero
+            Quaternion cameraFixedRotation = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z);
+
+            // Get the forward direction of this fixed rotation
+            Vector3 cameraFixedForward = cameraFixedRotation * Vector3.forward;
+
+            return cameraFixedForward;
+        }
 
 
     }
