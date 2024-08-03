@@ -129,6 +129,7 @@ namespace AS
             if (player.isJumping)
             {
                 player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
+                // Debug.Log("direction: " + jumpDirection);
             }
         }
 
@@ -266,16 +267,16 @@ namespace AS
             //targetRotationDirection.Normalize();
             //targetRotationDirection.y = 0;
 
-            Vector3 forward = PlayerCamera.instance.transform.forward;
-            Vector3 right = PlayerCamera.instance.transform.right;
+            Vector3 cameraForward = PlayerCamera.instance.transform.forward;
+            Vector3 cameraRight = PlayerCamera.instance.transform.right;
 
-            forward.y = 0; // Ignore y component
-            right.y = 0; // Ignore y component
+            cameraForward.y = 0; // Ignore y component
+            cameraRight.y = 0; // Ignore y component
 
-            forward.Normalize();
-            right.Normalize();
+            cameraForward.Normalize();
+            cameraRight.Normalize();
 
-            targetRotationDirection = (forward * verticalMovement + right * horizontalMovement).normalized;
+            targetRotationDirection = (cameraForward * verticalMovement + cameraRight * horizontalMovement).normalized;
 
 
             if (targetRotationDirection == Vector3.zero)
@@ -414,12 +415,24 @@ namespace AS
             player.isJumping = true;
 
 
+            
 
             player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
 
-            jumpDirection = PlayerCamera.instance.cameraObject.transform.forward * PlayerInputManager.instance.verticalInput;
-            jumpDirection += PlayerCamera.instance.cameraObject.transform.right * PlayerInputManager.instance.horizontalInput;
-            jumpDirection.y = 0;
+            Quaternion cameraRotation = PlayerCamera.instance.cameraObject.transform.rotation;
+
+            // Adjust the rotation to create a fixed rotation where y-component is set to zero
+            Quaternion cameraFixedRotation = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z);
+
+            // Get the forward direction of this fixed rotation
+            Vector3 cameraForward = cameraFixedRotation * Vector3.forward;
+            Vector3 cameraRight = PlayerCamera.instance.cameraObject.transform.right;
+
+            jumpDirection = (cameraForward * PlayerInputManager.instance.verticalInput + cameraRight * PlayerInputManager.instance.horizontalInput).normalized;
+
+            //jumpDirection = PlayerCamera.instance.cameraObject.transform.forward * PlayerInputManager.instance.verticalInput;
+            //jumpDirection += PlayerCamera.instance.cameraObject.transform.right * PlayerInputManager.instance.horizontalInput;
+            //jumpDirection.y = 0;
 
 
             if (jumpDirection != Vector3.zero)  // IF WE ARE NOT STATIONARY
