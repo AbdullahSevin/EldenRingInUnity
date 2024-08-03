@@ -93,14 +93,16 @@ namespace AS
                 // NORMAL ROTATIONS
                 // ROTATE LEFT AND RIGHT BASED ON HORIZONTAL MOVEMENT ON THE RIGHT JOYSTICK
                 leftAndRightLookAngle += (PlayerInputManager.instance.cameraHorizontalInput * leftAndRightRotationSpeed) * Time.deltaTime;
+                leftAndRightLookAngle = Mathf.Repeat(leftAndRightLookAngle, 360);
                 // ROTATE UP AND DOWN BASED ON THE VERTIKCLA MOVEMENT ON THE RIGHT JOYSTICK
                 upAndDownLookAngle -= (PlayerInputManager.instance.cameraVerticalInput * upAndDownRotationSpeed) * Time.deltaTime;
                 // CLAMP THE UP AND DOWN LOKING ANGLE BETWEEN A MIN AND A MAX VALUE
                 upAndDownLookAngle = Mathf.Clamp(upAndDownLookAngle, minimumPivot, maximumPivot);
 
-                
+
 
                 // ROTATE THIS OBJECT LEFT AND RIGHT
+
                 cameraRotation.y = leftAndRightLookAngle;
                 targetRotation = Quaternion.Euler(cameraRotation);
                 transform.rotation = targetRotation;
@@ -119,6 +121,7 @@ namespace AS
                     turn.y = Input.GetAxis("Mouse Y");
 
                     leftAndRightLookAngle += (turn.x * leftAndRightRotationSpeed * Time.deltaTime);
+                    leftAndRightLookAngle = Mathf.Repeat(leftAndRightLookAngle, 360);
                     upAndDownLookAngle -= (turn.y * upAndDownRotationSpeed * Time.deltaTime);
                     // CLAMP
                     upAndDownLookAngle = Mathf.Clamp(upAndDownLookAngle, minimumPivot, maximumPivot);

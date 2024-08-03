@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using Unity.VisualScripting;
+using static UnityEngine.GridBrushBase;
 
 
 namespace AS
@@ -100,6 +101,7 @@ namespace AS
             moveDirection.Normalize();
             
 
+
             if (player.playerNetworkManager.isSprinting.Value == true)
             {
                 player.characterController.Move(moveDirection * sprintingSpeed * Time.deltaTime);
@@ -151,20 +153,139 @@ namespace AS
                 return;
             }
 
+            /*
 
             Vector3 targetRotationDirection = Vector3.zero;
-            targetRotationDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
-            targetRotationDirection = targetRotationDirection + PlayerCamera.instance.cameraObject.transform.right * horizontalMovement;
+            Vector3 cameraRotationForward = PlayerCamera.instance.cameraObject.transform.forward;
+            cameraRotationForward.y = 0;
+            Debug.Log("forward: " + cameraRotationForward);
+            targetRotationDirection = cameraRotationForward * verticalMovement;
+            Debug.Log("before: " + targetRotationDirection);
+            // Debug.Log("vert: " + verticalMovement);
+            Vector3 cameraRotationRight = PlayerCamera.instance.cameraObject.transform.right;
+            cameraRotationRight.y = 0;
+            // Debug.Log("right: " + cameraRotationRight);
+            targetRotationDirection += cameraRotationRight * horizontalMovement;
+            // Debug.Log("horz: " + horizontalMovement);
             targetRotationDirection.Normalize();
             targetRotationDirection.y = 0;
-            
+            // Debug.Log("after: " + targetRotationDirection);
+
+            */
+            /*
+            Vector3 targetRotationDirection = Vector3.zero;
+            Vector3 cameraRotationForward = new Vector3 (1, 0, 1);
+            targetRotationDirection = cameraRotationForward * verticalMovement;
+            Vector3 cameraRotationRight = new Vector3(1, 0, 1);
+            targetRotationDirection += cameraRotationRight * horizontalMovement;         
+            targetRotationDirection.Normalize();
+            // targetRotationDirection.y = 0;
+            Debug.Log("after: " + targetRotationDirection);
+            */
+
+            Vector3 targetRotationDirection = Vector3.zero;
+
+            //List<string> rotationDirection;
+            //rotationDirection = new List<string>();
+            //if (verticalMovement == 1)
+            //{
+            //    rotationDirection.Clear();
+            //    rotationDirection.Add("Forward");
+            //}
+            //else if (verticalMovement ==-1)
+            //{
+            //    rotationDirection.Clear();
+            //    rotationDirection.Add("Backward");
+            //}
+            //else if (verticalMovement < 0.8 && verticalMovement > 0.6)
+            //{
+            //    if (horizontalMovement > 0.6)
+            //    {
+            //        rotationDirection.Clear();
+            //        rotationDirection.Add("Forward");
+            //        rotationDirection.Add("Right");
+            //    }
+            //    else if (horizontalMovement < -0.6)
+            //    {
+            //        rotationDirection.Clear();
+            //        rotationDirection.Add("Forward");
+            //        rotationDirection.Add("Left");
+            //    }
+
+            //}
+            //else if (verticalMovement == 0)
+            //{
+            //    if (horizontalMovement == 1)
+            //    {
+            //        rotationDirection.Clear();
+            //        rotationDirection.Add("Right");
+            //    }
+            //    else if (horizontalMovement == -1)
+            //    {
+            //        rotationDirection.Clear();
+            //        rotationDirection.Add("Left");
+            //    }
+            //}
+            //else if (verticalMovement > -0.8 && verticalMovement < -0.6)
+            //{
+            //    if (horizontalMovement > 0.5)
+            //    {
+            //        rotationDirection.Clear();
+            //        rotationDirection.Add("Backward");
+            //        rotationDirection.Add("Right");
+            //    }
+            //    else if (horizontalMovement < -0.5)
+            //    {
+            //        rotationDirection.Clear();
+            //        rotationDirection.Add("Backward");
+            //        rotationDirection.Add("Left");
+            //    }
+            //}
+            //Vector3 cameraForward = PlayerCamera.instance.cameraObject.transform.forward;
+            //cameraForward.y = 0;
+            //cameraForward.x = 0;
+            //foreach (string direction in rotationDirection)
+            //{
+            //    switch (direction)
+            //    {
+            //        case "Forward":
+            //            targetRotationDirection += cameraForward;
+            //            break;
+            //        case "Backward":
+            //            targetRotationDirection -= cameraForward;
+            //            break;
+            //        case "Right":
+            //            targetRotationDirection += PlayerCamera.instance.cameraObject.transform.right;
+            //            break;
+            //        case "Left":
+            //            targetRotationDirection -= PlayerCamera.instance.cameraObject.transform.right;
+            //            break;
+            //    }
+            //}
+
+            //targetRotationDirection.Normalize();
+            //targetRotationDirection.y = 0;
+
+            Vector3 forward = PlayerCamera.instance.transform.forward;
+            Vector3 right = PlayerCamera.instance.transform.right;
+
+            forward.y = 0; // Ignore y component
+            right.y = 0; // Ignore y component
+
+            forward.Normalize();
+            right.Normalize();
+
+            targetRotationDirection = (forward * verticalMovement + right * horizontalMovement).normalized;
+
 
             if (targetRotationDirection == Vector3.zero)
             {
                 targetRotationDirection = transform.forward;
             }
 
+
             Quaternion newRotation = Quaternion.LookRotation(targetRotationDirection);
+            
             Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = targetRotation;
 
