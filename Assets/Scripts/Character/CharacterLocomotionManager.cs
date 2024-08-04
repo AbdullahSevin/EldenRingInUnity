@@ -49,7 +49,7 @@ namespace AS
             else
             {
                 // IF WE ARE NOT JUMPING AND OUR FALLING VELOCITY HAS NOT BEEN SET
-                if (!character.isJumping && !fallingVelocityHasBeenSet)
+                if (!character.characterNetworkManager.isJumping.Value && !fallingVelocityHasBeenSet)
                 {
                     fallingVelocityHasBeenSet = true;
                     yVelocity.y = fallStartYVelocity;
@@ -79,7 +79,7 @@ namespace AS
         // DRAWS OUR GROUND CHECK SPHERE IN SCENE VIEW
         protected void OnDrawGizmosSelected()
         {
-            Gizmos.DrawSphere(character.transform.position, groundCheckSphereRadius);
+            // Gizmos.DrawSphere(character.transform.position, groundCheckSphereRadius);
         }
 
 

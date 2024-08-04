@@ -33,19 +33,22 @@ namespace AS
         //  OFFENSIVE POISE BONUS WHEN ATTACKING
 
 
-        //  WEAPON MODIFIERS 
-        //  LIGHT ATTACK MODIFIER
+        [Header("Attack Modifiers")]
+        public float light_Attack_01_Modifier = 1.1f;
+
         //  HEAVY ATTACK MODIFIER
         //  CRITICAL DAMAGE MODIFIER ETC
 
-        [Header("Stamina Costs")]
+        [Header("Stamina Costs Modifiers ")]
         public int baseStaminaCost = 20;
+        public float lightAttackStaminaCostMultiplier = 0.9f;
         //  RUNNNG ATTACK STAMINA COST MODIFIER
         //  LIGHT ATTACK STAMINA COST MOD.
         //  HEAVY ATT STAMINA COST MOD. ETC ...
 
 
-        //  ITEM BASED ACTIONS (RB RT LB LT GAME-PAD)
+        [Header("Actions")]
+        public WeaponItemAction oh_RB_Action;  //  ONE HAND RIGHT BUMPER ACTÝON
 
         //  ASH OF WAR 
 

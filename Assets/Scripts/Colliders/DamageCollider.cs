@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -7,6 +8,9 @@ namespace AS
 {
     public class DamageCollider : MonoBehaviour
     {
+        [Header("Collider")]
+        [SerializeField] protected Collider damageCollider;
+
         [Header("Damage")]
         public float physicalDamage = 0;  // (In the future will be split into "Standart", "Strike", "Slahs", and "Pierce")
         public float magicDamage = 0;
@@ -21,10 +25,20 @@ namespace AS
         [Header("Characters Damaged")]
         protected List<CharacterManager> charactersDamaged = new List<CharacterManager>();
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual void Awake()
+        {
+
+        }
+        protected virtual void OnTriggerEnter(Collider other)
         {
            
-            CharacterManager damageTarget = other.GetComponent<CharacterManager>();
+            CharacterManager damageTarget = other.GetComponentInParent<CharacterManager>();
+
+            //  NOT USING THIS ONE
+            //if (damageTarget = null)
+            //{
+            //    damageTarget = other.GetComponent<CharacterManager>();
+            //}
 
             if (damageTarget != null)
             {
@@ -64,6 +78,17 @@ namespace AS
 
             damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
 
+        }
+
+        public virtual void EnableDamageCollider()
+        {
+            damageCollider.enabled = true;
+        }
+
+        public virtual void DisableDamageCollider()
+        {
+            damageCollider.enabled = false;
+            charactersDamaged.Clear(); // WE RESET THE CHARACTERS THAT HAVE BEEN HIT, WHEN WE RESET THE COLLIDER, SO THEY MAY BE HIT AGAIN
         }
 
 

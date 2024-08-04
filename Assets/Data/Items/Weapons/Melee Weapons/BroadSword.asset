@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8269cfdca4af1428b01b3c94687830, type: 3}
+  m_Name: BroadSword
+  m_EditorClassIdentifier: 
+  name: Broad Sword
+  itemIcon: {fileID: 0}
+  itemDescription: Dumduz Kilic
+  itemID: 2
+  weaponModel: {fileID: 355312524381552382, guid: a401dc23e55a5124ab1cf6c488286b2a,
+    type: 3}
+  strengthREQ: 10
+  dexREQ: 10
+  intREQ: 0
+  faithREQ: 0
+  physicalDamage: 118
+  magicDamage: 0
+  fireDamage: 0
+  lightningDamage: 0
+  holyDamage: 0
+  poiseDamage: 25
+  baseStaminaCost: 20

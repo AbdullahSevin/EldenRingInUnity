@@ -36,6 +36,7 @@ namespace AS
         [SerializeField] bool dodgeInput = false;
         [SerializeField] bool sprintInput = false;
         [SerializeField] bool jumpInput = false;
+        [SerializeField] bool RB_Input = false;
 
 
 
@@ -68,6 +69,12 @@ namespace AS
             SceneManager.activeSceneChanged += OnSceneChange;
 
             instance.enabled = false;
+
+            if (playerControls != null)
+            {
+                playerControls.Disable();
+            }
+            
         }
 
         private void OnSceneChange (Scene oldScene, Scene newScene)
@@ -78,12 +85,22 @@ namespace AS
             if (newScene.buildIndex == WorldSaveGameManager.instance.GetWorldSceneIndex())
             {
                 instance.enabled = true;
+
+                if (playerControls != null)
+                {
+                    playerControls.Enable();
+                }
             }
             // OTHERWISE WE MUST BE AT THE MAIN MENU, DISABLE OUR PLAYER CONTROLS
             // THIS IS TO PREVENT PLAYER MOVEMENT WHILE NOT BEING IN WORLD SCENE (MAIN MENU SETTINGS MENU ETC)
             else
             {
                 instance.enabled = false;
+
+                if (playerControls != null)
+                {
+                    playerControls.Disable();
+                }
             }
         }
 
@@ -100,6 +117,8 @@ namespace AS
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
 
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+
+                playerControls.PlayerActions.RB.performed += i => RB_Input = true;
 
 
 
@@ -161,6 +180,7 @@ namespace AS
             HandleDodgeInput();
             HandeSprintInput();
             HandleJumpInput();
+            HandleRBInput();
         }
 
 
@@ -245,6 +265,24 @@ namespace AS
             }
 
             
+        }
+
+        private void HandleRBInput()
+        {
+            if (RB_Input)
+            {
+                RB_Input = false;
+
+                //  TO DO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+                player.playerNetworkManager.SetCharacterActionHand(true);
+
+                //  TO DO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+                player.playerCombatManager.PerformWeaponBasedAction(
+                    player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action,
+                    player.playerInventoryManager.currentRightHandWeapon);
+            }
         }
         
     }

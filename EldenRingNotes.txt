@@ -28,3 +28,14 @@ Player was not spawning, I added start network as host/client at the world loadi
 >>> But now the character is not in the don't destroy on load list STILL NOT THERE BUT SURVİVES FROM MAİN MENU SCENE TO WORLD SCENE
  >>>>> Solved, added start host function to the press start button
 >>>>> Character falling down on start also resolved with this
+
+
+
+
+ ADDED WEAPON INSTANTIATION SLOT TO RIGHT HAND TOO, // IS IT OK?
+
+
+
+
+
+CAN'T DAMAGE CHARACTERS AFTER THEY ARE RESPAWNED

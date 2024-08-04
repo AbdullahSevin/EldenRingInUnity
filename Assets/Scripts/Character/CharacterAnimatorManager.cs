@@ -60,6 +60,29 @@ namespace AS
             character.characterNetworkManager.NotifyTheServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
         }
 
+        public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation,
+            bool isPorformingAction,
+            bool applyRootMotion = true,
+            bool canRotate = false,
+            bool canMove = false)
+        {
+
+            //  KEEP TRACK OF LAST ATTACK PERFORMED (FOR COMBOS)
+            //  KEEP TRACK OF CURRENT ATTACK TYPE (LIGHT, HEAVY, ETC)
+            //  UPDATE ANIMATION SET TO CURRENT WEAPON ANIMATIONS
+            //  DECIDE IF OUR ATTACK CAN BE PARRIED
+            //  TELL THE NETWORK OUR "ISATTACKING" FLAG IS ACTIVE (For counter damage etc)
+
+            character.characterCombatManager.currentAttackType = attackType;
+            character.applyRootMotion = applyRootMotion;
+            character.animator.CrossFade(targetAnimation, 0.2f);
+            character.isPerformingAction = isPorformingAction;
+            character.canRotate = canRotate;
+            character.canMove = canMove;
+
+            // TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
+            character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+        }
 
     }
 }

@@ -17,10 +17,11 @@ namespace AS
         [HideInInspector] public CharacterNetworkManager characterNetworkManager;
         [HideInInspector] public CharacterEffectsManager characterEffectsManager;
         [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
+        [HideInInspector] public CharacterCombatManager characterCombatManager;
+
 
         [Header("Flags")]
         public bool isPerformingAction = false;
-        public bool isJumping = false;
         public bool isGrounded = true;
 
         public bool applyRootMotion = false;
@@ -37,8 +38,13 @@ namespace AS
             characterNetworkManager = GetComponent<CharacterNetworkManager>();
             characterEffectsManager = GetComponent<CharacterEffectsManager>();
             characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
+            characterCombatManager = GetComponent<CharacterCombatManager>();
         }
 
+        protected virtual void Start()
+        {
+            IgnoreMyOwnColliders();
+        }
 
         protected virtual void Update()
         {
@@ -110,6 +116,35 @@ namespace AS
 
         }
 
+        protected virtual void IgnoreMyOwnColliders()
+        {
+            Collider characterControllerCollider = GetComponent<Collider>();
+            Collider[] damagableCharacterColliders = GetComponentsInChildren<Collider>();
+
+            List<Collider> ignoreColliders = new List<Collider>();
+
+
+            //  ADDS ALL OF OUR DAMAGABLE CHARACTER COLLIDERS, TO THE LIST THAT WILL BE USED TO IGNORE COLLISIONS
+            foreach (var collider in damagableCharacterColliders)
+            {
+                ignoreColliders.Add(collider);
+
+            }
+            //  ADDS OUR CHARACTER CONTROLLER COLLIDER TO THE LIST THAT WILL BE USED TO IGNORE COLLISIONS
+            ignoreColliders.Add(characterControllerCollider);
+
+            //  GOES THROUGH EVERY COLLIDER ON THE LIST, AND IGNORES COLLISIONS WITH EACH OTHER
+            foreach (var collider in ignoreColliders)
+            {
+                foreach (var otherCollider in ignoreColliders)
+                {
+                    Physics.IgnoreCollision(collider, otherCollider, true);
+                }
+            }
+
+
+
+        }
 
 
 

@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Straight Sword
   itemIcon: {fileID: 0}
   itemDescription: Dumduz Kilic
-  itemID: 0
-  weaponModel: {fileID: 355312524381552382, guid: a401dc23e55a5124ab1cf6c488286b2a,
+  itemID: 1
+  weaponModel: {fileID: 9089073183651520005, guid: 74a8c84b6f5a0a247aa4a3ad771eb440,
     type: 3}
   strengthREQ: 10
   dexREQ: 10
@@ -29,3 +29,4 @@ MonoBehaviour:
   holyDamage: 0
   poiseDamage: 25
   baseStaminaCost: 20
+  oh_RB_Action: {fileID: 11400000, guid: ba12e38cec8a2284591a4048ac7aff51, type: 2}

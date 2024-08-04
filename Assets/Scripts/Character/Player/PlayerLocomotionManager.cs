@@ -130,7 +130,7 @@ namespace AS
 
         private void HandleJumpingMovement()
         {
-            if (player.isJumping)
+            if (player.playerNetworkManager.isJumping.Value)
             {
                 player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
                 // Debug.Log("direction: " + jumpDirection);
@@ -407,7 +407,7 @@ namespace AS
 
 
             // IF WE ARE ALREADY JUMPING WE CANT JUMP ON AIR AGAIN (OR CAN WE? WE WILL SEE IN THE FUTURE)
-            if (player.isJumping)
+            if (player.playerNetworkManager.isJumping.Value)
             {
                 return;
             }
@@ -422,7 +422,7 @@ namespace AS
 
             player.playerAnimatorManager.PlayTargetActionAnimation("Main_Jump_01", false);
 
-            player.isJumping = true;
+            player.playerNetworkManager.isJumping.Value = true;
 
 
             
