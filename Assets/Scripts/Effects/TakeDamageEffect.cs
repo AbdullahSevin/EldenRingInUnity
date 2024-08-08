@@ -56,11 +56,11 @@ namespace AS
             //  CHECK FOR INVULNERABILITY
 
             CalculateDamage(character);
-            //  CHECK WHICH DIRECTION THE DAMAGE CAME FROM
-            //  PLAY A DAMAGE ANIMATION
+            PlayDirectionalBasedDamageAnimation(character);
+            Debug.Log("TAKE DAMAGE CS >>>   PROCESSED DIRECTIONAL ANIMATION");
             //  CHECK FOR BUILD UPS (POISON, BLEED ETC...)
-            //  PLAY DAMAGE SOUND FX
-            //  PLAY DAMAGE VFX (BLOOD)
+            PlayDamageSFX(character);
+            PlayDamageVFX(character);
 
             //  IF CHARACTER IS A.I., CHECK FOR NEW TARGET IF CHARACTER CAUSING DAMAGE IS PRESENT
 
@@ -96,6 +96,75 @@ namespace AS
             Debug.Log("damage taken: " + finalDamageDealt);
             
             //  CALCULATE THE POISE DAMAGE TO DETERMINE IF THE CHARACTER WILL BE STUNNED
+
+
+        }
+
+        private void PlayDamageVFX(CharacterManager character)
+        {
+            //  IF WE HAVE FIRE DAMAGE PLAY FIRE VFX, OR LIGHTNING OR ETC ...
+
+            character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
+        }
+
+        private void PlayDamageSFX(CharacterManager character)
+        {
+            AudioClip phsicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
+
+            character.characterSoundFXManager.PlaySoundFX(phsicalDamageSFX);
+
+            //  IF FIRE DAMAGE IS GREATER THAN 0, PLAY BURN SFX,
+            //  "  LIGHTNING    "            "  , "     ZAP SFX
+        }
+
+        private void PlayDirectionalBasedDamageAnimation(CharacterManager character)
+        {
+            if (!character.IsOwner)
+            {
+                Debug.Log("TAKE DAMAGE CS >>>   NOT OWNER RETURNED");
+                return;
+            }
+
+            if (character.isDead.Value)
+            {
+                return;
+            }
+
+            //  TODO: CALCULATE IF POISE IS BROKEN
+            poiseIsBroken = true;
+            Debug.Log("TAKE DAMAGE CS >>>   POISE SET TO BROKEN: " + poiseIsBroken);
+
+            if (angleHitFrom >= 145 && angleHitFrom <= 180)
+            {
+                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
+            }
+            else if (angleHitFrom <= -145 && angleHitFrom >= -180)
+            {
+                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
+            }
+            else if (angleHitFrom >= -45 && angleHitFrom <= 45)
+            {
+                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.backward_Medium_Damage);
+            }
+            else if (angleHitFrom >= -144 && angleHitFrom <= -45)
+            {
+                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.left_Medium_Damage);
+            }
+            else if (angleHitFrom >= 45 && angleHitFrom <= 144)
+            {
+                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.right_Medium_Damage);
+            }
+
+            Debug.Log("TAKE DAMAGE CS >>>   ANGLE HIT FROM: " + angleHitFrom + "damageAnimation: " + damageAnimation);
+
+
+            //  IF POISE IS BROKEN, PLAY A STAGGERING DAMAGE ANIMATION
+            if (poiseIsBroken)
+            {
+                Debug.Log("TAKE DAMAGE.cs:  >>>  sent play anim req");
+                character.characterAnimatorManager.lastDamageAnimationPlayed = damageAnimation;
+                character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, true);
+            }
 
 
         }

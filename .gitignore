@@ -70,3 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Imported Packages, which are not directly used
+/[Aa]ssets/[Ii]mportedPackages
+/[Aa]ssets/[Ii]mportedPackages.meta

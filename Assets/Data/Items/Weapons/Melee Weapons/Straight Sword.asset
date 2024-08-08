@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Straight Sword
   m_EditorClassIdentifier: 
   name: Straight Sword
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 71744b73748643345a3bee76fbc150ca, type: 3}
   itemDescription: Dumduz Kilic
   itemID: 1
   weaponModel: {fileID: 9089073183651520005, guid: 74a8c84b6f5a0a247aa4a3ad771eb440,
@@ -28,5 +28,13 @@ MonoBehaviour:
   lightningDamage: 0
   holyDamage: 0
   poiseDamage: 25
+  light_Attack_01_Modifier: 1
+  light_Attack_02_Modifier: 1.2
+  heavy_Attack_01_Modifier: 1.4
+  heavy_Attack_02_Modifier: 1.6
+  charge_Attack_01_Modifier: 2
+  charge_Attack_02_Modifier: 2.2
   baseStaminaCost: 20
+  lightAttackStaminaCostMultiplier: 0.9
   oh_RB_Action: {fileID: 11400000, guid: ba12e38cec8a2284591a4048ac7aff51, type: 2}
+  oh_RT_Action: {fileID: 11400000, guid: 0a9197f72c80508439f48b9aab5211be, type: 2}

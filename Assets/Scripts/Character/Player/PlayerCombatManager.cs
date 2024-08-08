@@ -10,6 +10,11 @@ namespace AS
         PlayerManager player;
 
         public WeaponItem currentWeaponBeingUsed;
+
+        [Header("Flags")]
+        public bool canComboWithMainHandWeapon = false;
+        // public bool canComboWithOffHandWeapon = false;
+
         
 
 
@@ -61,10 +66,23 @@ namespace AS
                 default:
                     break;
             }
-            Debug.Log("STAMINA DEDUCTED: " +  staminaDeducted);
+            //  Debug.Log("STAMINA DEDUCTED: " +  staminaDeducted);
             player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
 
         }
+
+        public override void SetTarget(CharacterManager newTarget)
+        {
+            base.SetTarget(newTarget);
+
+            if (player.IsOwner)
+            {
+                PlayerCamera.instance.SetLockCameraHeight();
+            }
+
+        }
+
+        
 
     }
 

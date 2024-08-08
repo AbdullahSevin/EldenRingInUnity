@@ -62,6 +62,12 @@ namespace AS
             WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
             player.playerInventoryManager.currentRightHandWeapon = newWeapon;
             player.playerEquipmentManager.LoadRightWeapon();
+
+            if (player.IsOwner)
+            {
+                PlayerUIManager.instance.playerUIHudManager.SetRightWeaponQuickSlotIcon(newID);
+            }
+
         }
 
         public void OnCurrentLeftHandWeaponIDChange(int oldID, int newID)
@@ -69,6 +75,11 @@ namespace AS
             WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
             player.playerInventoryManager.currentLeftHandWeapon = newWeapon;
             player.playerEquipmentManager.LoadLeftWeapon();
+
+            if (player.IsOwner)
+            {
+                PlayerUIManager.instance.playerUIHudManager.SetLeftWeaponQuickSlotIcon(newID);
+            }
         }
 
 
@@ -109,7 +120,7 @@ namespace AS
             }
             else
             {
-                Debug.LogError("ACTION IS NULL, CANNOT BE PERFORMED");
+                // Debug.LogError("ACTION IS NULL, CANNOT BE PERFORMED");
             }
 
 

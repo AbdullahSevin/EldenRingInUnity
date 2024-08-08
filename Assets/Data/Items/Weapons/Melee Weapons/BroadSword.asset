@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BroadSword
   m_EditorClassIdentifier: 
   name: Broad Sword
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 1b581588624df044d89371a0967eda5a, type: 3}
   itemDescription: Dumduz Kilic
   itemID: 2
   weaponModel: {fileID: 355312524381552382, guid: a401dc23e55a5124ab1cf6c488286b2a,
@@ -28,4 +28,13 @@ MonoBehaviour:
   lightningDamage: 0
   holyDamage: 0
   poiseDamage: 25
+  light_Attack_01_Modifier: 1
+  light_Attack_02_Modifier: 1.2
+  heavy_Attack_01_Modifier: 1.4
+  heavy_Attack_02_Modifier: 1.6
+  charge_Attack_01_Modifier: 2
+  charge_Attack_02_Modifier: 2.2
   baseStaminaCost: 20
+  lightAttackStaminaCostMultiplier: 0.9
+  oh_RB_Action: {fileID: 11400000, guid: ba12e38cec8a2284591a4048ac7aff51, type: 2}
+  oh_RT_Action: {fileID: 11400000, guid: 0a9197f72c80508439f48b9aab5211be, type: 2}

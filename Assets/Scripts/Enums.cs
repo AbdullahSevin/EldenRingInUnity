@@ -33,7 +33,14 @@ public enum WeaponModelSlot
     //Back,
 }
 
+
+//  THIS IS USED TO CALCULATE DAMAGE BASED ON ATTACK TYPE
 public enum AttackType
 {
-    LightAttack01
+    LightAttack01,
+    LightAttack02,
+    HeavyAttack01,
+    HeavyAttack02,
+    ChargedAttack01,
+    ChargedAttack02
 }

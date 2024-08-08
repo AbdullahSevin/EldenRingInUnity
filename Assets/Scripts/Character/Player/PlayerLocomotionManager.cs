@@ -66,9 +66,16 @@ namespace AS
                 moveAmount = player.characterNetworkManager.moveAmount.Value;
                 
                 // IF NOT LOCKED ON PASS MOVE AMOUNT
-                player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
-
-                // OF LOCKED ON PASS HORIZONTAL AND VERTICAL
+                if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)
+                {
+                    player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
+                }
+                // IF LOCKED ON PASS HORIZONTAL AND VERTICAL
+                else
+                {
+                    player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalMovement, verticalMovement, player.playerNetworkManager.isSprinting.Value);
+                }
+                
             }
         }
 
@@ -159,12 +166,53 @@ namespace AS
         
         private void HandleRotation()
         {
+            if (player.isDead.Value)
+            {
+                return;
+            }
             if (!player.canRotate)
             {
                 return;
             }
+            if (player.playerNetworkManager.isLockedOn.Value)
+            {
+                if (player.playerNetworkManager.isSprinting.Value || player.playerLocomotionManager.isRolling )
+                {
+                    Vector3 targetDirection = Vector3.zero;
+                    targetDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
+                    targetDirection += PlayerCamera.instance.cameraObject.transform.right * horizontalMovement;
+                    targetDirection.Normalize();
+                    targetDirection.y = 0;
 
-            /*
+                    if (targetDirection == Vector3.zero)
+                    {
+                        targetDirection = transform.forward;
+                    }
+
+                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                    Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                    transform.rotation = finalRotation;
+                }
+                else
+                {
+                    if (player.playerCombatManager.currentTarget == null)
+                    {
+                        return;
+                    }
+
+                    Vector3 targetDirection;
+                    targetDirection = player.playerCombatManager.currentTarget.transform.position - transform.position;
+                    targetDirection.y = 0;
+                    targetDirection.Normalize();
+                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                    Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                    transform.rotation = finalRotation;
+
+                }
+            }
+            else
+            {
+                /*
 
             Vector3 targetRotationDirection = Vector3.zero;
             Vector3 cameraRotationForward = PlayerCamera.instance.cameraObject.transform.forward;
@@ -183,128 +231,131 @@ namespace AS
             // Debug.Log("after: " + targetRotationDirection);
 
             */
-            /*
-            Vector3 targetRotationDirection = Vector3.zero;
-            Vector3 cameraRotationForward = new Vector3 (1, 0, 1);
-            targetRotationDirection = cameraRotationForward * verticalMovement;
-            Vector3 cameraRotationRight = new Vector3(1, 0, 1);
-            targetRotationDirection += cameraRotationRight * horizontalMovement;         
-            targetRotationDirection.Normalize();
-            // targetRotationDirection.y = 0;
-            Debug.Log("after: " + targetRotationDirection);
-            */
+                /*
+                Vector3 targetRotationDirection = Vector3.zero;
+                Vector3 cameraRotationForward = new Vector3 (1, 0, 1);
+                targetRotationDirection = cameraRotationForward * verticalMovement;
+                Vector3 cameraRotationRight = new Vector3(1, 0, 1);
+                targetRotationDirection += cameraRotationRight * horizontalMovement;         
+                targetRotationDirection.Normalize();
+                // targetRotationDirection.y = 0;
+                Debug.Log("after: " + targetRotationDirection);
+                */
+                /*
+                List<string> rotationDirection;
+                rotationDirection = new List<string>();
+                if (verticalMovement == 1)
+                {
+                    rotationDirection.Clear();
+                    rotationDirection.Add("Forward");
+                }
+                else if (verticalMovement == -1)
+                {
+                    rotationDirection.Clear();
+                    rotationDirection.Add("Backward");
+                }
+                else if (verticalMovement < 0.8 && verticalMovement > 0.6)
+                {
+                    if (horizontalMovement > 0.6)
+                    {
+                        rotationDirection.Clear();
+                        rotationDirection.Add("Forward");
+                        rotationDirection.Add("Right");
+                    }
+                    else if (horizontalMovement < -0.6)
+                    {
+                        rotationDirection.Clear();
+                        rotationDirection.Add("Forward");
+                        rotationDirection.Add("Left");
+                    }
 
-            Vector3 targetRotationDirection = Vector3.zero;
+                }
+                else if (verticalMovement == 0)
+                {
+                    if (horizontalMovement == 1)
+                    {
+                        rotationDirection.Clear();
+                        rotationDirection.Add("Right");
+                    }
+                    else if (horizontalMovement == -1)
+                    {
+                        rotationDirection.Clear();
+                        rotationDirection.Add("Left");
+                    }
+                }
+                else if (verticalMovement > -0.8 && verticalMovement < -0.6)
+                {
+                    if (horizontalMovement > 0.5)
+                    {
+                        rotationDirection.Clear();
+                        rotationDirection.Add("Backward");
+                        rotationDirection.Add("Right");
+                    }
+                    else if (horizontalMovement < -0.5)
+                    {
+                        rotationDirection.Clear();
+                        rotationDirection.Add("Backward");
+                        rotationDirection.Add("Left");
+                    }
+                }
+                Vector3 cameraForward = PlayerCamera.instance.cameraObject.transform.forward;
+                cameraForward.y = 0;
+                cameraForward.x = 0;
+                foreach (string direction in rotationDirection)
+                {
+                    switch (direction)
+                    {
+                        case "Forward":
+                            targetRotationDirection += cameraForward;
+                            break;
+                        case "Backward":
+                            targetRotationDirection -= cameraForward;
+                            break;
+                        case "Right":
+                            targetRotationDirection += PlayerCamera.instance.cameraObject.transform.right;
+                            break;
+                        case "Left":
+                            targetRotationDirection -= PlayerCamera.instance.cameraObject.transform.right;
+                            break;
+                    }
+                }
 
-            //List<string> rotationDirection;
-            //rotationDirection = new List<string>();
-            //if (verticalMovement == 1)
-            //{
-            //    rotationDirection.Clear();
-            //    rotationDirection.Add("Forward");
-            //}
-            //else if (verticalMovement ==-1)
-            //{
-            //    rotationDirection.Clear();
-            //    rotationDirection.Add("Backward");
-            //}
-            //else if (verticalMovement < 0.8 && verticalMovement > 0.6)
-            //{
-            //    if (horizontalMovement > 0.6)
-            //    {
-            //        rotationDirection.Clear();
-            //        rotationDirection.Add("Forward");
-            //        rotationDirection.Add("Right");
-            //    }
-            //    else if (horizontalMovement < -0.6)
-            //    {
-            //        rotationDirection.Clear();
-            //        rotationDirection.Add("Forward");
-            //        rotationDirection.Add("Left");
-            //    }
+                targetRotationDirection.Normalize();
+                targetRotationDirection.y = 0; */
 
-            //}
-            //else if (verticalMovement == 0)
-            //{
-            //    if (horizontalMovement == 1)
-            //    {
-            //        rotationDirection.Clear();
-            //        rotationDirection.Add("Right");
-            //    }
-            //    else if (horizontalMovement == -1)
-            //    {
-            //        rotationDirection.Clear();
-            //        rotationDirection.Add("Left");
-            //    }
-            //}
-            //else if (verticalMovement > -0.8 && verticalMovement < -0.6)
-            //{
-            //    if (horizontalMovement > 0.5)
-            //    {
-            //        rotationDirection.Clear();
-            //        rotationDirection.Add("Backward");
-            //        rotationDirection.Add("Right");
-            //    }
-            //    else if (horizontalMovement < -0.5)
-            //    {
-            //        rotationDirection.Clear();
-            //        rotationDirection.Add("Backward");
-            //        rotationDirection.Add("Left");
-            //    }
-            //}
-            //Vector3 cameraForward = PlayerCamera.instance.cameraObject.transform.forward;
-            //cameraForward.y = 0;
-            //cameraForward.x = 0;
-            //foreach (string direction in rotationDirection)
-            //{
-            //    switch (direction)
-            //    {
-            //        case "Forward":
-            //            targetRotationDirection += cameraForward;
-            //            break;
-            //        case "Backward":
-            //            targetRotationDirection -= cameraForward;
-            //            break;
-            //        case "Right":
-            //            targetRotationDirection += PlayerCamera.instance.cameraObject.transform.right;
-            //            break;
-            //        case "Left":
-            //            targetRotationDirection -= PlayerCamera.instance.cameraObject.transform.right;
-            //            break;
-            //    }
-            //}
+                Vector3 targetRotationDirection = Vector3.zero;
+                
 
-            //targetRotationDirection.Normalize();
-            //targetRotationDirection.y = 0;
+                Vector3 cameraForward = PlayerCamera.instance.transform.forward;
+                Vector3 cameraRight = PlayerCamera.instance.transform.right;
 
-            Vector3 cameraForward = PlayerCamera.instance.transform.forward;
-            Vector3 cameraRight = PlayerCamera.instance.transform.right;
+                cameraForward.y = 0; // Ignore y component
+                cameraRight.y = 0; // Ignore y component
 
-            cameraForward.y = 0; // Ignore y component
-            cameraRight.y = 0; // Ignore y component
+                cameraForward.Normalize();
+                cameraRight.Normalize();
 
-            cameraForward.Normalize();
-            cameraRight.Normalize();
-
-            targetRotationDirection = (cameraForward * verticalMovement + cameraRight * horizontalMovement).normalized;
+                targetRotationDirection = (cameraForward * verticalMovement + cameraRight * horizontalMovement).normalized;
 
 
-            if (targetRotationDirection == Vector3.zero)
-            {
-                targetRotationDirection = transform.forward;
+                if (targetRotationDirection == Vector3.zero)
+                {
+                    targetRotationDirection = transform.forward;
+                }
+
+
+                Quaternion newRotation = Quaternion.LookRotation(targetRotationDirection);
+
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = targetRotation;
+
+                /*
+                Debug.Log($"horMov: {horizontalMovement} / verMov: {verticalMovement}" +
+                    $" / transRight: {PlayerCamera.instance.cameraObject.transform.right} / transForward: {PlayerCamera.instance.cameraObject.transform.forward}" +
+                    $"targetRotDir: {targetRotationDirection} / targetRot: {targetRotation}");
+                */
             }
 
-
-            Quaternion newRotation = Quaternion.LookRotation(targetRotationDirection);
-            
-            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
-            transform.rotation = targetRotation;
-
-            /*
-            Debug.Log($"horMov: {horizontalMovement} / verMov: {verticalMovement}" +
-                $" / transRight: {PlayerCamera.instance.cameraObject.transform.right} / transForward: {PlayerCamera.instance.cameraObject.transform.forward}" +
-                $"targetRotDir: {targetRotationDirection} / targetRot: {targetRotation}");
-            */
 
         }
 
@@ -368,6 +419,7 @@ namespace AS
                 player.transform.rotation = playerRotation;
 
                 player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Forward_01", true, true);
+                player.playerLocomotionManager.isRolling = true;
 
                 //PERFORM A ROLL ANIMATION
             }

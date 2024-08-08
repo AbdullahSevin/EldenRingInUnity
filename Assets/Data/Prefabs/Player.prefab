@@ -46,6 +46,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSlot: 0
   currentWeaponModel: {fileID: 0}
+--- !u!1 &7183715449484417996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1695144108754272094}
+  m_Layer: 7
+  m_Name: Lock On Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1695144108754272094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7183715449484417996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1790373, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8335289354262803371}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8104552996594231984
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +494,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -7011284792763705418, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1695144108754272094}
     - targetCorrespondingSourceObject: {fileID: 3780837713738550241, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
       insertIndex: -1
@@ -1012,7 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 601771572
+  GlobalObjectIdHash: 4103628025
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1040,6 +1075,9 @@ MonoBehaviour:
   characterNetworkManager: {fileID: 0}
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
+  characterCombatManager: {fileID: 0}
+  characterSoundFXManager: {fileID: 0}
+  characterLocomotionManager: {fileID: 0}
   isPerformingAction: 0
   isGrounded: 1
   applyRootMotion: 0
@@ -1066,6 +1104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5b4e055e3eeab45863b66f75e94b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
+  currentAttackType: 0
+  lockOnTransform: {fileID: 1695144108754272094}
   currentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &1118105768141700785
 MonoBehaviour:
@@ -1087,6 +1128,7 @@ MonoBehaviour:
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5
+  isRolling: 0
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
@@ -1118,13 +1160,13 @@ MonoBehaviour:
     type: 2}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
-  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
-  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
+  - {fileID: 11400000, guid: 1e3fa2f4f84196644bf0944d9c3df860, type: 2}
+  - {fileID: 11400000, guid: 2697695148ab38144b2c54a33f0674c2, type: 2}
   rightHandWeaponIndex: 0
   weaponsInLeftHandSlots:
   - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
-  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
-  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
+  - {fileID: 11400000, guid: 2697695148ab38144b2c54a33f0674c2, type: 2}
+  - {fileID: 11400000, guid: 1e3fa2f4f84196644bf0944d9c3df860, type: 2}
   leftHandWeaponIndex: 0
 --- !u!114 &4161678334230246665
 MonoBehaviour:
@@ -1169,9 +1211,15 @@ MonoBehaviour:
     m_InternalValue: 0
   moveAmount:
     m_InternalValue: 0
+  currentTargetNetworkObjectID:
+    m_InternalValue: 0
+  isLockedOn:
+    m_InternalValue: 0
   isSprinting:
     m_InternalValue: 0
   isJumping:
+    m_InternalValue: 0
+  isChargingAttack:
     m_InternalValue: 0
   currentHealth:
     m_InternalValue: 0
@@ -1276,10 +1324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8d15a8bbed9b84b8494548847f2ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthRegenerationAmount: 1
+  healthRegenerationAmount: 0
   healthRegenerationDelay: 0
-  staminaRegenerationAmount: 2
-  staminaRegenerationDelay: 2
+  staminaRegenerationAmount: 10
+  staminaRegenerationDelay: 0
 --- !u!114 &2428720114898212842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1292,7 +1340,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9971f7f2336634d905d27288aee093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalAmount: 0
+  lastDamageAnimationPlayed: 
+  hit_Forward_Medium_01: hit_Forward_Medium_01
+  hit_Forward_Medium_02: hit_Forward_Medium_02
+  hit_Backward_Medium_01: hit_Backward_Medium_01
+  hit_Backward_Medium_02: hit_Backward_Medium_02
+  hit_Left_Medium_01: hit_Left_Medium_01
+  hit_Left_Medium_02: hit_Left_Medium_02
+  hit_Right_Medium_01: hit_Right_Medium_01
+  hit_Right_Medium_02: hit_Right_Medium_02
+  forward_Medium_Damage: []
+  backward_Medium_Damage: []
+  left_Medium_Damage: []
+  right_Medium_Damage: []
+  snappedVertical: 0
 --- !u!114 &-6054111429686950053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,6 +1378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168ebf60219e539498749b28e05f078d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplatterVFX: {fileID: 0}
   effectToTest: {fileID: 11400000, guid: f1af74c0978c2f74c966e3754900c63e, type: 2}
   processEffect: 0
 --- !u!143 &2279601104469166460
@@ -1555,6 +1617,12 @@ CapsuleCollider:
   m_Height: 0.38
   m_Direction: 0
   m_Center: {x: 0.15, y: 0, z: 0}
+--- !u!4 &8335289354262803371 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7011284792763705418, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+    type: 3}
+  m_PrefabInstance: {fileID: 7862735338409911325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8343940290288805492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2221872609835778665, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
