@@ -2516,7 +2516,6 @@ GameObject:
   - component: {fileID: 8604971444603425235}
   - component: {fileID: 8700647302743717732}
   - component: {fileID: 5024790673245024057}
-  - component: {fileID: 991583670011081082}
   - component: {fileID: 5391961277257715723}
   - component: {fileID: 4041551111592380302}
   - component: {fileID: 4023332981155117798}
@@ -2526,6 +2525,7 @@ GameObject:
   - component: {fileID: 1484299583753526219}
   - component: {fileID: -658192330809070795}
   - component: {fileID: -1092523082792809392}
+  - component: {fileID: -2282906235305335750}
   m_Layer: 6
   m_Name: Dummy02
   m_TagString: Untagged
@@ -2810,27 +2810,12 @@ MonoBehaviour:
   characterCombatManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterGroup: 1
   isPerformingAction: 0
   isGrounded: 1
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
---- !u!114 &991583670011081082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8744637170119710124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e46b9ec9514a6f47abee1aecc27047c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastAttackAnimationPerformed: 
-  currentTarget: {fileID: 0}
-  currentAttackType: 0
-  lockOnTransform: {fileID: 7244666637289807099}
 --- !u!114 &5391961277257715723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2978,11 +2963,33 @@ MonoBehaviour:
   characterCombatManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterGroup: 1
   isPerformingAction: 0
   isGrounded: 1
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
+  aiCharacterCombatManager: {fileID: 0}
+  currenState: {fileID: 11400000, guid: 84a57bbcb7b02be438094b0dc48b22c2, type: 2}
+--- !u!114 &-2282906235305335750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744637170119710124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98652293f30a74b448a3a47dcf68ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastAttackAnimationPerformed: 
+  currentTarget: {fileID: 0}
+  currentAttackType: 0
+  lockOnTransform: {fileID: 7244666637289807099}
+  detectionRadius: 15
+  minimumDetectionAngle: -35
+  maximumDetectionAngle: 35
 --- !u!1 &9168729260015840918
 GameObject:
   m_ObjectHideFlags: 0

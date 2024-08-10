@@ -52,7 +52,7 @@ namespace AS
             WeaponItem weapon = WorldItemDatabase.Instance.GetWeaponByID(weaponID);
             if (weapon == null)
             {
-                Debug.Log("ITEM IS NULL");
+                // Debug.Log("ITEM IS NULL");
                 rightWeaponQuickSlotIcon.enabled = false;
                 rightWeaponQuickSlotIcon.sprite = null;
                 return;
@@ -62,7 +62,7 @@ namespace AS
             {
                 rightWeaponQuickSlotIcon.enabled = false;
                 rightWeaponQuickSlotIcon.sprite = null;
-                Debug.Log("No item icon found returned");
+                // Debug.Log("No item icon found returned");
                 return;
             }
 
@@ -82,7 +82,7 @@ namespace AS
             WeaponItem weapon = WorldItemDatabase.Instance.GetWeaponByID(weaponID);
             if (weapon == null)
             {
-                Debug.Log("ITEM IS NULL");
+                // Debug.Log("ITEM IS NULL");
                 leftWeaponQuickSlotIcon.enabled = false;
                 leftWeaponQuickSlotIcon.sprite = null;
                 return;
@@ -92,7 +92,7 @@ namespace AS
             {
                 leftWeaponQuickSlotIcon.enabled = false;
                 leftWeaponQuickSlotIcon.sprite = null;
-                Debug.Log("No item icon found returned");
+                // Debug.Log("No item icon found returned");
                 return;
             }
 
