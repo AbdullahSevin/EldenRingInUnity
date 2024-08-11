@@ -15,6 +15,9 @@ namespace AS
         int horizontal;
         int vertical;
 
+        [Header("Flags")]
+        public bool applyRootMotion = false;
+
         [Header("Damage Animations")]
         public string lastDamageAnimationPlayed;
 
@@ -152,15 +155,15 @@ namespace AS
         {
             //  Debug.Log("PLAYING ANIMATION: " + targetAnimation);
 
-            character.applyRootMotion = applyRootMotion;
+            character.characterAnimatorManager.applyRootMotion = applyRootMotion;
             character.animator.CrossFade(targetAnimation, 0.2f);
             // CAN BE USED TO STOP CHARACTER FORM ATTEMPTING NEW ACTION
             // FOR EXAMPLE IF YOU GET DAMAGED, AND BEGIN PERFORMING A DAMAGE ANIMATION
             // THIS FLAG WILL TURN IF YOU ARE STUNNED
             // WE CAN THEN CHECK FOR THIS BEFORE ATTEMPTING NEW ACTIONS
             character.isPerformingAction = isPorformingAction;
-            character.canRotate = canRotate;
-            character.canMove = canMove;
+            character.characterLocomotionManager.canRotate = canRotate;
+            character.characterLocomotionManager.canMove = canMove;
 
             Debug.Log("Action Animation played: " + targetAnimation);
 
@@ -183,11 +186,11 @@ namespace AS
 
             character.characterCombatManager.currentAttackType = attackType;
             character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation; 
-            character.applyRootMotion = applyRootMotion;
+            this.applyRootMotion = applyRootMotion;
             character.animator.CrossFade(targetAnimation, 0.2f);
             character.isPerformingAction = isPorformingAction;
-            character.canRotate = canRotate;
-            character.canMove = canMove;
+            character.characterLocomotionManager.canRotate = canRotate;
+            character.characterLocomotionManager.canMove = canMove;
 
             // TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
             character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);

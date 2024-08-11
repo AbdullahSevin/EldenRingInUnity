@@ -21,8 +21,9 @@ namespace AS
         [Header("States")]
         public IdleState idle;
         public PursueTargetState pursueTarget;
-        // COMBAT STANCE
-        // ATTACK
+        public CombatStanceState combatStance;
+        public AttackState attack;
+         
 
         protected override void Awake()
         {
@@ -41,6 +42,12 @@ namespace AS
             currentState = idle;
         }
 
+        protected override void Update()
+        {
+            base.Update();
+
+            aiCharacterCombatManager.HandleActionRecovery(this);
+        }
         protected override void FixedUpdate()
         {
             base.FixedUpdate();

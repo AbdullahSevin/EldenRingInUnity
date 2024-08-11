@@ -26,11 +26,10 @@ namespace AS
 
         [Header("Flags")]
         public bool isPerformingAction = false;
-        public bool isGrounded = true;
+        
 
-        public bool applyRootMotion = false;
-        public bool canRotate = true;
-        public bool canMove = true;
+        
+
 
         protected virtual void Awake()
         {
@@ -54,7 +53,7 @@ namespace AS
 
         protected virtual void Update()
         {
-            animator.SetBool("isGrounded", isGrounded);
+            animator.SetBool("isGrounded", characterLocomotionManager.isGrounded);
 
             // if this character is controlled by us assign our transform position to it, (SET LOC)
             if (IsOwner)
@@ -94,6 +93,8 @@ namespace AS
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
+
+            animator.SetBool("isMoving", characterNetworkManager.isMoving.Value);
             characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
         }
 

@@ -20,7 +20,7 @@ namespace AS
             //  HOST
             if (aiCharacter.IsOwner)
             {
-                if (!aiCharacter.isGrounded)
+                if (!aiCharacter.characterLocomotionManager.isGrounded)
                 {
                     return;
                 }
@@ -32,7 +32,7 @@ namespace AS
             //  CLIENT  
             else
             {
-                if (!aiCharacter.isGrounded)
+                if (!aiCharacter.characterLocomotionManager.isGrounded)
                 {
                     return;
                 }

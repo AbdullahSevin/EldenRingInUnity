@@ -26,7 +26,7 @@ namespace AS
                 return;
             }
 
-            if (!playerPerformingAction.isGrounded)
+            if (!playerPerformingAction.characterLocomotionManager.isGrounded)
             {
                 return;
             }

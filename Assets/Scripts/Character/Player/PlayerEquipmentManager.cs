@@ -270,11 +270,13 @@ namespace AS
             if (player.playerNetworkManager.isUsingRightHand.Value)
             {
                 rightWeaponManager.meleeDamageCollider.EnableDamageCollider();
+                player.characterSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(player.playerInventoryManager.currentRightHandWeapon.whooshes));
             }
             //  OPEN LEFT WEAPON DAMAGE COLLIDER
             else if (player.playerNetworkManager.isUsingLeftHand.Value)
             {
                 leftWeaponManager.meleeDamageCollider.EnableDamageCollider();
+                player.characterSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(player.playerInventoryManager.currentLeftHandWeapon.whooshes));
             }
 
             //  PLAY WHOOS SFX

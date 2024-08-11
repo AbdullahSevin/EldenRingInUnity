@@ -55,12 +55,16 @@ namespace AS
         public WeaponItemAction oh_RB_Action;  //  ONE HAND RIGHT BUMPER ACTÝON
         public WeaponItemAction oh_RT_Action;  //  ONE HAND RIGHT TRIGGER ACTÝON
 
+        [Header("Wooshes")]
+        public AudioClip[] whooshes;
+
+
         //  ASH OF WAR 
 
         //  BLOCKING SOUNDS
 
 
-      
+
 
 
 

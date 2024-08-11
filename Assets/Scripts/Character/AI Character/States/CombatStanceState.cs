@@ -28,7 +28,7 @@ namespace AS
         protected bool hasRolledForComboChance = false;    // if we have already rolled for the chance during this state
 
         [Header("Engagement Distance")]
-        [SerializeField] protected float maximumEngagementDistance = 5; //  distance we have to be away from the target before we enter the pursue state
+        [SerializeField] public float maximumEngagementDistance = 5; //  distance we have to be away from the target before we enter the pursue state
 
         public override AIState Tick(AICharacterManager aiCharacter)
         {
@@ -52,7 +52,8 @@ namespace AS
                 }
             }
 
-            //  ROTATE TO FACE OUR TARGET 
+            //  ROTATE TOWARDS AGENT (NAVMESH AGENT)
+            aiCharacter.aiCharacterCombatManager.RotateTowardsAgent(aiCharacter);
 
 
             //  IF OUR TARGET IS NO LONGER PRESENT, SWITCH TO IDLE
@@ -68,10 +69,9 @@ namespace AS
             }
             else
             {
-                //  CHECK RECOVERY TIMER 
-                //  PASS THE CHOOSEN ATTACK TO THE ATTACK STATE
+                aiCharacter.attack.currentAttack = choosenAttack;
                 //  ROLL FOR COMBO CHANCE
-                //  SWITCH STATE
+                return SwitchState(aiCharacter, aiCharacter.attack);
             }
 
             //  IF WE ARE OUTSIDE OF THE COMBAT ENGAGEMENT DISTANCE, SWITCH TO PURSUE TARGET STATE
@@ -93,7 +93,7 @@ namespace AS
         {
             potentialAttacks = new List<AICharacterAttackAction>();
 
-            foreach (var potentialAttack in potentialAttacks)
+            foreach (var potentialAttack in aiCharacterAttacks)
             {
                 //  IF WE ARE TOO CLOSE FOR THIS ATTACK, SKIP THIS, AND CHECK FOR THE NEXT ONE
                 if (potentialAttack.minimumAttackDistance > aiCharacter.aiCharacterCombatManager.distanceFromTarget)
@@ -146,6 +146,7 @@ namespace AS
                     choosenAttack = attack;
                     previousAttack = choosenAttack;
                     hasAttack = true;
+                    return;
                 }
             }
 

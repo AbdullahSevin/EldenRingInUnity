@@ -40,7 +40,17 @@ namespace AS
 
             aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 
-            // IF WE ARE WITHIN COMBAT RANGE OF A TARGET, SWITCH STATE TO COMBAT STANCE STATE
+            //// OPTION 1 FOR SWITCHING TO THE COMBAT STANCE
+            //if (aiCharacter.aiCharacterCombatManager.distanceFromTarget <= aiCharacter.combatStance.maximumEngagementDistance)
+            //{
+            //    return SwitchState(aiCharacter, aiCharacter.combatStance);
+            //}
+
+            // OPTION 2 FOR SWITCHING TO THE COMBAT STANCE
+            if (aiCharacter.aiCharacterCombatManager.distanceFromTarget <= aiCharacter.navMeshAgent.stoppingDistance)
+            {
+                return SwitchState(aiCharacter, aiCharacter.combatStance);
+            }
 
             // IF THE TARGET IS NOT REACHABLE, AND THEY ARE FAR AWAY, RETURN HOME
 

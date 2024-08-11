@@ -99,7 +99,7 @@ namespace AS
 
         private void HandleGroundedMovement()
         {
-            if (!player.canMove)
+            if (!player.characterLocomotionManager.canMove)
             {
                 return;
             }
@@ -146,7 +146,7 @@ namespace AS
 
         private void HandleFreeFallMovement()
         {
-            if (!player.isGrounded)
+            if (!player.characterLocomotionManager.isGrounded)
             {
                 Vector3 freeFallDirection;
 
@@ -170,7 +170,7 @@ namespace AS
             {
                 return;
             }
-            if (!player.canRotate)
+            if (!player.characterLocomotionManager.canRotate)
             {
                 return;
             }
@@ -465,7 +465,7 @@ namespace AS
             }
 
             // IF WE ARE NOT ON THE GROUND WE CAN'T JUMP
-            if (!player.isGrounded)
+            if (!player.characterLocomotionManager.isGrounded)
             {
                 return;
             }

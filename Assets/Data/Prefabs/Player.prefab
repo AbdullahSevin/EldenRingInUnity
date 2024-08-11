@@ -1078,11 +1078,8 @@ MonoBehaviour:
   characterCombatManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterGroup: 0
   isPerformingAction: 0
-  isGrounded: 1
-  applyRootMotion: 0
-  canRotate: 1
-  canMove: 1
   respawnCharacters: 0
   switchRightWeapon: 0
   playerAnimatorManager: {fileID: 0}
@@ -1104,10 +1101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5b4e055e3eeab45863b66f75e94b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 1695144108754272094}
   currentWeaponBeingUsed: {fileID: 0}
+  canComboWithMainHandWeapon: 0
 --- !u!114 &1118105768141700785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,6 +1128,9 @@ MonoBehaviour:
   groundedYVelocity: -20
   fallStartYVelocity: -5
   isRolling: 0
+  canRotate: 1
+  canMove: 1
+  isGrounded: 1
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
@@ -1205,6 +1207,8 @@ MonoBehaviour:
   networkPositionVelocity: {x: 0, y: 0, z: 0}
   networkPositionSmoothTime: 0.1
   networkRotationSmoothTime: 0.1
+  isMoving:
+    m_InternalValue: 0
   horizontalMovement:
     m_InternalValue: 0
   verticalMovement:
@@ -1340,6 +1344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9971f7f2336634d905d27288aee093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  applyRootMotion: 0
   lastDamageAnimationPlayed: 
   hit_Forward_Medium_01: hit_Forward_Medium_01
   hit_Forward_Medium_02: hit_Forward_Medium_02
@@ -1366,6 +1371,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be6dd61fe5fce2448ff2fb9c9cca42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageGrunts:
+  - {fileID: 8300000, guid: fd8692ff6e81dc441af07f8254b589cc, type: 3}
+  - {fileID: 8300000, guid: 1b4637a22d7506e4885333aa96a73cd9, type: 3}
+  - {fileID: 8300000, guid: 92a17797a9a1630408ffb425ccbafaf1, type: 3}
+  - {fileID: 8300000, guid: 8661a810488a47d4cb0abaed462650ca, type: 3}
+  - {fileID: 8300000, guid: e575345bbdb7592458be82be60071abf, type: 3}
+  - {fileID: 8300000, guid: 058d296521374cf49ad4882a8eaf2139, type: 3}
+  - {fileID: 8300000, guid: bce27abea066b5a44a0faccfdf5d37aa, type: 3}
+  - {fileID: 8300000, guid: 823481a461d8fb547ba1bbc010aa9591, type: 3}
 --- !u!114 &2609791348600319521
 MonoBehaviour:
   m_ObjectHideFlags: 0
