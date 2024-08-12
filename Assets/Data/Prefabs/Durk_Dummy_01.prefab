@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 21.000008
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
@@ -105,7 +105,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
@@ -356,10 +356,13 @@ MonoBehaviour:
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
   currentState: {fileID: 0}
-  idle: {fileID: 0}
-  pursueTarget: {fileID: 0}
-  combatStance: {fileID: 0}
-  attack: {fileID: 0}
+  idle: {fileID: 11400000, guid: 84a57bbcb7b02be438094b0dc48b22c2, type: 2}
+  pursueTarget: {fileID: 11400000, guid: b139616fa1c28f84a9ffc489177065b5, type: 2}
+  combatStance: {fileID: 11400000, guid: de8916bad95b6a042a04c9b01233c2c5, type: 2}
+  attack: {fileID: 11400000, guid: a3474d33d9301fa4181b9ce631dae5f0, type: 2}
+  bossID: 0
+  hasBeenDefeated: 0
+  defeatedBossDebug: 0
 --- !u!114 &4873190125872260222
 MonoBehaviour:
   m_ObjectHideFlags: 0
