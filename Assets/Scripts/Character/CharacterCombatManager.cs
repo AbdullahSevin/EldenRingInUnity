@@ -43,6 +43,24 @@ namespace AS
 
         }
 
+        public void EnableIsVulnerable()
+        {
+            if (character.IsOwner)
+            {
+                character.characterNetworkManager.isInvulnerable.Value = true;
+            }
+
+        }
+
+        public void DisableIsVulnerable()
+        {
+            if (character.IsOwner)
+            {
+                character.characterNetworkManager.isInvulnerable.Value = false;
+            }
+        }
+
+
     }
 }
 

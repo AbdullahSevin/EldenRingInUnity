@@ -44,13 +44,17 @@ namespace AS
 
             //  IF YOU WANT THE AI CHAR TO FACE AND TURN TOWARDS ITS TARGET WHEN ITS OUTSIDE IT'S FOV INCLUDE THIS
 
-            if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
+            if (aiCharacter.aiCharacterCombatManager.enablePivot)
             {
-                if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
+                if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
                 {
-                    aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                    if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
+                    {
+                        aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                    }
                 }
             }
+            
 
             //  ROTATE TOWARDS AGENT (NAVMESH AGENT)
             aiCharacter.aiCharacterCombatManager.RotateTowardsAgent(aiCharacter);

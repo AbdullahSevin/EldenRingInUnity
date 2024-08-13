@@ -12,6 +12,9 @@ namespace AS
         [Header("Action Recovery")]
         public float actionRecoveryTimer;
 
+        [Header("Pivot")]
+        public bool enablePivot = true;
+
         [Header("Target Information")]
         public float distanceFromTarget;
         public float viewableAngle;
@@ -89,7 +92,12 @@ namespace AS
                             viewableAngle = WorldUtilityManager.instance.GetAngleOfTarget(transform, targetsDirection);
 
                             aiCharacter.characterCombatManager.SetTarget(targetCharacter);
-                            PivotTowardsTarget(aiCharacter);
+
+                            if (enablePivot)
+                            {
+                                PivotTowardsTarget(aiCharacter);
+                            }
+                            
                         }
                     }
 
@@ -103,7 +111,7 @@ namespace AS
 
         }
 
-        public void PivotTowardsTarget(AICharacterManager aiCharacter)
+        public virtual void PivotTowardsTarget(AICharacterManager aiCharacter)
         {
             //  PLAY A PIVOT ANIMATION  DEPENDING ON THE VIEWABLE ANGLE OF THE TARGET
             if (aiCharacter.isPerformingAction)

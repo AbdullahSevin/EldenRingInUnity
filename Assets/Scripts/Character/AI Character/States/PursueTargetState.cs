@@ -8,6 +8,7 @@ namespace AS
     [CreateAssetMenu(menuName = "A.I/States/Pursue Target")]
     public class PursueTargetState : AIState
     {
+
         public override AIState Tick(AICharacterManager aiCharacter)
         {
 
@@ -32,11 +33,17 @@ namespace AS
             }
 
             //  IF OUR TARGET GOES OUTSIDE OF THE CHARACTERS FOV PIVOT TO FACE THEM
-            if (aiCharacter.aiCharacterCombatManager.viewableAngle < aiCharacter.aiCharacterCombatManager.minimumFOV
-                || aiCharacter.aiCharacterCombatManager.viewableAngle > aiCharacter.aiCharacterCombatManager.maximumFOV)
+
+            if (aiCharacter.aiCharacterCombatManager.enablePivot)
             {
-                aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                if (aiCharacter.aiCharacterCombatManager.viewableAngle < aiCharacter.aiCharacterCombatManager.minimumFOV
+                || aiCharacter.aiCharacterCombatManager.viewableAngle > aiCharacter.aiCharacterCombatManager.maximumFOV)
+                {
+                    aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                }
             }
+
+            
 
             aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 

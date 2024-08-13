@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c759a0d55893c2c4bb9c2ec77bfb923c, type: 3}
+  m_Name: Durk_Attack_01
+  m_EditorClassIdentifier: 
+  attackAnimation: Attack_01
+  comboAction: {fileID: 0}
+  attackType: 0
+  attackWeight: 50
+  actionRecoveryTime: 1.5
+  minimumAttackAngle: -35
+  maximumAttackAngle: 35
+  minimumAttackDistance: 0
+  maximumAttackDistance: 4

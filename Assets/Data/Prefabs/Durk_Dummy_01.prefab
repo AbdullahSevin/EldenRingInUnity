@@ -65,12 +65,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.000008
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
@@ -105,7 +105,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,
         type: 3}
@@ -197,8 +197,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2509459548338951961}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: cda0258ea2b8b394b85e8bb5d1ce3254, type: 3}
+  m_Controller: {fileID: 9100000, guid: 5285c5b67c579624f9632349ef8c4f5e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -242,6 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d9a816d28ee3647aabe1df200359c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive:
+    m_InternalValue: 1
   networkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
   networkRotation:
@@ -327,6 +329,11 @@ MonoBehaviour:
   minimumFOV: -35
   maximumFOV: 35
   attackRotationSpeed: 25
+  clubDamageCollider: {fileID: 0}
+  baseDamage: 25
+  attack01DamageModifier: 1
+  attack02DamageModifier: 1.4
+  attack03DamageModifier: 1.6
 --- !u!114 &-2761463374154599914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +369,10 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: a3474d33d9301fa4181b9ce631dae5f0, type: 2}
   bossID: 0
   hasBeenDefeated: 0
+  hasBeenAwakened: 0
+  fogwalls: []
   defeatedBossDebug: 0
+  wakeBossUp: 0
 --- !u!114 &4873190125872260222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,7 +519,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!4 &2997344036517629347 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 54b2798368c3f1145b0dc26b9e2797e3,

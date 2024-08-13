@@ -47,13 +47,17 @@ namespace AS
 
         public override void ProcessEffect(CharacterManager character)
         {
+            if (character.characterNetworkManager.isInvulnerable.Value)
+            {
+                return;
+            }
+
             base.ProcessEffect(character);
 
             //  IF THE CHARACTER IS DEAD, NO ADDITIONAL DAMAGE EFFECTS SHOULD BE PROCESSED
             if (character.isDead.Value)
                 return;
 
-            //  CHECK FOR INVULNERABILITY
 
             CalculateDamage(character);
             PlayDirectionalBasedDamageAnimation(character);
