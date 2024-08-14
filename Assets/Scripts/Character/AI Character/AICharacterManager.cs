@@ -8,6 +8,9 @@ namespace AS
 {
     public class AICharacterManager : CharacterManager
     {
+        [Header("Character Name")]
+        public string characterName = "";
+
         [HideInInspector] public AICharacterNetworkManager aiCharacterNetworkManager;
         [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
         [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
@@ -16,7 +19,7 @@ namespace AS
         public NavMeshAgent navMeshAgent;
 
         [Header("Current State")]
-        [SerializeField] AIState currentState;
+        [SerializeField] protected AIState currentState;
 
         [Header("States")]
         public IdleState idle;
@@ -35,11 +38,29 @@ namespace AS
 
             navMeshAgent = GetComponentInChildren<NavMeshAgent>();
 
-            //  USE A COPY OF  THE SCRIPTABLE OBJECT SO THE ORIGINALS ARE NOT MODIFIED
-            idle = Instantiate(idle);
-            pursueTarget = Instantiate(pursueTarget);
+        }
 
-            currentState = idle;
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            
+            if (IsOwner)
+            {
+                //  USE A COPY OF  THE SCRIPTABLE OBJECT SO THE ORIGINALS ARE NOT MODIFIED
+                idle = Instantiate(idle);
+                pursueTarget = Instantiate(pursueTarget);
+                combatStance = Instantiate(combatStance);
+                attack = Instantiate(attack);
+                currentState = idle;
+            }
+            aiCharacterNetworkManager.currentHealth.OnValueChanged += aiCharacterNetworkManager.CheckHP;
+        }
+
+        public override void OnNetworkDespawn()
+        {
+            base.OnNetworkDespawn();
+
+            aiCharacterNetworkManager.currentHealth.OnValueChanged -= aiCharacterNetworkManager.CheckHP;
         }
 
         protected override void Update()

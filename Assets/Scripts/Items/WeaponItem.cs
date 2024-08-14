@@ -40,12 +40,21 @@ namespace AS
         public float heavy_Attack_02_Modifier = 1.6f;
         public float charge_Attack_01_Modifier = 2.0f;
         public float charge_Attack_02_Modifier = 2.2f;
+        public float running_Attack_01_Modifier = 1.5f;
+        public float rolling_Attack_01_Modifier = 1.2f;
+        public float backstep_Attack_01_Modifier = 1.2f;
 
         //  CRITICAL DAMAGE MODIFIER ETC
 
         [Header("Stamina Costs Modifiers ")]
         public int baseStaminaCost = 20;
         public float lightAttackStaminaCostMultiplier = 0.9f;
+        public float heavyAttackStaminaCostMultiplier = 1.3f;
+        public float chargedAttackStaminaCostMultiplier = 1.5f;
+        public float runningAttackStaminaCostMultiplier = 1.1f;
+        public float rollingAttackStaminaCostMultiplier = 1.1f;
+        public float backstepAttackStaminaCostMultiplier = 1.1f;
+        
         //  RUNNNG ATTACK STAMINA COST MODIFIER
         //  LIGHT ATTACK STAMINA COST MOD.
         //  HEAVY ATT STAMINA COST MOD. ETC ...

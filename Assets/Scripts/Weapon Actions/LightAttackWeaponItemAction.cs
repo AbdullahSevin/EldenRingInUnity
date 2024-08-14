@@ -8,8 +8,17 @@ namespace AS
     [CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Light Attack Action")]
     public class LightAttackWeaponItemAction : WeaponItemAction
     {
+        [Header("Light Attacks")]
         [SerializeField] string light_Attack_01 = "Main_Light_Attack_01";  // Main = main hand
-        [SerializeField] string light_Attack_02 = "Main_Light_Attack_02";  
+        [SerializeField] string light_Attack_02 = "Main_Light_Attack_02";
+
+        [Header("Running Attacks")]
+        [SerializeField] string running_Attack_01 = "Running_Attack_01";
+        [Header("Rolling Attacks")]
+        [SerializeField] string rolling_Attack_01 = "Rolling_Attack_01";
+        [Header("Backstep Attacks")]
+        [SerializeField] string backstep_Attack_01 = "Backstep_Attack_01";
+
 
         public override void AttempToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
@@ -28,6 +37,27 @@ namespace AS
 
             if (!playerPerformingAction.characterLocomotionManager.isGrounded)
             {
+                return;
+            }
+
+            //  IF WE ARE SPRINTING, PERFORM RUNNING ATTACK 
+            if (playerPerformingAction.characterNetworkManager.isSprinting.Value)
+            {
+                PerformRunningAttack(playerPerformingAction, weaponPerformingAction);
+                return;
+            }
+
+            //  IF WE ARE ROLLING, PERFORM ROLLING ATTACK
+            if (playerPerformingAction.characterCombatManager.canPerformRollingAttack)
+            {
+                PerformRollingAttack(playerPerformingAction, weaponPerformingAction);
+                return;
+            }
+
+            //  IF WE ARE backstepping, PERFORM backstep ATTACK
+            if (playerPerformingAction.characterCombatManager.canPerformBackstepAttack)
+            {
+                PerformBackstepAttack(playerPerformingAction, weaponPerformingAction);
                 return;
             }
 
@@ -53,6 +83,7 @@ namespace AS
                     playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.LightAttack01, light_Attack_01, true);
                 }
             }
+
             //  OTHERWISE, IF WE ARE NOT ALREADY ATTACKING JUST PERFORM A REGULAR ATTACK
             else if (!playerPerformingAction.isPerformingAction)
             {
@@ -62,7 +93,35 @@ namespace AS
 
         }
 
+        private void PerformRunningAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            //  IF WE ARE 2 HANDING PLAY 2 HANDING RUNNING ATTACK ANIM (TODO)
+            //  ELSE PERFORM A ONE HAND RUN ATTACK ANIM
 
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.RunningAttack01, running_Attack_01, true, applyRootMotion :true, canRotate : true, canMove: true);
+
+
+        }
+
+        private void PerformRollingAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            //  IF WE ARE 2 HANDING PLAY 2 HANDING rolling ATTACK ANIM (TODO)
+            //  ELSE PERFORM A ONE HAND roll ATTACK ANIM
+            playerPerformingAction.playerCombatManager.canPerformRollingAttack = false;
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.RollingAttack01, rolling_Attack_01, true);
+
+
+        }
+
+        private void PerformBackstepAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            //  IF WE ARE 2 HANDING PLAY 2 HANDING rolling ATTACK ANIM (TODO)
+            //  ELSE PERFORM A ONE HAND roll ATTACK ANIM
+            playerPerformingAction.playerCombatManager.canPerformBackstepAttack = false;
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.BackstepAttack01, backstep_Attack_01, true);
+
+
+        }
 
     }
 }

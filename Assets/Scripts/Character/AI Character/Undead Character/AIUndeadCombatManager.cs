@@ -31,7 +31,7 @@ namespace AS
 
         public void OpenRightHandDamageCollider()
         {
-            aiCharacter.characterSoundFXManager.PlayAttackGrunt();
+            aiCharacter.characterSoundFXManager.PlayAttackGruntSoundFX();
             rightHandDamageCollider.EnableDamageCollider();
         }
 

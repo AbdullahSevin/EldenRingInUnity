@@ -20,6 +20,12 @@ namespace AS
 
         [Header("Lock On")]
         public Transform lockOnTransform;
+
+        [Header("Attack Flags")]
+        public bool canPerformRollingAttack = false;
+        public bool canPerformBackstepAttack = false;
+
+
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();
@@ -60,6 +66,37 @@ namespace AS
             }
         }
 
+        public void EnableCanDoRollingAttack()
+        {
+            canPerformRollingAttack = true;  
+        }
+        public void DisableCanDoRollingAttack()
+        {
+            canPerformRollingAttack = false;
+        }
+
+        public void EnableCanDoBackstepAttack()
+        {
+            canPerformBackstepAttack = true;
+        }
+        public void DisableCanDoBackstepAttack()
+        {
+            canPerformBackstepAttack = false;
+        }
+
+
+
+        public virtual void EnableCanDoCombo()
+        {
+
+        }
+
+
+        public virtual void DisableCanDoCombo()
+        {
+
+
+        }
 
     }
 }

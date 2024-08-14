@@ -116,7 +116,7 @@ namespace AS
             AudioClip phsicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
 
             character.characterSoundFXManager.PlaySoundFX(phsicalDamageSFX);
-            character.characterSoundFXManager.PlayDamageGrunt();
+            character.characterSoundFXManager.PlayDamageGruntSounFX();
 
             //  IF FIRE DAMAGE IS GREATER THAN 0, PLAY BURN SFX,
             //  "  LIGHTNING    "            "  , "     ZAP SFX

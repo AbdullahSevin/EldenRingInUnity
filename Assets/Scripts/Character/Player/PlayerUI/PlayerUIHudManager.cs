@@ -14,6 +14,11 @@ namespace AS
         [Header("QUICK SLOTS")]
         [SerializeField] Image rightWeaponQuickSlotIcon;
         [SerializeField] Image leftWeaponQuickSlotIcon;
+
+        [Header("BOSS HEALTH BAR")]
+        public Transform bossHealthBarParent;
+        public GameObject bossHealthBarObject;
+
         public void RefreshHUD()
         {
             healthBar.gameObject.SetActive(false);
