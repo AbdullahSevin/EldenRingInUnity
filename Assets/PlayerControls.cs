@@ -360,9 +360,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""QueRB"",
+                    ""type"": ""Button"",
+                    ""id"": ""554767d3-6647-401b-8f50-b10043ce60ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""RT"",
                     ""type"": ""Button"",
                     ""id"": ""98abc524-7aa1-47c5-b280-74cfdd85891d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QueRT"",
+                    ""type"": ""Button"",
+                    ""id"": ""d85069da-14f0-42bb-8dbb-e19418b5daca"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -414,7 +432,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Seek Left Lock On Target"",
+                    ""name"": ""SeekLeftLockOnTarget"",
                     ""type"": ""Button"",
                     ""id"": ""a80509d4-f005-4712-8d14-c6954338ae65"",
                     ""expectedControlType"": ""Button"",
@@ -423,7 +441,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Seek Right Lock On Target"",
+                    ""name"": ""SeekRightLockOnTarget"",
                     ""type"": ""Button"",
                     ""id"": ""bba3c820-ae6d-4bf5-882c-e0149b489913"",
                     ""expectedControlType"": ""Button"",
@@ -550,7 +568,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Seek Left Lock On Target"",
+                    ""action"": ""SeekLeftLockOnTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -561,7 +579,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Seek Left Lock On Target"",
+                    ""action"": ""SeekLeftLockOnTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -572,7 +590,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Seek Right Lock On Target"",
+                    ""action"": ""SeekRightLockOnTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -583,7 +601,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Seek Right Lock On Target"",
+                    ""action"": ""SeekRightLockOnTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -674,6 +692,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchLeftWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""742327e4-91d9-45fb-a559-8ee9974d4adc"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QueRB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47bcf272-44ed-4552-92e3-fb5d71dabc4e"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QueRB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62ad6186-663a-4f22-9c62-cfaceefe74a6"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QueRT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77e195a9-3285-4460-bb3f-7575d8577b3a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QueRT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -732,14 +794,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
+        m_PlayerActions_QueRB = m_PlayerActions.FindAction("QueRB", throwIfNotFound: true);
         m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
+        m_PlayerActions_QueRT = m_PlayerActions.FindAction("QueRT", throwIfNotFound: true);
         m_PlayerActions_HoldRT = m_PlayerActions.FindAction("HoldRT", throwIfNotFound: true);
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
         m_PlayerActions_SwitchRightWeapon = m_PlayerActions.FindAction("SwitchRightWeapon", throwIfNotFound: true);
         m_PlayerActions_SwitchLeftWeapon = m_PlayerActions.FindAction("SwitchLeftWeapon", throwIfNotFound: true);
-        m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
-        m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
+        m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("SeekLeftLockOnTarget", throwIfNotFound: true);
+        m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("SeekRightLockOnTarget", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -915,7 +979,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Dodge;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_RB;
+    private readonly InputAction m_PlayerActions_QueRB;
     private readonly InputAction m_PlayerActions_RT;
+    private readonly InputAction m_PlayerActions_QueRT;
     private readonly InputAction m_PlayerActions_HoldRT;
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_LockOn;
@@ -930,7 +996,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_PlayerActions_Dodge;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
+        public InputAction @QueRB => m_Wrapper.m_PlayerActions_QueRB;
         public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
+        public InputAction @QueRT => m_Wrapper.m_PlayerActions_QueRT;
         public InputAction @HoldRT => m_Wrapper.m_PlayerActions_HoldRT;
         public InputAction @Sprint => m_Wrapper.m_PlayerActions_Sprint;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
@@ -956,9 +1024,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started += instance.OnRB;
             @RB.performed += instance.OnRB;
             @RB.canceled += instance.OnRB;
+            @QueRB.started += instance.OnQueRB;
+            @QueRB.performed += instance.OnQueRB;
+            @QueRB.canceled += instance.OnQueRB;
             @RT.started += instance.OnRT;
             @RT.performed += instance.OnRT;
             @RT.canceled += instance.OnRT;
+            @QueRT.started += instance.OnQueRT;
+            @QueRT.performed += instance.OnQueRT;
+            @QueRT.canceled += instance.OnQueRT;
             @HoldRT.started += instance.OnHoldRT;
             @HoldRT.performed += instance.OnHoldRT;
             @HoldRT.canceled += instance.OnHoldRT;
@@ -993,9 +1067,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started -= instance.OnRB;
             @RB.performed -= instance.OnRB;
             @RB.canceled -= instance.OnRB;
+            @QueRB.started -= instance.OnQueRB;
+            @QueRB.performed -= instance.OnQueRB;
+            @QueRB.canceled -= instance.OnQueRB;
             @RT.started -= instance.OnRT;
             @RT.performed -= instance.OnRT;
             @RT.canceled -= instance.OnRT;
+            @QueRT.started -= instance.OnQueRT;
+            @QueRT.performed -= instance.OnQueRT;
+            @QueRT.canceled -= instance.OnQueRT;
             @HoldRT.started -= instance.OnHoldRT;
             @HoldRT.performed -= instance.OnHoldRT;
             @HoldRT.canceled -= instance.OnHoldRT;
@@ -1095,7 +1175,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRB(InputAction.CallbackContext context);
+        void OnQueRB(InputAction.CallbackContext context);
         void OnRT(InputAction.CallbackContext context);
+        void OnQueRT(InputAction.CallbackContext context);
         void OnHoldRT(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);

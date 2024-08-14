@@ -38,10 +38,11 @@ namespace AS
         public float horizontalInput;
         public float moveAmount;
 
-        [Header("PLAYER ACTIONS")]
+        [Header("PLAYER ACTION INPUT")]
         [SerializeField] bool dodgeInput = false;
         [SerializeField] bool sprintInput = false;
         [SerializeField] bool jumpInput = false;
+
         [Header("EQUIPMENT INPUTS")]
         [SerializeField] bool switch_Right_Weapon_Input = false;
         [SerializeField] bool switch_Left_Weapon_Input = false;
@@ -53,7 +54,13 @@ namespace AS
         [SerializeField] bool RT_Input = false;
         [SerializeField] bool Hold_RT_Input = false;
 
-        
+        [Header("QUED INPUTS")]
+        [SerializeField] bool input_Que_Is_Active = false;
+        [SerializeField] float default_Que_Input_Time = 0.35f;
+        [SerializeField] float que_Input_Timer = 0;
+        [SerializeField] bool que_RB_Input = false;
+        [SerializeField] bool que_RT_Input = false;
+
 
 
 
@@ -173,7 +180,14 @@ namespace AS
                     playerControls.PlayerCamera.MovementMouse.canceled += i => PlayerCamera.instance.isOnFreeViewMode = false;
 
                 }
-                
+
+                //  QUED INPUTS
+                playerControls.PlayerActions.QueRB.performed += i => QueInput(ref que_RB_Input);
+                playerControls.PlayerActions.QueRT.performed += i => QueInput(ref que_RT_Input);
+
+
+
+
 
             }
             playerControls.Enable();
@@ -220,6 +234,7 @@ namespace AS
             HandleChargeRTInput();
             HandleSwitchRightWeaponInput();
             HandleSwitchLeftWeaponInput();
+            HandleQuedInputs();
         }
 
         //  LOCK ON
@@ -493,6 +508,71 @@ namespace AS
             }
 
         }
+
+        private void QueInput(ref bool quedInput)
+        {
+            //  RESET ALL QUED INPUTS SO ONLY ONE CAN QUE AT A TIME
+            que_RB_Input = false;
+            que_RT_Input = false;
+            // que_LB_Input = false;
+            // que_LT_Input = false;
+
+            //  CHECK FOR UI WINDOW BEING OPEN, IF ITS OPEN RETURN
+
+            if (player.isPerformingAction || player.playerNetworkManager.isJumping.Value)
+            {
+                quedInput = true;
+                que_Input_Timer = default_Que_Input_Time;
+                input_Que_Is_Active = true;
+            }
+
+        }
+
+        private void ProcessQuedInput()
+        {
+            if (player.isDead.Value)
+            {
+                return;
+            }
+
+            if (que_RB_Input)
+            {
+                RB_Input = true;
+            }
+
+            if (que_RT_Input)
+            {
+                RT_Input = true;
+            }
+        }
+
+        private void HandleQuedInputs()
+        {
+            if (input_Que_Is_Active)
+            {
+                //  WHILE THE TIMER IS ABOVE 0, KEEP ATTEMPTING TO PRESS THE INPUT
+                if (que_Input_Timer > 0)
+                {
+                    que_Input_Timer -= Time.deltaTime;
+                    ProcessQuedInput();
+                }
+                else
+                {
+                    //  RESET ALL QUED INPUTS
+                    que_RB_Input = false;
+                    que_RT_Input = false;
+                    // que_LB_Input = false;
+                    // que_LT_Input = false;
+
+                    input_Que_Is_Active = false;
+                    que_Input_Timer = 0;
+                }
+
+
+            }
+        }
+
+
 
 
     }

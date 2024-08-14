@@ -21,7 +21,7 @@ namespace AS
 
         // CHANGE THESE TO TWEAK CAMERA PERFORMANCE
         [Header("Camera Settings")]
-        private float cameraSmoothSpeed = 1; // BIGGER VALUES MAKES THE CAMERA TAKE LONGER TO REACH TO ITS POSITION, SLOWER AT CATCHING UP THE PLAYER
+        [SerializeField] float cameraSmoothSpeed = 1; // BIGGER VALUES MAKES THE CAMERA TAKE LONGER TO REACH TO ITS POSITION, SLOWER AT CATCHING UP THE PLAYER
         [SerializeField] float leftAndRightRotationSpeed = 700;
         [SerializeField] float upAndDownRotationSpeed = 700;
         [SerializeField] float minimumPivot = -80; // THE LOWEST POINT A PLAYER IS ABLE TO LOOK DOWN

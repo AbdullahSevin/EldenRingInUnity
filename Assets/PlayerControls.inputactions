@@ -338,9 +338,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "QueRB",
+                    "type": "Button",
+                    "id": "554767d3-6647-401b-8f50-b10043ce60ee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RT",
                     "type": "Button",
                     "id": "98abc524-7aa1-47c5-b280-74cfdd85891d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QueRT",
+                    "type": "Button",
+                    "id": "d85069da-14f0-42bb-8dbb-e19418b5daca",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -392,7 +410,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Seek Left Lock On Target",
+                    "name": "SeekLeftLockOnTarget",
                     "type": "Button",
                     "id": "a80509d4-f005-4712-8d14-c6954338ae65",
                     "expectedControlType": "Button",
@@ -401,7 +419,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Seek Right Lock On Target",
+                    "name": "SeekRightLockOnTarget",
                     "type": "Button",
                     "id": "bba3c820-ae6d-4bf5-882c-e0149b489913",
                     "expectedControlType": "Button",
@@ -528,7 +546,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Seek Left Lock On Target",
+                    "action": "SeekLeftLockOnTarget",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -539,7 +557,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Seek Left Lock On Target",
+                    "action": "SeekLeftLockOnTarget",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -550,7 +568,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Seek Right Lock On Target",
+                    "action": "SeekRightLockOnTarget",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -561,7 +579,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Seek Right Lock On Target",
+                    "action": "SeekRightLockOnTarget",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -650,6 +668,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchLeftWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "742327e4-91d9-45fb-a559-8ee9974d4adc",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QueRB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47bcf272-44ed-4552-92e3-fb5d71dabc4e",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QueRB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "62ad6186-663a-4f22-9c62-cfaceefe74a6",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QueRT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77e195a9-3285-4460-bb3f-7575d8577b3a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QueRT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
