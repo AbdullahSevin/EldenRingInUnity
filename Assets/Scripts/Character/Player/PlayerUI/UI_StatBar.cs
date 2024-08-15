@@ -7,8 +7,8 @@ namespace AS
 {
     public class UI_StatBar : MonoBehaviour
     {
-        private Slider slider;
-        private RectTransform rectTransform;
+        protected Slider slider;
+        protected RectTransform rectTransform;
 
         [Header("Bar Options")]
         [SerializeField] protected bool scaleBarLengthWithStats = true;
@@ -22,6 +22,11 @@ namespace AS
         {
             slider = GetComponent<Slider>();
             rectTransform = GetComponent<RectTransform>();
+        }
+
+        protected virtual void Start()
+        {
+            
         }
 
         public virtual void SetStat(int newValue)

@@ -16,6 +16,10 @@ namespace AS
         [HideInInspector] public PlayerUIHudManager playerUIHudManager;
         [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
 
+        [Header("UI FLAGS")]
+        public bool menuWindowIsOpen = false;    //  INVENTORY SCREEN, EQUIPMENT MENU, BLACKSMITH MENU ETC
+        public bool popUpWindowIsOpen = false;   //  ITEM PICKUP, DIALOG PUP UP ETC.
+
 
         public void Awake()
         {
@@ -50,6 +54,7 @@ namespace AS
                 NetworkManager.Singleton.StartClient();
             }
         }
+
     }
 }
 

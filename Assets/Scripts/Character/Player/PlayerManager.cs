@@ -23,6 +23,7 @@ namespace AS
         [HideInInspector] public PlayerInventoryManager playerInventoryManager;
         [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
         [HideInInspector] public PlayerCombatManager playerCombatManager;
+        [HideInInspector] public PlayerInteractionManager playerInteractionManager;
 
         protected override void Awake()
         {
@@ -36,6 +37,7 @@ namespace AS
             playerInventoryManager = GetComponent<PlayerInventoryManager>();
             playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
             playerCombatManager = GetComponent<PlayerCombatManager>();
+            playerInteractionManager = GetComponent<PlayerInteractionManager>();
             // DontDestroyOnLoad(gameObject);
         }
 
@@ -72,6 +74,20 @@ namespace AS
             
         }
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+           
+        }
+
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
@@ -100,6 +116,12 @@ namespace AS
                 // THIS WILL BE MOVED WHEN SAVING AND LOADING ADDED
                 
                 
+            }
+
+            //  ONLYUPDATE FLOATING HP BAR IF THIS CHARACTER IS NOT THE LOVAL PLAYERS CHARACTER (YOU DONW WANTTO SEE A FLOATING HP BAR ON YOUR OWN HEAD)
+            if (!IsOwner)
+            {
+                characterNetworkManager.currentHealth.OnValueChanged += characterUIManager.OnHPChanged;
             }
 
             //  STATS
@@ -149,6 +171,11 @@ namespace AS
                 // THIS WILL BE MOVED WHEN SAVING AND LOADING ADDED
 
 
+            }
+
+            if (!IsOwner)
+            {
+                characterNetworkManager.currentHealth.OnValueChanged -= characterUIManager.OnHPChanged;
             }
 
             //  STATS

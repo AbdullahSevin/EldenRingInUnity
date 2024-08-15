@@ -61,6 +61,8 @@ namespace AS
         [SerializeField] bool que_RB_Input = false;
         [SerializeField] bool que_RT_Input = false;
 
+        [Header("INTERACT INPUT")]
+        [SerializeField] bool interactionInput = false;
 
 
 
@@ -185,8 +187,8 @@ namespace AS
                 playerControls.PlayerActions.QueRB.performed += i => QueInput(ref que_RB_Input);
                 playerControls.PlayerActions.QueRT.performed += i => QueInput(ref que_RT_Input);
 
-
-
+                //  INTERACTION INPUT
+                playerControls.PlayerActions.Interact.performed += i => interactionInput = true;
 
 
             }
@@ -235,6 +237,7 @@ namespace AS
             HandleSwitchRightWeaponInput();
             HandleSwitchLeftWeaponInput();
             HandleQuedInputs();
+            HandleInteractInput();
         }
 
         //  LOCK ON
@@ -507,6 +510,15 @@ namespace AS
                 player.playerEquipmentManager.SwitchLeftWeapon();
             }
 
+        }
+
+        private void HandleInteractInput()
+        {
+            if (interactionInput)
+            {
+                interactionInput = false;
+                player.playerInteractionManager.CheckForInteractable();
+            }
         }
 
         private void QueInput(ref bool quedInput)
