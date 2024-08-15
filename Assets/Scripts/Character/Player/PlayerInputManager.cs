@@ -42,6 +42,8 @@ namespace AS
         [SerializeField] bool dodgeInput = false;
         [SerializeField] bool sprintInput = false;
         [SerializeField] bool jumpInput = false;
+        [SerializeField] bool interaction_Input = false;
+
 
         [Header("EQUIPMENT INPUTS")]
         [SerializeField] bool switch_Right_Weapon_Input = false;
@@ -60,9 +62,7 @@ namespace AS
         [SerializeField] float que_Input_Timer = 0;
         [SerializeField] bool que_RB_Input = false;
         [SerializeField] bool que_RT_Input = false;
-
-        [Header("INTERACT INPUT")]
-        [SerializeField] bool interactionInput = false;
+        
 
 
 
@@ -142,6 +142,8 @@ namespace AS
                 //  ACTIONS 
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+                playerControls.PlayerActions.Interact.performed += i => interaction_Input = true;
+
                 // EQUIPMENT INPUTS
                 playerControls.PlayerActions.SwitchRightWeapon.performed += i => switch_Right_Weapon_Input = true;
                 playerControls.PlayerActions.SwitchLeftWeapon.performed += i => switch_Left_Weapon_Input = true;
@@ -186,9 +188,6 @@ namespace AS
                 //  QUED INPUTS
                 playerControls.PlayerActions.QueRB.performed += i => QueInput(ref que_RB_Input);
                 playerControls.PlayerActions.QueRT.performed += i => QueInput(ref que_RT_Input);
-
-                //  INTERACTION INPUT
-                playerControls.PlayerActions.Interact.performed += i => interactionInput = true;
 
 
             }
@@ -237,7 +236,7 @@ namespace AS
             HandleSwitchRightWeaponInput();
             HandleSwitchLeftWeaponInput();
             HandleQuedInputs();
-            HandleInteractInput();
+            HandleInteractionInput();
         }
 
         //  LOCK ON
@@ -512,12 +511,13 @@ namespace AS
 
         }
 
-        private void HandleInteractInput()
+        private void HandleInteractionInput()
         {
-            if (interactionInput)
+            if (interaction_Input)
             {
-                interactionInput = false;
-                player.playerInteractionManager.CheckForInteractable();
+                interaction_Input = false;
+                player.playerInteractionManager.Interact();
+                //player.playerInteractionManager.CheckForInteractable();
             }
         }
 

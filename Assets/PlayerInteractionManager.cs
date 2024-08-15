@@ -26,12 +26,12 @@ namespace AS
                 return;
             }
 
-            //if (!PlayerUIManager.instance.menuWindowIsOpen && !PlayerUIManager.instance.popUpWindowIsOpen)
-            //{
-            //    CheckForInteractable();
-            //}
+            if (!PlayerUIManager.instance.menuWindowIsOpen && !PlayerUIManager.instance.popUpWindowIsOpen)
+            {
+                CheckForInteractable();
+            }
 
-            //  IF OUR UI MENU IS NOT OPEN, AND WE DONT HAVE A POP UP (CURENT INTERACTION MESSAGE) CHECK FOR INTERACTABLES
+            // IF OUR UI MENU IS NOT OPEN, AND WE DONT HAVE A POP UP(CURENT INTERACTION MESSAGE) CHECK FOR INTERACTABLES
         }
 
         public void CheckForInteractable()
@@ -97,6 +97,10 @@ namespace AS
 
         public void Interact()
         {
+            if (currentInteractableActions.Count == 0)
+            {
+                return;
+            }
             if (currentInteractableActions[0] != null)
             {
                 currentInteractableActions[0].Interact(player);

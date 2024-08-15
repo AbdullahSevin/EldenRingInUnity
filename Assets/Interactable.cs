@@ -33,10 +33,16 @@ namespace AS
         {
             Debug.Log("YOU HAVE INTERACTED!");
 
-            if (player.IsOwner)
+            if (!player.IsOwner)
             {
-                PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
+                return;
             }
+
+            interactableCollider.enabled = false;
+            player.playerInteractionManager.RemoveInteractionFromList(this);
+            PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
+            
+
         }
 
         public virtual void OnTriggerEnter(Collider other)
