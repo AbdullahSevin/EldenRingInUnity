@@ -257,7 +257,7 @@ namespace AS
             player.playerNetworkManager.endurance.Value = 10;
 
             SaveGame();
-            StartCoroutine(LoadWorldScene());
+            LoadWorldScene(worldSceneIndex);
         }
 
         public void LoadGame()
@@ -271,7 +271,7 @@ namespace AS
             saveFileDataWriter.saveFileName = saveFileName;
             currentCharacterData = saveFileDataWriter.LoadSaveFile();
 
-            StartCoroutine(LoadWorldScene());
+            LoadWorldScene(worldSceneIndex);
         }
 
         public void SaveGame()
@@ -340,7 +340,7 @@ namespace AS
         }
 
 
-        public IEnumerator LoadWorldScene()
+        public void LoadWorldScene(int buildIndex)
         {
             /* if (NetworkLog.CurrentLogLevel <= LogLevel.Developer)
             {
@@ -354,17 +354,12 @@ namespace AS
                 NetworkManager.Singleton.StartHost();
                 // Debug.Log($"You are a host / {NetworkLog.CurrentLogLevel}");
             } */
+            
+            string worldScene = SceneUtility.GetScenePathByBuildIndex(buildIndex);
 
-
-            // IF YOU JUST WANT 1 WORLD SCENE USE THIS
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
-
-            // IF YOU WANT TO USE DIFFERENT SCENES FOR LEVELS IN YOUR PROJECT USE THIS
-            // AsyncOperation loadOperation = SceneManager.LoadSceneAsync(currentCharacterData.sceneIndex);
+            NetworkManager.Singleton.SceneManager.LoadScene(worldScene, LoadSceneMode.Single);
 
             player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);
-
-            yield return null;
         }
 
         public int GetWorldSceneIndex()

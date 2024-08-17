@@ -36,13 +36,19 @@ namespace AS
         public int vitality;
         public int endurance;
 
+        [Header("Site Of Grace")]
+        public SerializableDictionary<int, bool> sitesOfGrace;   // THE INT IS SITE OF GRACE ID, AND THE BOOL IS THE ACTIVATED STATUS
+
         [Header("Bosses")]
         public SerializableDictionary<int, bool> bossesAwakened;  //  The int is boss id, bool is the awakened status
         public SerializableDictionary<int, bool> bossesDefeated;  //  The int is boss id, bool is the defeated status
 
+        
+
 
         public CharacterSaveData()
         {
+            sitesOfGrace = new SerializableDictionary<int, bool>();
             bossesAwakened = new SerializableDictionary<int, bool>();
             bossesDefeated = new SerializableDictionary<int, bool>();
         }

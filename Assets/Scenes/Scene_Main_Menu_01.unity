@@ -5831,6 +5831,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3548588485384254792, guid: e010d7d1c054bd641a08a05822733a88,
         type: 3}
+    - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
+        type: 3}
+      propertyPath: takeBlockedDamageEffect
+      value: 
+      objectReference: {fileID: 11400000, guid: e903c4dcfc5e142419909e449922e2f9,
+        type: 2}
+    - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
+        type: 3}
+      propertyPath: instantEffects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
+        type: 3}
+      propertyPath: instantEffects.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: e903c4dcfc5e142419909e449922e2f9,
+        type: 2}
     - target: {fileID: 9040620970467612944, guid: f30b6dee793fb134c95838e72cb1e362,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6080,13 +6097,19 @@ PrefabInstance:
     - target: {fileID: 2824807998485716499, guid: 28aa1cb4093f784468ddfed6f4c33e4f,
         type: 3}
       propertyPath: weaponItemActions.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2824807998485716499, guid: 28aa1cb4093f784468ddfed6f4c33e4f,
         type: 3}
       propertyPath: weaponItemActions.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 0a9197f72c80508439f48b9aab5211be,
+        type: 2}
+    - target: {fileID: 2824807998485716499, guid: 28aa1cb4093f784468ddfed6f4c33e4f,
+        type: 3}
+      propertyPath: weaponItemActions.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: b26a0d1369ca38d4f9a5225e1853d837,
         type: 2}
     - target: {fileID: 3720464099632162296, guid: 28aa1cb4093f784468ddfed6f4c33e4f,
         type: 3}
@@ -6206,6 +6229,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2165239460681933769, guid: 9b1701cf27b15b34c8cb8b5bae424c85,
+        type: 3}
+      propertyPath: weapons.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2165239460681933769, guid: 9b1701cf27b15b34c8cb8b5bae424c85,
+        type: 3}
+      propertyPath: weapons.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0bb25d370f143d642a52134ecb2cb6f1,
+        type: 2}
+    - target: {fileID: 2165239460681933769, guid: 9b1701cf27b15b34c8cb8b5bae424c85,
+        type: 3}
+      propertyPath: weapons.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cbc692e3368a7145b7fa299e5915774,
+        type: 2}
     - target: {fileID: 5140572289600275075, guid: 9b1701cf27b15b34c8cb8b5bae424c85,
         type: 3}
       propertyPath: m_Name

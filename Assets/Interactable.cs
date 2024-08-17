@@ -7,7 +7,7 @@ using ParrelSync.NonCore;
 
 namespace AS
 {
-    public class Interactable : MonoBehaviour
+    public class Interactable : NetworkBehaviour
     {
         public string interactableText; // TEXT PROMPT WHEN ENTERING THE INTERACTION COLLIDER (PICKUP ITEM, PULL LEVERL ETC)
         [SerializeField] protected Collider interactableCollider; // COLLIDER THAT CHECKS FOR PLAYERINTERACTION

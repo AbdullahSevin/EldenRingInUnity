@@ -80,7 +80,7 @@ namespace AS
                 StartCoroutine(GetFogWallsFromWorldObjectManager());
 
                 //  IF THE BOSS HAS BEEN AWAKENED, ENABLE THE FOG WALLS
-                if (hasBeenAwakened.Value)
+                if (!hasBeenAwakened.Value)
                 {
                     for (int i = 0; i < fogwalls.Count; i++)
                     {
@@ -102,7 +102,7 @@ namespace AS
 
             if (!hasBeenAwakened.Value)
             {
-                characterAnimatorManager.PlayTargetActionAnimation(sleepAnimation, true);
+                animator.Play(sleepAnimation);
             }
 
 

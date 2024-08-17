@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6194043646513384544
+--- !u!1 &346251555221749984
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,68 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5046298757939453341}
-  - component: {fileID: 1818287609646089401}
+  - component: {fileID: 3726369773780307014}
+  - component: {fileID: 2187009230015852069}
   m_Layer: 6
-  m_Name: Weapon Instantiation Slot
+  m_Name: Left Hand Shield Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5046298757939453341
+--- !u!4 &3726369773780307014
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6194043646513384544}
+  m_GameObject: {fileID: 346251555221749984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40122104, y: 0.4869513, z: 0.4557992, w: -0.6278114}
+  m_LocalPosition: {x: -0.0683, y: 0.0026, z: -0.002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6441897888713551868}
+  m_LocalEulerAnglesHint: {x: -71.385, y: 309.677, z: -34.666}
+--- !u!114 &2187009230015852069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346251555221749984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c3b38a1e1035446a19130bb9b67079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlot: 2
+  currentWeaponModel: {fileID: 0}
+--- !u!1 &3628616422062830882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5713604027348891591}
+  - component: {fileID: 5129890756576326895}
+  m_Layer: 7
+  m_Name: RightHandWeaponSlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5713604027348891591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3628616422062830882}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +78,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8343940290288805492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1818287609646089401
+--- !u!114 &5129890756576326895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6194043646513384544}
+  m_GameObject: {fileID: 3628616422062830882}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90c3b38a1e1035446a19130bb9b67079, type: 3}
@@ -88,7 +134,7 @@ GameObject:
   - component: {fileID: 597282748759865845}
   - component: {fileID: 8771318752118357595}
   m_Layer: 6
-  m_Name: Weapon Instantiation Slot
+  m_Name: Left Hand Weapon Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,6 +332,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
@@ -487,6 +538,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1176686548608896205, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
       propertyPath: m_Layer
@@ -652,10 +708,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 597282748759865845}
+    - targetCorrespondingSourceObject: {fileID: 3780837713738550241, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3726369773780307014}
     - targetCorrespondingSourceObject: {fileID: 2221872609835778665, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5046298757939453341}
+      addedObject: {fileID: 5713604027348891591}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
@@ -1237,6 +1297,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterUIManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterGroup: 0
   isPerformingAction: 0
   respawnCharacters: 0
@@ -1248,6 +1309,7 @@ MonoBehaviour:
   playerInventoryManager: {fileID: 0}
   playerEquipmentManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
+  playerInteractionManager: {fileID: 0}
 --- !u!114 &-3626920088269914178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1266,6 +1328,7 @@ MonoBehaviour:
   lockOnTransform: {fileID: 1695144108754272094}
   canPerformRollingAttack: 0
   canPerformBackstepAttack: 0
+  canBlock: 1
   currentWeaponBeingUsed: {fileID: 0}
   canComboWithMainHandWeapon: 0
 --- !u!114 &1118105768141700785
@@ -1329,7 +1392,7 @@ MonoBehaviour:
   weaponsInLeftHandSlots:
   - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
   - {fileID: 11400000, guid: 2697695148ab38144b2c54a33f0674c2, type: 2}
-  - {fileID: 11400000, guid: 1e3fa2f4f84196644bf0944d9c3df860, type: 2}
+  - {fileID: 11400000, guid: 5cbc692e3368a7145b7fa299e5915774, type: 2}
   leftHandWeaponIndex: 0
 --- !u!114 &4161678334230246665
 MonoBehaviour:
@@ -1343,8 +1406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3b038e27161b448a40e55863e7ba1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightHandSlot: {fileID: 0}
-  leftHandSlot: {fileID: 0}
+  rightHandSlot: {fileID: 5129890756576326895}
+  leftHandWeaponSlot: {fileID: 8771318752118357595}
+  leftHandShieldSlot: {fileID: 2187009230015852069}
   rightWeaponManager: {fileID: 0}
   leftWeaponManager: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
@@ -1379,6 +1443,10 @@ MonoBehaviour:
   moveAmount:
     m_InternalValue: 0
   currentTargetNetworkObjectID:
+    m_InternalValue: 0
+  isBlocking:
+    m_InternalValue: 0
+  isAttacking:
     m_InternalValue: 0
   isInvulnerable:
     m_InternalValue: 0
@@ -1497,6 +1565,11 @@ MonoBehaviour:
   healthRegenerationDelay: 0
   staminaRegenerationAmount: 10
   staminaRegenerationDelay: 0
+  blockingPhysicalAbsorption: 10
+  blockingMagicAbsorption: 0
+  blockingFireAbsorption: 0
+  blockingLightningAbsorption: 0
+  blockingHolyAbsorption: 0
 --- !u!114 &2428720114898212842
 MonoBehaviour:
   m_ObjectHideFlags: 0

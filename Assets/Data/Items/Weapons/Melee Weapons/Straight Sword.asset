@@ -16,6 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 71744b73748643345a3bee76fbc150ca, type: 3}
   itemDescription: Dumduz Kilic
   itemID: 1
+  weaponAnimator: {fileID: 22100000, guid: a6d67719924c5f643b44a0e34d0920fc, type: 2}
   weaponModel: {fileID: 9089073183651520005, guid: 74a8c84b6f5a0a247aa4a3ad771eb440,
     type: 3}
   strengthREQ: 10
@@ -34,10 +35,19 @@ MonoBehaviour:
   heavy_Attack_02_Modifier: 1.6
   charge_Attack_01_Modifier: 2
   charge_Attack_02_Modifier: 2.2
+  running_Attack_01_Modifier: 1.5
+  rolling_Attack_01_Modifier: 1.2
+  backstep_Attack_01_Modifier: 1.2
   baseStaminaCost: 20
   lightAttackStaminaCostMultiplier: 0.9
+  heavyAttackStaminaCostMultiplier: 1.3
+  chargedAttackStaminaCostMultiplier: 1.5
+  runningAttackStaminaCostMultiplier: 1.1
+  rollingAttackStaminaCostMultiplier: 1.1
+  backstepAttackStaminaCostMultiplier: 1.1
   oh_RB_Action: {fileID: 11400000, guid: ba12e38cec8a2284591a4048ac7aff51, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 0a9197f72c80508439f48b9aab5211be, type: 2}
+  oh_LB_Action: {fileID: 11400000, guid: b26a0d1369ca38d4f9a5225e1853d837, type: 2}
   whooshes:
   - {fileID: 8300000, guid: 45c70b91e25f0ef4784e42a331dfb10b, type: 3}
   - {fileID: 8300000, guid: 8bc8a63c37f565948a09573fe678a45f, type: 3}

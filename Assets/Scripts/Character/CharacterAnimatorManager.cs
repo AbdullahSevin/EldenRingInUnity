@@ -171,7 +171,8 @@ namespace AS
             character.characterNetworkManager.NotifyTheServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
         }
 
-        public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation,
+        public virtual void PlayTargetAttackActionAnimation(WeaponItem weapon,
+            AttackType attackType, string targetAnimation,
             bool isPorformingAction,
             bool applyRootMotion = true,
             bool canRotate = false,
@@ -185,7 +186,9 @@ namespace AS
             //  TELL THE NETWORK OUR "ISATTACKING" FLAG IS ACTIVE (For counter damage etc)
 
             character.characterCombatManager.currentAttackType = attackType;
-            character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation; 
+            character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
+            UpdateAnimatorController(weapon.weaponAnimator);
+
             this.applyRootMotion = applyRootMotion;
             character.animator.CrossFade(targetAnimation, 0.2f);
             character.isPerformingAction = isPorformingAction;
@@ -194,6 +197,11 @@ namespace AS
 
             // TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
             character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+        }
+
+        public void UpdateAnimatorController(AnimatorOverrideController weaponController)
+        {
+            character.animator.runtimeAnimatorController = weaponController;
         }
 
         public virtual void EnableCanDoCombo()

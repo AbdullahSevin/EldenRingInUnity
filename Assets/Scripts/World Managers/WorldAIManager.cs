@@ -70,6 +70,17 @@ namespace AS
             return spawnedInBosses.FirstOrDefault(boss => boss.bossID == ID);
         }
 
+        public void ResetAllCharacters()
+        {
+            DespawnAllCharacters();
+
+            foreach (var spawner in aiCharacterSpawners)
+            {
+                spawner.AttemptToSpawnCharacter();
+            }
+        }
+
+
         private void DespawnAllCharacters()
         {
             foreach (var character in spawnedInCharacters)

@@ -14,6 +14,7 @@ namespace AS
 
         [Header("Damage")]
         public TakeDamageEffect takeDamageEffect;
+        public TakeBlockedDamageEffect takeBlockedDamageEffect;
 
         [SerializeField] List<InstantCharacterEffect> instantEffects;
 

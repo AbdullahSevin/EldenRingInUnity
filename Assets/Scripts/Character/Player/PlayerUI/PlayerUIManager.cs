@@ -48,11 +48,27 @@ namespace AS
             if (startGameAsClient)
             {
                 startGameAsClient = false;
-                // WE MUST FIRST SHUT DOWN THE NETWORK BECAUSE WE HAVE STARTED AS A HOST DURING THE TITLESCREEN
-                NetworkManager.Singleton.Shutdown();
-                // WE THEN RESTART AS A CLIENT
-                NetworkManager.Singleton.StartClient();
+                StartCoroutine(RestartAsClient());
             }
+        }
+
+        private IEnumerator RestartAsClient()
+        {
+            // Shut down the network manager
+            NetworkManager.Singleton.Shutdown();
+
+            // Wait for one frame or more to ensure the network has fully shut down
+            yield return null;
+
+            // Optionally, wait for another frame to be safe
+            yield return new WaitForSeconds(0.1f);
+
+            Debug.Log("Attempting to start the client...");
+
+            // Start the network manager as a client
+            NetworkManager.Singleton.StartClient();
+
+            Debug.Log("Client start attempted.");
         }
 
     }

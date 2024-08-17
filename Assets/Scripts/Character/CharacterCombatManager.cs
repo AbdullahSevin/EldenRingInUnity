@@ -24,6 +24,7 @@ namespace AS
         [Header("Attack Flags")]
         public bool canPerformRollingAttack = false;
         public bool canPerformBackstepAttack = false;
+        public bool canBlock = true;
 
 
         protected virtual void Awake()
@@ -49,7 +50,7 @@ namespace AS
 
         }
 
-        public void EnableIsVulnerable()
+        public void EnableIsInvulnerable()
         {
             if (character.IsOwner)
             {
@@ -58,7 +59,7 @@ namespace AS
 
         }
 
-        public void DisableIsVulnerable()
+        public void DisableIsInvulnerable()
         {
             if (character.IsOwner)
             {

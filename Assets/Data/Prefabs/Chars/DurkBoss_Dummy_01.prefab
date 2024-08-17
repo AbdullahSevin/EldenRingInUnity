@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92460d3ffec3e04db8fd5143922fcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageCollider: {fileID: 0}
+  damageCollider: {fileID: 9015084282904414733}
   physicalDamage: 0
   magicDamage: 0
   fireDamage: 0
@@ -1556,8 +1556,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6100581892479089263}
-  - component: {fileID: 4468059267677847189}
-  - component: {fileID: 3824395052587633094}
   m_Layer: 6
   m_Name: Finger_01_L
   m_TagString: Untagged
@@ -1581,46 +1579,6 @@ Transform:
   - {fileID: 3578890981959784680}
   m_Father: {fileID: 1601269279027602058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4468059267677847189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5168208651472202733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847ce2aa69f628844914986331538ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageCollider: {fileID: 3824395052587633094}
-  physicalDamage: 0
-  magicDamage: 0
-  fireDamage: 0
-  lightningDamage: 0
-  holyDamage: 0
-  undeadCharacter: {fileID: 0}
---- !u!135 &3824395052587633094
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5168208651472202733}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.16
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5170820362862303774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,8 +2257,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6755433879616460792}
-  - component: {fileID: 6558179560469198841}
-  - component: {fileID: 2241044922071063607}
   m_Layer: 6
   m_Name: Finger_01_R
   m_TagString: Untagged
@@ -2324,46 +2280,6 @@ Transform:
   - {fileID: 592438119918545600}
   m_Father: {fileID: 6614386827919667411}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6558179560469198841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520235448624414036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847ce2aa69f628844914986331538ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageCollider: {fileID: 2241044922071063607}
-  physicalDamage: 0
-  magicDamage: 0
-  fireDamage: 0
-  lightningDamage: 0
-  holyDamage: 0
-  undeadCharacter: {fileID: 0}
---- !u!135 &2241044922071063607
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520235448624414036}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.16
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7553507743863373849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3202,7 +3118,7 @@ MonoBehaviour:
   maximumFOV: 35
   attackRotationSpeed: 25
   clubDamageCollider: {fileID: 3474100538741673441}
-  stompCollider: {fileID: 0}
+  stompCollider: {fileID: 3505853206091676787}
   stompAttackAOERadius: 1.5
   baseDamage: 25
   attack01DamageModifier: 1
@@ -3241,6 +3157,8 @@ MonoBehaviour:
   moveAmount:
     m_InternalValue: 0
   currentTargetNetworkObjectID:
+    m_InternalValue: 0
+  isBlocking:
     m_InternalValue: 0
   isInvulnerable:
     m_InternalValue: 0
@@ -3287,6 +3205,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterUIManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterGroup: 1
   isPerformingAction: 0
   characterName: Durk, The Guardian Of The Prototype Realms
@@ -3369,6 +3288,11 @@ MonoBehaviour:
   healthRegenerationDelay: 0
   staminaRegenerationAmount: 2
   staminaRegenerationDelay: 1
+  blockingPhysicalAbsorption: 0
+  blockingMagicAbsorption: 0
+  blockingFireAbsorption: 0
+  blockingLightningAbsorption: 0
+  blockingHolyAbsorption: 0
 --- !u!114 &6254927187670385316
 MonoBehaviour:
   m_ObjectHideFlags: 0

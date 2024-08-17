@@ -8,7 +8,12 @@ namespace AS
 {
     public class WeaponItem : Item
     {
-        //  ANIMATOR CONTROLLOER OVERRIDE (Change attack animations based on weapon you are currently using)
+
+        [Header("Animations")]
+        public AnimatorOverrideController weaponAnimator;
+
+        [Header("Model Instantiation")]
+        public WeaponModelType weaponModelType;
 
         [Header("Weapon Model")]
         public GameObject weaponModel;
@@ -54,15 +59,24 @@ namespace AS
         public float runningAttackStaminaCostMultiplier = 1.1f;
         public float rollingAttackStaminaCostMultiplier = 1.1f;
         public float backstepAttackStaminaCostMultiplier = 1.1f;
-        
+
         //  RUNNNG ATTACK STAMINA COST MODIFIER
         //  LIGHT ATTACK STAMINA COST MOD.
         //  HEAVY ATT STAMINA COST MOD. ETC ...
+
+        [Header("Weapon Blocking Absorption")]
+        public float physicalBasedDamageAbsorption = 50;
+        public float magicBasedDamageAbsorption = 50;
+        public float fireBasedDamageAbsorption = 50;
+        public float lightningBasedDamageAbsorption = 50;
+        public float holyBasedDamageAbsorption = 50;
+        public float stability = 50;  //  REDCUCES STAMINA LOST FROM BLOCK
 
 
         [Header("Actions")]
         public WeaponItemAction oh_RB_Action;  //  ONE HAND RIGHT BUMPER ACTÝON
         public WeaponItemAction oh_RT_Action;  //  ONE HAND RIGHT TRIGGER ACTÝON
+        public WeaponItemAction oh_LB_Action;  //  ONE HAND LEFT BUMPER ACTÝON
 
         [Header("Wooshes")]
         public AudioClip[] whooshes;

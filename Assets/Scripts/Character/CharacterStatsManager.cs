@@ -22,6 +22,13 @@ namespace AS
         private float staminaTickTimer = 0;
         [SerializeField] float staminaRegenerationDelay = 1;
 
+        [Header("Blocking Absorptions")]
+        public float blockingPhysicalAbsorption;
+        public float blockingMagicAbsorption;
+        public float blockingFireAbsorption;    
+        public float blockingLightningAbsorption;
+        public float blockingHolyAbsorption;
+
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();

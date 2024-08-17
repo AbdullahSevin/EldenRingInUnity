@@ -77,6 +77,31 @@ namespace AS
             return viewableAngle;
         }
 
+        public DamageIntensity GetDamageIntensityBasedOnPoiseDamage(float poiseDamage)
+        {
+            // THROWING DAGGERS, KITCHEN KNIFE, CURSING WORDS MAYBE
+            DamageIntensity damageIntensity = DamageIntensity.Ping;
+
+            // DAGGERS / LIGHT ATTACKS
+            if (poiseDamage >= 10)
+                damageIntensity = DamageIntensity.Light;
+
+            // STANDARD WEAPONS / MEDIUM ATTACKS
+            if (poiseDamage >= 30)
+                damageIntensity = DamageIntensity.Medium;
+
+            // GREAT WEAPONS / HEAVY ATTACKS / EMOTIONAL DAMAGE maybe
+            if (poiseDamage >= 70)
+                damageIntensity = DamageIntensity.Heavy;
+
+            // ULTRA WEAPONS / COLOSSAL ATTACKS
+            if (poiseDamage >= 120)
+                damageIntensity = DamageIntensity.Colossal;
+
+            return damageIntensity;
+
+
+        }
 
     }
 }

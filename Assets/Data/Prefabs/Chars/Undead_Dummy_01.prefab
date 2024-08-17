@@ -2713,7 +2713,7 @@ Animator:
   m_GameObject: {fileID: 8744637170119710124}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: cda0258ea2b8b394b85e8bb5d1ce3254, type: 3}
-  m_Controller: {fileID: 9100000, guid: 57d9853a0ef16434fb91f598876b9874, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5285c5b67c579624f9632349ef8c4f5e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2736,7 +2736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1415077039
+  GlobalObjectIdHash: 2715789514
   InScenePlacedSourceGlobalObjectIdHash: 4103628025
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2917,6 +2917,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterUIManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterGroup: 1
   isPerformingAction: 0
   characterName: 
@@ -2959,6 +2960,8 @@ MonoBehaviour:
   moveAmount:
     m_InternalValue: 0
   currentTargetNetworkObjectID:
+    m_InternalValue: 0
+  isBlocking:
     m_InternalValue: 0
   isInvulnerable:
     m_InternalValue: 0
@@ -3088,6 +3091,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterUIManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterGroup: 1
   isPerformingAction: 0
 --- !u!114 &5391961277257715723
@@ -3106,6 +3110,11 @@ MonoBehaviour:
   healthRegenerationDelay: 0
   staminaRegenerationAmount: 2
   staminaRegenerationDelay: 1
+  blockingPhysicalAbsorption: 0
+  blockingMagicAbsorption: 0
+  blockingFireAbsorption: 0
+  blockingLightningAbsorption: 0
+  blockingHolyAbsorption: 0
 --- !u!114 &4023332981155117798
 MonoBehaviour:
   m_ObjectHideFlags: 0

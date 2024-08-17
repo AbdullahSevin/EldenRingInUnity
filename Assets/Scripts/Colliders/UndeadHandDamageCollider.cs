@@ -18,6 +18,15 @@ namespace AS
             undeadCharacter = GetComponentInParent<AICharacterManager>();
         }
 
+        protected override void GetBlockingDotValues(CharacterManager damageTarget)
+        {
+            directionFromAttackToDamageTarget = undeadCharacter.transform.position - damageTarget.transform.position;
+            dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
+            Debug.Log($"Direction Vector: {directionFromAttackToDamageTarget}");
+            Debug.Log($"Forward Vector: {damageTarget.transform.forward}");
+            Debug.Log($"Dot Value: {dotValueFromAttackToDamageTarget}");
+        }
+
         protected override void DamageTarget(CharacterManager damageTarget)
         {
             if (charactersDamaged.Contains(damageTarget))
