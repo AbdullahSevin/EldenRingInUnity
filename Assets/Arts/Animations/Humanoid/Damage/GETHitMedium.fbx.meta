@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Hit_F_2
+      name: Medium_Get_Hit
       takeName: Hit_F_2
       internalID: 5944026182072926578
       firstFrame: 0
