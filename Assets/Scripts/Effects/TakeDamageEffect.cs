@@ -98,9 +98,23 @@ namespace AS
 
             character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
             Debug.Log("damage taken: " + finalDamageDealt);
-            
+
             //  CALCULATE THE POISE DAMAGE TO DETERMINE IF THE CHARACTER WILL BE STUNNED
 
+            // WE SUBSTRACT THE POISE DAMAGE FROM THE CHARACTERS TOTAL
+            character.characterStatsManager.totalPoiseDamage -= poiseDamage;
+
+            float remainingPoise = character.characterStatsManager.basePoiseDefense +
+                character.characterStatsManager.offensivePoiseBonus +
+                character.characterStatsManager.totalPoiseDamage;
+
+            if (remainingPoise <= 0)
+            {
+                poiseIsBroken = true;
+            }
+
+            //  SINCE THE CHARACTER HAS BEEN HIT, WE RESET THE POISE TIMER 
+            character.characterStatsManager.poiseResetTimer = character.characterStatsManager.defaultPoiseResetTime;
 
         }
 
@@ -135,41 +149,75 @@ namespace AS
                 return;
             }
 
-            //  TODO: CALCULATE IF POISE IS BROKEN
-            poiseIsBroken = true;
-            Debug.Log("TAKE DAMAGE CS >>>   POISE SET TO BROKEN: " + poiseIsBroken);
-
-            if (angleHitFrom >= 145 && angleHitFrom <= 180)
-            {
-                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
-            }
-            else if (angleHitFrom <= -145 && angleHitFrom >= -180)
-            {
-                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
-            }
-            else if (angleHitFrom >= -45 && angleHitFrom <= 45)
-            {
-                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.backward_Medium_Damage);
-            }
-            else if (angleHitFrom >= -144 && angleHitFrom <= -45)
-            {
-                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.left_Medium_Damage);
-            }
-            else if (angleHitFrom >= 45 && angleHitFrom <= 144)
-            {
-                damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.right_Medium_Damage);
-            }
-
-            Debug.Log("TAKE DAMAGE CS >>>   ANGLE HIT FROM: " + angleHitFrom + "damageAnimation: " + damageAnimation);
-
-
-            //  IF POISE IS BROKEN, PLAY A STAGGERING DAMAGE ANIMATION
             if (poiseIsBroken)
             {
-                Debug.Log("TAKE DAMAGE.cs:  >>>  sent play anim req");
-                character.characterAnimatorManager.lastDamageAnimationPlayed = damageAnimation;
+                if (angleHitFrom >= 145 && angleHitFrom <= 180)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
+                }
+                else if (angleHitFrom <= -145 && angleHitFrom >= -180)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
+                }
+                else if (angleHitFrom >= -45 && angleHitFrom <= 45)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.backward_Medium_Damage);
+                }
+                else if (angleHitFrom >= -144 && angleHitFrom <= -45)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.left_Medium_Damage);
+                }
+                else if (angleHitFrom >= 45 && angleHitFrom <= 144)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.right_Medium_Damage);
+                }
+            }
+            else
+            {
+                if (angleHitFrom >= 145 && angleHitFrom <= 180)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Ping_Damage);
+                }
+                else if (angleHitFrom <= -145 && angleHitFrom >= -180)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Ping_Damage);
+                }
+                else if (angleHitFrom >= -45 && angleHitFrom <= 45)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.backward_Ping_Damage);
+                }
+                else if (angleHitFrom >= -144 && angleHitFrom <= -45)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.left_Ping_Damage);
+                }
+                else if (angleHitFrom >= 45 && angleHitFrom <= 144)
+                {
+                    damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.right_Ping_Damage);
+                }
+            }
+
+            Debug.Log("TAKE DAMAGE CS >>>   POISE SET TO BROKEN: " + poiseIsBroken);
+            Debug.Log("TAKE DAMAGE CS >>>   ANGLE HIT FROM: " + angleHitFrom + "damageAnimation: " + damageAnimation);
+            //  IF POISE IS BROKEN, PLAY A STAGGERING DAMAGE ANIMATION
+
+            
+            Debug.Log("TAKE DAMAGE.cs:  >>>  sent play anim req");
+            character.characterAnimatorManager.lastDamageAnimationPlayed = damageAnimation;
+
+            if (poiseIsBroken)
+            {
+                //  IF WE ARE POISE BROKEN RESTRICT OUR MOVEMENT AND ANY ACTIONS 
                 character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, true);
             }
+            else
+            {
+                //  IF WE ARE NOT POISE BROKEN SIMPLY PLAY AN UPPERBODY ANIMATION WITHOUT RESTRICTINBG
+                character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, false, false, true, true);
+            }
+
+
+            
+            
 
 
         }

@@ -70,7 +70,7 @@ namespace AS
         public float fireBasedDamageAbsorption = 50;
         public float lightningBasedDamageAbsorption = 50;
         public float holyBasedDamageAbsorption = 50;
-        public float stability = 50;  //  REDCUCES STAMINA LOST FROM BLOCK
+        public float stability = 50;  //  REDUCES STAMINA LOST FROM BLOCK
 
 
         [Header("Actions")]
@@ -78,8 +78,9 @@ namespace AS
         public WeaponItemAction oh_RT_Action;  //  ONE HAND RIGHT TRIGGER ACTÝON
         public WeaponItemAction oh_LB_Action;  //  ONE HAND LEFT BUMPER ACTÝON
 
-        [Header("Wooshes")]
+        [Header("SFX")]
         public AudioClip[] whooshes;
+        public AudioClip[] blocking;
 
 
         //  ASH OF WAR 

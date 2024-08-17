@@ -18,6 +18,9 @@ namespace AS
         public float lightningDamage = 0;
         public float holyDamage = 0;
 
+        [Header("Poise")]
+        public float poiseDamage = 0;
+
         [Header("Contact Point")]
         protected Vector3 contactPoint;
 
@@ -66,16 +69,16 @@ namespace AS
             //  IF THIS CHARACTER HAS ALREADY BEEN DAMAGED RETURN
             if (charactersDamaged.Contains(damageTarget))
             {
-                Debug.Log("check block returned");
+                //Debug.Log("check block returned");
                 return;
             }
 
 
 
 
-            Debug.Log("block nt returned");
+            //Debug.Log("block nt returned");
             GetBlockingDotValues(damageTarget);
-            Debug.Log("got dot values success");
+            //Debug.Log("got dot values success");
             Debug.Log(damageTarget.characterNetworkManager.isBlocking.Value + "  " + dotValueFromAttackToDamageTarget);
             // CHECK IF THE CHARACTER BEING DAMAGED IS BLOCKING
             if (damageTarget.characterNetworkManager.isBlocking.Value && dotValueFromAttackToDamageTarget > 0.3f)
@@ -93,6 +96,8 @@ namespace AS
                 damageEffect.fireDamage = fireDamage;
                 damageEffect.lightningDamage = lightningDamage;
                 damageEffect.holyDamage = holyDamage;
+                damageEffect.poiseDamage = poiseDamage;
+                damageEffect.staminaDamage = poiseDamage;   // IF YOU WANT TO GIVE STAMINA DAMAGE ITS OWN VARIABLE, INSTEAD OF USING POISE GO FOR IT
                 damageEffect.contactPoint = contactPoint;
 
                 // APPLY BLOCKED DAMAGE TO TARGET 
@@ -129,6 +134,7 @@ namespace AS
             damageEffect.fireDamage = fireDamage;
             damageEffect.lightningDamage = lightningDamage;
             damageEffect.holyDamage = holyDamage;
+            damageEffect.poiseDamage = poiseDamage;
             damageEffect.contactPoint = contactPoint;
 
             damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);

@@ -14,6 +14,7 @@ namespace AS
 
         [Header("Damage")]
         [SerializeField] int baseDamage = 25;
+        [SerializeField] int basePoiseDamage = 25;
         [SerializeField] float attack01DamageModifier = 1.0f;
         [SerializeField] float attack02DamageModifier = 1.4f;
 
@@ -21,12 +22,22 @@ namespace AS
         {
             rightHandDamageCollider.physicalDamage = baseDamage * attack01DamageModifier;
             leftHandDamageCollider.physicalDamage = baseDamage * attack01DamageModifier;
+
+            rightHandDamageCollider.poiseDamage = basePoiseDamage * attack01DamageModifier;
+            leftHandDamageCollider.poiseDamage = basePoiseDamage * attack01DamageModifier;
+            Debug.Log("left poise: " + leftHandDamageCollider.poiseDamage);
+            Debug.Log("right poise: " + rightHandDamageCollider.poiseDamage);
         }
 
         public void SetAttack02Damage()
         {
             rightHandDamageCollider.physicalDamage = baseDamage * attack02DamageModifier;
             leftHandDamageCollider.physicalDamage = baseDamage * attack02DamageModifier;
+
+            rightHandDamageCollider.poiseDamage = basePoiseDamage * attack02DamageModifier;
+            leftHandDamageCollider.poiseDamage = basePoiseDamage * attack02DamageModifier;
+            Debug.Log("left poise: " + leftHandDamageCollider.poiseDamage);
+            Debug.Log("right poise: " + rightHandDamageCollider.poiseDamage);
         }
 
         public void OpenRightHandDamageCollider()

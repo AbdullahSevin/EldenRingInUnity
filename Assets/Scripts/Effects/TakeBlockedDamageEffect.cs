@@ -26,6 +26,11 @@ namespace AS
         public float poiseDamage = 0;
         public bool poiseIsBroken = false;                 //  If a character's Poise is Broken, They will be "Stunned" and play a damage animation
 
+        [Header("Stamina")]
+        public float staminaDamage = 0;
+        public float finalStaminaDamage = 0;
+        
+
         // TO DO > BUILD UPS 
         // build up effect amounts
 
@@ -60,6 +65,7 @@ namespace AS
 
 
             CalculateDamage(character);
+            CalculateStaminaDamage(character);
             PlayDirectionalBasedBlockingAnimation(character);
             Debug.Log("TAKE DAMAGE CS >>>   PROCESSED DIRECTIONAL ANIMATION");
             //  CHECK FOR BUILD UPS (POISON, BLEED ETC...)
@@ -67,7 +73,7 @@ namespace AS
             PlayDamageVFX(character);
 
             //  IF CHARACTER IS A.I., CHECK FOR NEW TARGET IF CHARACTER CAUSING DAMAGE IS PRESENT
-
+            CheckForGuardBreak(character);
         }
 
         private void CalculateDamage(CharacterManager character)
@@ -111,6 +117,36 @@ namespace AS
 
         }
 
+        private void CalculateStaminaDamage(CharacterManager character)
+        {
+            if (!character.IsOwner)
+            {
+                return;
+            }
+            finalStaminaDamage = staminaDamage;
+
+            float staminaDamageAbsorption = finalStaminaDamage * (character.characterStatsManager.blockingStability / 100);
+            float staminaDamageAfterAbsorption = finalStaminaDamage - staminaDamageAbsorption;
+
+            character.characterNetworkManager.currentStamina.Value -= staminaDamageAfterAbsorption;
+        }
+
+        private void CheckForGuardBreak(CharacterManager character)
+        {
+            // PLAY SFX
+
+            if (!character.IsOwner)
+            {
+                return;
+            }
+
+            if (character.characterNetworkManager.currentStamina.Value <= 0)
+            {
+                character.characterAnimatorManager.PlayTargetActionAnimation("Guard_Break_01", true);
+                character.characterNetworkManager.isBlocking.Value = false;
+            }
+        }
+
         private void PlayDamageVFX(CharacterManager character)
         {
             //  IF WE HAVE FIRE DAMAGE PLAY FIRE VFX, OR LIGHTNING OR ETC ...
@@ -131,6 +167,9 @@ namespace AS
             //  "  LIGHTNING    "            "  , "     ZAP SFX
 
             //  GET SFX BASED ON BLOCKING WEAPON
+
+            character.characterSoundFXManager.PlayBlockSoundFX();
+
 
         }
 

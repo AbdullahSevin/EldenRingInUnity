@@ -46,12 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847ce2aa69f628844914986331538ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageCollider: {fileID: 0}
-  physicalDamage: 0
+  damageCollider: {fileID: 8132314068363525273}
+  physicalDamage: 25
   magicDamage: 0
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  poiseDamage: 25
   undeadCharacter: {fileID: 0}
 --- !u!135 &8132314068363525273
 SphereCollider:
@@ -448,7 +449,7 @@ Transform:
   m_GameObject: {fileID: 1979758747178651434}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0024864315, y: -0.043879747, z: 0.056519255, w: 0.9974337}
-  m_LocalPosition: {x: -0.099825256, y: -0.0011595894, z: -0.0328334}
+  m_LocalPosition: {x: -0.099825256, y: -0.001159589, z: -0.0328334}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -467,12 +468,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847ce2aa69f628844914986331538ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageCollider: {fileID: 0}
-  physicalDamage: 0
+  damageCollider: {fileID: 4120088370717618562}
+  physicalDamage: 25
   magicDamage: 0
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  poiseDamage: 25
   undeadCharacter: {fileID: 0}
 --- !u!135 &4120088370717618562
 SphereCollider:
@@ -491,7 +493,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.16
   m_Center: {x: 0, y: 0, z: 0}
@@ -2963,6 +2965,8 @@ MonoBehaviour:
     m_InternalValue: 0
   isBlocking:
     m_InternalValue: 0
+  isAttacking:
+    m_InternalValue: 0
   isInvulnerable:
     m_InternalValue: 0
   isLockedOn:
@@ -2974,17 +2978,17 @@ MonoBehaviour:
   isChargingAttack:
     m_InternalValue: 0
   currentHealth:
-    m_InternalValue: 0
+    m_InternalValue: 500
   maxHealth:
-    m_InternalValue: 0
+    m_InternalValue: 500
   currentStamina:
-    m_InternalValue: 0
+    m_InternalValue: 50
   maxStamina:
-    m_InternalValue: 0
+    m_InternalValue: 50
   vitality:
-    m_InternalValue: 10
+    m_InternalValue: 5
   endurance:
-    m_InternalValue: 10
+    m_InternalValue: 5
 --- !u!114 &7598462018577550298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3054,6 +3058,7 @@ MonoBehaviour:
   lockOnTransform: {fileID: 0}
   canPerformRollingAttack: 0
   canPerformBackstepAttack: 0
+  canBlock: 1
   actionRecoveryTimer: 0
   enablePivot: 1
   distanceFromTarget: 0
@@ -3066,6 +3071,7 @@ MonoBehaviour:
   rightHandDamageCollider: {fileID: 457004018371138852}
   leftHandDamageCollider: {fileID: 6621296936226349532}
   baseDamage: 25
+  basePoiseDamage: 25
   attack01DamageModifier: 1
   attack02DamageModifier: 1.4
 --- !u!114 &5024790673245024057
@@ -3115,6 +3121,7 @@ MonoBehaviour:
   blockingFireAbsorption: 0
   blockingLightningAbsorption: 0
   blockingHolyAbsorption: 0
+  blockingStability: 0
 --- !u!114 &4023332981155117798
 MonoBehaviour:
   m_ObjectHideFlags: 0

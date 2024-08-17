@@ -69,6 +69,10 @@ namespace AS
             }
         }
 
+        public virtual void PlayBlockSoundFX()
+        {
+
+        }
 
 
     }
