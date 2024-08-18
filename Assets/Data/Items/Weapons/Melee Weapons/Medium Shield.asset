@@ -20,6 +20,7 @@ MonoBehaviour:
   weaponModelType: 1
   weaponModel: {fileID: 2638039172995845006, guid: 95dc5859485fd03449de2b7e7c601c73,
     type: 3}
+  weaponClass: 2
   strengthREQ: 12
   dexREQ: 8
   intREQ: 0

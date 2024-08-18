@@ -16,7 +16,14 @@ namespace AS
         public TakeDamageEffect takeDamageEffect;
         public TakeBlockedDamageEffect takeBlockedDamageEffect;
 
+        [Header("Two Hand")]
+        public TwoHandingEffect twoHandingEffect;
+
+        [Header("Instant Effects")]
         [SerializeField] List<InstantCharacterEffect> instantEffects;
+
+        [Header("Static Effects")]
+        [SerializeField] List<StaticCharacterEffect> staticEffects;
 
         private void Awake()
         {
@@ -38,6 +45,12 @@ namespace AS
             {
                 instantEffects[i].instantEffectID = i;
             }
+
+            for (int i = 0; i < staticEffects.Count; i++)
+            {
+                staticEffects[i].staticEffectID = i;
+            }
+
         }
 
 

@@ -129,8 +129,22 @@ namespace AS
         {
             if (!isTwoHandingWeapon.Value)
             {
+                if (IsOwner)
+                {
+                    isTwoHandingLeftWeapon.Value = false;
+                    isTwoHandingRightWeapon.Value = false;
+                }
+
                 player.playerEquipmentManager.UnTwoHandWeapon();
+                player.playerEffectsManager.RemoveStaticEffect(WorldCharacterEffectsManager.instance.twoHandingEffect.staticEffectID);
             }
+            else
+            {
+                StaticCharacterEffect twoHandEffect = Instantiate(WorldCharacterEffectsManager.instance.twoHandingEffect);
+                player.playerEffectsManager.AddStaticEffect(twoHandEffect);
+            }
+
+            player.animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon.Value);
 
         }
 
@@ -164,8 +178,8 @@ namespace AS
                 isTwoHandingWeapon.Value = true;
             }
             
-            player.playerInventoryManager.currentTwoHandWeapon = player.playerInventoryManager.currentRightHandWeapon;
-            player.playerEquipmentManager.TwoHandRightWeapon();
+            player.playerInventoryManager.currentTwoHandWeapon = player.playerInventoryManager.currentLeftHandWeapon;
+            player.playerEquipmentManager.TwoHandLeftWeapon();
         }
 
         //  ITEM ACTIONS

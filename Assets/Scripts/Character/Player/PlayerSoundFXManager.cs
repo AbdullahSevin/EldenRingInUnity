@@ -9,6 +9,13 @@ namespace AS
     {
         PlayerManager player;
 
+        [Header("FootSteps")]
+        [SerializeField] public AudioClip[] pc_footStepR;
+        [SerializeField] public AudioClip[] pc_footStepL;
+
+        [Header("JumpSFX")]
+        [SerializeField] public AudioClip[] pc_jumpSoundFX;
+
         protected override void Awake()
         {
             base.Awake();
@@ -21,6 +28,24 @@ namespace AS
         }
 
 
+        private void FootR()
+        {
+            //PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(pc_footStepR));
+        }
+
+        private void FootL()
+        {
+            //PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(pc_footStepL));
+        }
+
+        private void PlayJumpSoundFX()
+        {
+            if (pc_jumpSoundFX.Length > 0)
+            {
+                PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(pc_jumpSoundFX));
+            }
+           
+        }
     }
 
 }

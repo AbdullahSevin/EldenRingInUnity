@@ -11,7 +11,7 @@ namespace AS
         PlayerManager player;
 
         [Header("WEAPON MODEL INSTANTIATION SLOTS")]
-        public WeaponModelInstantiationSlot rightHandSlot;
+        public WeaponModelInstantiationSlot rightHandWeaponSlot;
         public WeaponModelInstantiationSlot leftHandWeaponSlot;
         public WeaponModelInstantiationSlot leftHandShieldSlot;
         public WeaponModelInstantiationSlot backSlot;
@@ -48,7 +48,7 @@ namespace AS
             {
                 if (weaponSlot.weaponSlot == WeaponModelSlot.RightHand)
                 {
-                    rightHandSlot = weaponSlot;
+                    rightHandWeaponSlot = weaponSlot;
                 }
                 else if (weaponSlot.weaponSlot == WeaponModelSlot.LeftHandWeaponSlot)
                 {
@@ -165,11 +165,11 @@ namespace AS
             if (player.playerInventoryManager.currentRightHandWeapon != null)
             {
                 //  REMOVE THE OLD WEAPON 
-                rightHandSlot.UnloadWeapon();
+                rightHandWeaponSlot.UnloadWeapon();
 
                 //  BRING IN THE NEW WEAPON
                 rightHandWeaponModel = Instantiate(player.playerInventoryManager.currentRightHandWeapon.weaponModel);
-                rightHandSlot.LoadWeapon(rightHandWeaponModel);
+                rightHandWeaponSlot.PlaceWeaponModelIntoSlot(rightHandWeaponModel);
                 rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
                 rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
                 player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentRightHandWeapon.weaponAnimator);
@@ -279,10 +279,10 @@ namespace AS
                 switch (player.playerInventoryManager.currentLeftHandWeapon.weaponModelType)
                 {
                     case WeaponModelType.Weapon:
-                        leftHandWeaponSlot.LoadWeapon(leftHandWeaponModel);
+                        leftHandWeaponSlot.PlaceWeaponModelIntoSlot(leftHandWeaponModel);
                         break;
                     case WeaponModelType.Shield:
-                        leftHandShieldSlot.LoadWeapon(leftHandWeaponModel);
+                        leftHandShieldSlot.PlaceWeaponModelIntoSlot(leftHandWeaponModel);
                         break;
                     default:
                         break;
@@ -297,27 +297,86 @@ namespace AS
         public void UnTwoHandWeapon()
         {
             //  UPDATE ANIMATOR CONTROLLER TO CURRENT MAIN HAND WEAPON
+            player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentRightHandWeapon.weaponAnimator);
             //  REMOVE THE STRENGTH BONUS (TWO HANDING WEAPON MAKES YOUR STRENGTH LEVEL (STR + (STR * 0.5)))
             //  UNTWOHAND THMODEL AND MOVE THE MODEL THAT ISN'T BEING TWOHANDED BACK TO ITS HAND (IF THERE IS ANY)
+
+            //  LEFT HAND
+            if (player.playerInventoryManager.currentLeftHandWeapon.weaponModelType == WeaponModelType.Weapon)
+            {
+                leftHandWeaponSlot.PlaceWeaponModelIntoSlot(leftHandWeaponModel);
+            }
+            else if (player.playerInventoryManager.currentLeftHandWeapon.weaponModelType == WeaponModelType.Shield)
+            {
+                leftHandShieldSlot.PlaceWeaponModelIntoSlot(leftHandWeaponModel);
+            }
+
+            //  RIGHT HAND 
+            rightHandWeaponSlot.PlaceWeaponModelIntoSlot(rightHandWeaponModel);
             //  REFRESH THE DAMAGE COLLIDER CALCULATIONS (STRENGTH SCALING WOULD BE EFFECTED SINCE THE STR BONUS WAS REMOVED)
+            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
         }
 
         public void TwoHandRightWeapon()
         {
             // CHECK FOR UNTWOHANDABLE ITEM (LIKE UNARMED) IF WE ARE ATEMPTING TWO HAND UNARMED, RETURN
-            // IF WE ARE RETURNING AND NOT TWOHANDING THE WEAPON, RESET BOOL STATUS'S
-            // PLACE THE NON-TWO HANDED WEAPON MODEL IN THE BACK SLOT OR HIP SLOT
+            if (player.playerInventoryManager.currentRightHandWeapon == WorldItemDatabase.Instance.unarmedWeapon)
+            {
+                //  2. IF WE ARE RETURNING AND NOT TWOHANDING THE WEAPON, RESET BOOL STATUS'S
+                if (player.IsOwner)
+                {
+                    player.playerNetworkManager.isTwoHandingRightWeapon.Value = false;
+                    player.playerNetworkManager.isTwoHandingWeapon.Value = false;
+
+                }
+
+                return;
+            }
+            //  UPDATE ANIMATOR
+            player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentRightHandWeapon.weaponAnimator);
+
+
+            // 3. PLACE THE NON-TWO HANDED WEAPON MODEL IN THE BACK SLOT OR HIP SLOT
+            backSlot.PlaceWeaponModelInUnequippedSlot(leftHandWeaponModel, player.playerInventoryManager.currentLeftHandWeapon.weaponClass, player);
+
+            //  ADD TWO HAND STR BONUS
             // PLACE THE TWO HANDED WEAPON TO MAIN HAND (RIGHT HAND)
-            // E.G IF YOU ARE TWO HANDING THE LEFT WEAPON, PLACE THE LEFT WEAPON MODEL IN THE CHARACTER'S RIGHT HAND
+            rightHandWeaponSlot.PlaceWeaponModelIntoSlot(rightHandWeaponModel);
+
+            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
+
         }
 
         public void TwoHandLeftWeapon()
         {
             // CHECK FOR UNTWOHANDABLE ITEM (LIKE UNARMED) IF WE ARE ATEMPTING TWO HAND UNARMED, RETURN
-            // IF WE ARE RETURNING AND NOT TWOHANDING THE WEAPON, RESET BOOL STATUS'S
-            // PLACE THE NON-TWO HANDED WEAPON MODEL IN THE BACK SLOT OR HIP SLOT
+            if (player.playerInventoryManager.currentLeftHandWeapon == WorldItemDatabase.Instance.unarmedWeapon)
+            {
+                //  2. IF WE ARE RETURNING AND NOT TWOHANDING THE WEAPON, RESET BOOL STATUS'S
+                if (player.IsOwner)
+                {
+                    player.playerNetworkManager.isTwoHandingLeftWeapon.Value = false;
+                    player.playerNetworkManager.isTwoHandingWeapon.Value = false;
+
+                }
+
+                return;
+            }
+            //  UPDATE ANIMATOR
+            player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentLeftHandWeapon.weaponAnimator);
+
+
+            // 3. PLACE THE NON-TWO HANDED WEAPON MODEL IN THE BACK SLOT OR HIP SLOT
+            backSlot.PlaceWeaponModelInUnequippedSlot(rightHandWeaponModel, player.playerInventoryManager.currentRightHandWeapon.weaponClass, player);
+
+            //  ADD TWO HAND STR BONUS
             // PLACE THE TWO HANDED WEAPON TO MAIN HAND (RIGHT HAND)
-            // E.G IF YOU ARE TWO HANDING THE LEFT WEAPON, PLACE THE LEFT WEAPON MODEL IN THE CHARACTER'S RIGHT HAND
+            rightHandWeaponSlot.PlaceWeaponModelIntoSlot(leftHandWeaponModel);
+
+            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
         }
 
         //  DAMAGE COLLIDERS

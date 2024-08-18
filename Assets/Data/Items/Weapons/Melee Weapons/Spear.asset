@@ -17,8 +17,10 @@ MonoBehaviour:
   itemDescription: Dumduz Kilic
   itemID: 3
   weaponAnimator: {fileID: 22100000, guid: 684f06b224f19b2428c56aa984b1fa49, type: 2}
+  weaponModelType: 0
   weaponModel: {fileID: 5165238161283648754, guid: 09cca61857afe624492a098268d6a18e,
     type: 3}
+  weaponClass: 1
   strengthREQ: 8
   dexREQ: 10
   intREQ: 0
@@ -45,6 +47,12 @@ MonoBehaviour:
   runningAttackStaminaCostMultiplier: 1.1
   rollingAttackStaminaCostMultiplier: 1.1
   backstepAttackStaminaCostMultiplier: 1.1
+  physicalBasedDamageAbsorption: 50
+  magicBasedDamageAbsorption: 50
+  fireBasedDamageAbsorption: 50
+  lightningBasedDamageAbsorption: 50
+  holyBasedDamageAbsorption: 50
+  stability: 50
   oh_RB_Action: {fileID: 11400000, guid: ba12e38cec8a2284591a4048ac7aff51, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 0a9197f72c80508439f48b9aab5211be, type: 2}
   oh_LB_Action: {fileID: 11400000, guid: b26a0d1369ca38d4f9a5225e1853d837, type: 2}
@@ -53,3 +61,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc8a63c37f565948a09573fe678a45f, type: 3}
   - {fileID: 8300000, guid: deabd9c03f099ff4e93d65d664762f26, type: 3}
   - {fileID: 8300000, guid: 26c199d8574bb3b4cadf187412ce01bf, type: 3}
+  blocking: []

@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d6fff062a63b0408ccf6e664790053, type: 3}
   m_Name: Light Attack Weapon Item Action
   m_EditorClassIdentifier: 
-  actionID: 0
+  actionID: 1
   light_Attack_01: Main_Light_Attack_01
+  light_Attack_02: Main_Light_Attack_02
+  running_Attack_01: Running_Attack_01
+  rolling_Attack_01: Rolling_Attack_01
+  backstep_Attack_01: Backstep_Attack_01
+  th_light_Attack_01: TH_Light_Attack_01
+  th_light_Attack_02: TH_Light_Attack_02
+  th_running_Attack_01: TH_Running_Attack_01
+  th_rolling_Attack_01: TH_Rolling_Attack_01
+  th_backstep_Attack_01: TH_Backstep_Attack_01

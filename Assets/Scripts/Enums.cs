@@ -44,6 +44,14 @@ public enum WeaponModelType
     Shield
 }
 
+public enum WeaponClass
+{
+    StraightSword,
+    Spear,
+    MediumShield,
+    Fist
+}
+
 
 //  THIS IS USED TO CALCULATE DAMAGE BASED ON ATTACK TYPE
 public enum AttackType
