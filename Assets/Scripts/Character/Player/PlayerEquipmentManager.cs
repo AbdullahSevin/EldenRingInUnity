@@ -10,15 +10,19 @@ namespace AS
     {
         PlayerManager player;
 
+        [Header("WEAPON MODEL INSTANTIATION SLOTS")]
         public WeaponModelInstantiationSlot rightHandSlot;
         public WeaponModelInstantiationSlot leftHandWeaponSlot;
         public WeaponModelInstantiationSlot leftHandShieldSlot;
+        public WeaponModelInstantiationSlot backSlot;
 
+        [Header("WEAPON MODELS")]
+        public GameObject rightHandWeaponModel;
+        public GameObject leftHandWeaponModel;    
+
+        [Header("WEAPON MANAGERS")]
         [SerializeField] WeaponManager rightWeaponManager;
         [SerializeField] WeaponManager leftWeaponManager;
-
-        public GameObject rightHandWeaponModel;
-        public GameObject leftHandWeaponModel;
 
         protected override void Awake()
         {
@@ -54,6 +58,11 @@ namespace AS
                 {
                     leftHandShieldSlot = weaponSlot;
                 }
+                else if (weaponSlot.weaponSlot == WeaponModelSlot.BackSlot)
+                {
+                    backSlot = weaponSlot;
+                }
+
 
             }
 
@@ -285,6 +294,31 @@ namespace AS
             }
         }
 
+        public void UnTwoHandWeapon()
+        {
+            //  UPDATE ANIMATOR CONTROLLER TO CURRENT MAIN HAND WEAPON
+            //  REMOVE THE STRENGTH BONUS (TWO HANDING WEAPON MAKES YOUR STRENGTH LEVEL (STR + (STR * 0.5)))
+            //  UNTWOHAND THMODEL AND MOVE THE MODEL THAT ISN'T BEING TWOHANDED BACK TO ITS HAND (IF THERE IS ANY)
+            //  REFRESH THE DAMAGE COLLIDER CALCULATIONS (STRENGTH SCALING WOULD BE EFFECTED SINCE THE STR BONUS WAS REMOVED)
+        }
+
+        public void TwoHandRightWeapon()
+        {
+            // CHECK FOR UNTWOHANDABLE ITEM (LIKE UNARMED) IF WE ARE ATEMPTING TWO HAND UNARMED, RETURN
+            // IF WE ARE RETURNING AND NOT TWOHANDING THE WEAPON, RESET BOOL STATUS'S
+            // PLACE THE NON-TWO HANDED WEAPON MODEL IN THE BACK SLOT OR HIP SLOT
+            // PLACE THE TWO HANDED WEAPON TO MAIN HAND (RIGHT HAND)
+            // E.G IF YOU ARE TWO HANDING THE LEFT WEAPON, PLACE THE LEFT WEAPON MODEL IN THE CHARACTER'S RIGHT HAND
+        }
+
+        public void TwoHandLeftWeapon()
+        {
+            // CHECK FOR UNTWOHANDABLE ITEM (LIKE UNARMED) IF WE ARE ATEMPTING TWO HAND UNARMED, RETURN
+            // IF WE ARE RETURNING AND NOT TWOHANDING THE WEAPON, RESET BOOL STATUS'S
+            // PLACE THE NON-TWO HANDED WEAPON MODEL IN THE BACK SLOT OR HIP SLOT
+            // PLACE THE TWO HANDED WEAPON TO MAIN HAND (RIGHT HAND)
+            // E.G IF YOU ARE TWO HANDING THE LEFT WEAPON, PLACE THE LEFT WEAPON MODEL IN THE CHARACTER'S RIGHT HAND
+        }
 
         //  DAMAGE COLLIDERS
 

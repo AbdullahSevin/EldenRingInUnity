@@ -10,6 +10,7 @@ namespace AS
 
         public WeaponItem currentRightHandWeapon;
         public WeaponItem currentLeftHandWeapon;
+        public WeaponItem currentTwoHandWeapon;
 
         [Header("Quick Slots")]
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[3];
