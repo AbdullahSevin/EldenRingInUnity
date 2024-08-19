@@ -30,6 +30,19 @@ namespace AS
         public float blockingHolyAbsorption;
         public float blockingStability;
 
+        [Header("Armor Absorptions")]
+        public float armorPhysicalDamageAbsorpion;
+        public float armorMagicDamageAbsorpion;
+        public float armorFireDamageAbsorpion;
+        public float armorLightningDamageAbsorpion;
+        public float armorHolyDamageAbsorpion;
+
+        [Header("Armor Resistances")]
+        public float armorImmunity;        // RESISTANCE TO ROT AND POISON
+        public float armorRobutsness;     // RESISTANCE TO BLEED AND FROST
+        public float armorFocus;       // RESISTANCE TO MADNESS AND SLEEP
+        public float armorVitality;      // RESISTANCE TO DETH CURSE
+        
         [Header("Poise")]
         public float totalPoiseDamage;          // How much poise damage we have taken 
         public float offensivePoiseBonus;       // The poise bonus gained from using weapons (heavy weapons have a much larger bonus)

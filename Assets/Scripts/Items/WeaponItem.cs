@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 
 namespace AS
 {
-    public class WeaponItem : Item
+    public class WeaponItem : EquipmentItem
     {
 
         [Header("Animations")]

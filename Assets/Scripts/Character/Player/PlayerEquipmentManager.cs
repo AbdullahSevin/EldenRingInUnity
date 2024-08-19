@@ -24,6 +24,9 @@ namespace AS
         [SerializeField] WeaponManager rightWeaponManager;
         [SerializeField] WeaponManager leftWeaponManager;
 
+        [Header("DEBUG DELETE LATER")]
+        [SerializeField] bool equipNewItems = false;
+
         protected override void Awake()
         {
             base.Awake();
@@ -39,6 +42,87 @@ namespace AS
 
             LoadWeaponsOnBothHands();
         }
+
+        private void Update()
+        {
+            if (equipNewItems)
+            {
+                equipNewItems = false;
+                DebugEquipNewItems();
+            }
+        }
+
+        private void DebugEquipNewItems()
+        {
+            Debug.Log("EQUIPPING NEW ITEMS");
+
+            if (player.playerInventoryManager.headEquipment != null)
+                LoadHeadEquipment(player.playerInventoryManager.headEquipment);
+
+            if (player.playerInventoryManager.bodyEquipment != null)
+                LoadBodyEquipment(player.playerInventoryManager.bodyEquipment);
+
+            if (player.playerInventoryManager.handEquipment != null)
+                LoadHandEquipment(player.playerInventoryManager.handEquipment);
+
+            if (player.playerInventoryManager.legEquipment != null)
+                LoadLegEquipment(player.playerInventoryManager.legEquipment);
+
+        }
+
+        // EQUIPMENT
+        public void LoadHeadEquipment(HeadEquipmentItem equipment)
+        {
+            // 1. UNLOAD OLD  EQUIPMENT MODELS (IF ANY)
+            // 2. IF EQUIPMENT IS NULL SIMPLY SET EQUPMENT IN INVENTORY TO NULL AND RETURN
+            // 3. IF YOU HAVE AN ONITEMEQUIPPED CALL ON YOUR EQUIPMENT, RUN IT NOW
+            // 4. SET CURRENT  EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            // 5. IF YOU NEED TO CHECK FOR  EQUIPMENT TYPE TO DISABLE CERTAIN BODY FEATURES (HOODS DISABLING HAIR ETC, FULL HELMS DISABLING HEADS) DO IT NOW
+            // 6. LOAD  EQUIPMENT MODELS
+            // 7. CALCULATE TOTAL EQUIPMENT LOAD (WEIGHT OF ALL YOUR WORN EQUIPMENT. THIS IMPACTS ROLL SPEED AND AT EXTREME WEIGHTS, MOVEMENT SPEED)
+            // 8. CALCULATE TOTAL ARMOR ABSORPTION
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+        }
+
+        public void LoadBodyEquipment(BodyEquipmentItem equipment)
+        {
+            // 1. UNLOAD OLD HEAD EQUIPMENT MODELS (IF ANY)
+            // 2. IF EQUIPMENT IS NULL SIMPLY SET EQUPMENT IN INVENTORY TO NULL AND RETURN
+            // 3. IF YOU HAVE AN ONITEMEQUIPPED CALL ON YOUR EQUIPMENT, RUN IT NOW
+            // 4. SET CURRENT HEAD EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            // 5. IF YOU NEED TO CHECK FOR HEAD EQUIPMENT TYPE TO DISABLE CERTAIN BODY FEATURES (HOODS DISABLING HAIR ETC, FULL HELMS DISABLING HEADS) DO IT NOW
+            // 6. LOAD HEAD EQUIPMENT MODELS
+            // 7. CALCULATE TOTAL EQUIPMENT LOAD (WEIGHT OF ALL YOUR WORN EQUIPMENT. THIS IMPACTS ROLL SPEED AND AT EXTREME WEIGHTS, MOVEMENT SPEED)
+            // 8. CALCULATE TOTAL ARMOR ABSORPTION
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+        }
+
+        public void LoadHandEquipment(HandEquipmentItem equipment)
+        {
+            // 1. UNLOAD OLD HEAD EQUIPMENT MODELS (IF ANY)
+            // 2. IF EQUIPMENT IS NULL SIMPLY SET EQUPMENT IN INVENTORY TO NULL AND RETURN
+            // 3. IF YOU HAVE AN ONITEMEQUIPPED CALL ON YOUR EQUIPMENT, RUN IT NOW
+            // 4. SET CURRENT HEAD EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            // 5. IF YOU NEED TO CHECK FOR HEAD EQUIPMENT TYPE TO DISABLE CERTAIN BODY FEATURES (HOODS DISABLING HAIR ETC, FULL HELMS DISABLING HEADS) DO IT NOW
+            // 6. LOAD HEAD EQUIPMENT MODELS
+            // 7. CALCULATE TOTAL EQUIPMENT LOAD (WEIGHT OF ALL YOUR WORN EQUIPMENT. THIS IMPACTS ROLL SPEED AND AT EXTREME WEIGHTS, MOVEMENT SPEED)
+            // 8. CALCULATE TOTAL ARMOR ABSORPTION
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+        }
+
+        public void LoadLegEquipment(LegEquipmentItem equipment)
+        {
+            // 1. UNLOAD OLD HEAD EQUIPMENT MODELS (IF ANY)
+            // 2. IF EQUIPMENT IS NULL SIMPLY SET EQUPMENT IN INVENTORY TO NULL AND RETURN
+            // 3. IF YOU HAVE AN ONITEMEQUIPPED CALL ON YOUR EQUIPMENT, RUN IT NOW
+            // 4. SET CURRENT HEAD EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            // 5. IF YOU NEED TO CHECK FOR HEAD EQUIPMENT TYPE TO DISABLE CERTAIN BODY FEATURES (HOODS DISABLING HAIR ETC, FULL HELMS DISABLING HEADS) DO IT NOW
+            // 6. LOAD HEAD EQUIPMENT MODELS
+            // 7. CALCULATE TOTAL EQUIPMENT LOAD (WEIGHT OF ALL YOUR WORN EQUIPMENT. THIS IMPACTS ROLL SPEED AND AT EXTREME WEIGHTS, MOVEMENT SPEED)
+            // 8. CALCULATE TOTAL ARMOR ABSORPTION
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+        }
+
 
         private void InitializeWeaponSlots()
         {

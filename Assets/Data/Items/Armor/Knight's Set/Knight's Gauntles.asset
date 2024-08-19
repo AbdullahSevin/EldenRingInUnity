@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5753e8e5e277cea49be15e78039575a4, type: 3}
+  m_Name: Knight's Gauntles
+  m_EditorClassIdentifier: 
+  name: Knight Gauntlets
+  itemIcon: {fileID: 0}
+  itemDescription: 
+  itemID: 0
+  itemWeight: 3.5
+  physicalDamageAbsorpion: 3.1
+  magicDamageAbsorpion: 2.7
+  fireDamageAbsorpion: 2.7
+  lightningDamageAbsorpion: 2.3
+  holyDamageAbsorpion: 2.1
+  immunity: 9
+  robutsness: 17
+  focus: 6
+  vitality: 6
+  poise: 5

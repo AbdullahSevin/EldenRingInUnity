@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e40a7c39a8e9d1342bb9c5aa8bd94ec4, type: 3}
+  m_Name: Knight's Leggings
+  m_EditorClassIdentifier: 
+  name: Knight Greaves
+  itemIcon: {fileID: 0}
+  itemDescription: 
+  itemID: 0
+  itemWeight: 6.6
+  physicalDamageAbsorpion: 7.1
+  magicDamageAbsorpion: 6.2
+  fireDamageAbsorpion: 6.2
+  lightningDamageAbsorpion: 5.4
+  holyDamageAbsorpion: 5
+  immunity: 17
+  robutsness: 31
+  focus: 11
+  vitality: 11
+  poise: 14
