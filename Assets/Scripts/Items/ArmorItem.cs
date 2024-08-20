@@ -24,7 +24,8 @@ namespace AS
         [Header("Poise")]
         public float poise;
 
-        // ARMOR MODELS
+        [Header("ARMOR MODELS")]
+        public EquipmentModel[] equipmentModels;
 
 
 

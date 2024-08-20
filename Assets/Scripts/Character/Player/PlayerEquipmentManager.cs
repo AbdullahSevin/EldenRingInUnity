@@ -11,21 +11,103 @@ namespace AS
         PlayerManager player;
 
         [Header("WEAPON MODEL INSTANTIATION SLOTS")]
-        public WeaponModelInstantiationSlot rightHandWeaponSlot;
-        public WeaponModelInstantiationSlot leftHandWeaponSlot;
-        public WeaponModelInstantiationSlot leftHandShieldSlot;
-        public WeaponModelInstantiationSlot backSlot;
+        [HideInInspector] public WeaponModelInstantiationSlot rightHandWeaponSlot;
+        [HideInInspector] public WeaponModelInstantiationSlot leftHandWeaponSlot;
+        [HideInInspector] public WeaponModelInstantiationSlot leftHandShieldSlot;
+        [HideInInspector] public WeaponModelInstantiationSlot backSlot;
 
         [Header("WEAPON MODELS")]
-        public GameObject rightHandWeaponModel;
-        public GameObject leftHandWeaponModel;    
+        [HideInInspector] public GameObject rightHandWeaponModel;
+        [HideInInspector] public GameObject leftHandWeaponModel;    
 
         [Header("WEAPON MANAGERS")]
-        [SerializeField] WeaponManager rightWeaponManager;
-        [SerializeField] WeaponManager leftWeaponManager;
+        WeaponManager rightWeaponManager;
+        WeaponManager leftWeaponManager;
 
         [Header("DEBUG DELETE LATER")]
         [SerializeField] bool equipNewItems = false;
+
+        [Header("General Equipment Models")]
+        public GameObject hatsObject;
+        [HideInInspector] public GameObject[] hats;
+        public GameObject hoodsObject;
+        [HideInInspector] public GameObject[] hoods;
+        public GameObject faceCoversObject;
+        [HideInInspector] public GameObject[] faceCovers;
+        public GameObject helmetAccessoriesObject;
+        [HideInInspector] public GameObject[] helmetAccessories;
+        public GameObject backAccessoriesObject;
+        [HideInInspector] public GameObject[] backAccessories;
+        public GameObject hipAccessoriesObject;
+        [HideInInspector] public GameObject[] hipAccessories;
+        public GameObject rightShoulderObject;
+        [HideInInspector] public GameObject[] rightShoulders;
+        public GameObject rightElbowObject;
+        [HideInInspector] public GameObject[] rightElbows;
+        public GameObject rightKneeObject;
+        [HideInInspector] public GameObject[] rightKnees;
+        public GameObject leftShoulderObject;
+        [HideInInspector] public GameObject[] leftShoulders;
+        public GameObject leftElbowObject;
+        [HideInInspector] public GameObject[] leftElbows;
+        public GameObject leftKneeObject;
+        [HideInInspector] public GameObject[] leftKnees;
+
+
+
+        [Header("Male Equipment Models")]
+        public GameObject maleFullHelmetObject;
+        [HideInInspector] public GameObject[] maleHeadFullHelmets;
+        public GameObject maleFullBodyObject;
+        [HideInInspector] public GameObject[] maleBodies;
+        public GameObject maleRightUpperArmObject;
+        [HideInInspector] public GameObject[] maleRightUpperArms;
+        public GameObject maleRightLowerArmObject;
+        [HideInInspector] public GameObject[] maleRightLowerArms;
+        public GameObject maleRightHandObject;
+        [HideInInspector] public GameObject[] maleRightHands;
+        public GameObject maleLeftUpperArmObject;
+        [HideInInspector] public GameObject[] maleLeftUpperArms;
+        public GameObject maleLeftLowerArmObject;
+        [HideInInspector] public GameObject[] maleLeftLowerArms;
+        public GameObject maleLeftHandObject;
+        [HideInInspector] public GameObject[] maleLeftHands;
+        public GameObject maleHipsObject;
+        [HideInInspector] public GameObject[] maleHips;
+        public GameObject maleRightLegObject;
+        [HideInInspector] public GameObject[] maleRightLegs;
+        public GameObject maleLeftLegObject;
+        [HideInInspector] public GameObject[] maleLeftLegs;
+
+        [Header("Female Equipment Models")]
+        public GameObject femaleFullHelmetObject;
+        [HideInInspector] public GameObject[] femaleHeadFullHelmets;
+        public GameObject femaleFullBodyObject;
+        [HideInInspector] public GameObject[] femaleBodies;
+        public GameObject femaleRightUpperArmObject;
+        [HideInInspector] public GameObject[] femaleRightUpperArms;
+        public GameObject femaleRightLowerArmObject;
+        [HideInInspector] public GameObject[] femaleRightLowerArms;
+        public GameObject femaleRightHandObject;
+        [HideInInspector] public GameObject[] femaleRightHands;
+        public GameObject femaleLeftUpperArmObject;
+        [HideInInspector] public GameObject[] femaleLeftUpperArms;
+        public GameObject femaleLeftLowerArmObject;
+        [HideInInspector] public GameObject[] femaleLeftLowerArms;
+        public GameObject femaleLeftHandObject;
+        [HideInInspector] public GameObject[] femaleLeftHands;
+        public GameObject femaleHipsObject;
+        [HideInInspector] public GameObject[] femaleHips;
+        public GameObject femaleRightLegObject;
+        [HideInInspector] public GameObject[] femaleRightLegs;
+        public GameObject femaleLeftLegObject;
+        [HideInInspector] public GameObject[] femaleLeftLegs;
+
+
+
+
+
+
 
         protected override void Awake()
         {
@@ -34,6 +116,150 @@ namespace AS
             player = GetComponent<PlayerManager>();
 
             InitializeWeaponSlots();
+
+
+            // HATS
+            List<GameObject> hatsList = new List<GameObject>();
+
+            foreach (Transform child in hatsObject.transform)
+            {
+                hatsList.Add(child.gameObject);
+            }
+
+            hats = hatsList.ToArray();
+
+
+            // HOODS
+            List<GameObject> hoodsList =  new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                hoodsList.Add(child.gameObject);
+            }
+
+            hoods = hoodsList.ToArray();
+
+            // FACE COVERS
+            List<GameObject> faceCoversList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                faceCoversList.Add(child.gameObject);
+            }
+
+            faceCovers = faceCoversList.ToArray();
+
+            // HELMET ACCESSORIES
+            List<GameObject> helmetAccessoriesList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                helmetAccessoriesList.Add(child.gameObject);
+            }
+
+            helmetAccessories = helmetAccessoriesList.ToArray();
+
+            // BACK ACCESSORIES
+            List<GameObject> backAccessoriesList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                backAccessoriesList.Add(child.gameObject);
+            }
+
+            backAccessories = backAccessoriesList.ToArray();
+
+            // HIP ACCESSORIES
+            List<GameObject> hipAccessoriesList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                hipAccessoriesList.Add(child.gameObject);
+            }
+
+            hipAccessories = hipAccessoriesList.ToArray();
+
+            // RIGHT SHOULDER
+            List<GameObject> rightShoulderList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                rightShoulderList.Add(child.gameObject);
+            }
+
+            rightShoulders = rightShoulderList.ToArray();
+
+            // RIGHT ELBOW
+            List<GameObject> rightElbowList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                rightElbowList.Add(child.gameObject);
+            }
+
+            rightElbows = rightElbowList.ToArray();
+
+            // RIGHT KNEE
+            List<GameObject> rightKneeList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                rightKneeList.Add(child.gameObject);
+            }
+
+            rightKnees = rightKneeList.ToArray();
+
+            // LEFT SHOULDER
+            List<GameObject> leftShoulderList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                leftShoulderList.Add(child.gameObject);
+            }
+
+            leftShoulders = leftShoulderList.ToArray();
+
+            // LEFT ELBOW
+            List<GameObject> leftElbowList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                leftElbowList.Add(child.gameObject);
+            }
+
+            leftElbows = leftElbowList.ToArray();
+
+            // LEFT KNEE
+            List<GameObject> leftKneeList = new List<GameObject>();
+
+            foreach (Transform child in hoodsObject.transform)
+            {
+                leftKneeList.Add(child.gameObject);
+            }
+
+            leftKnees = leftKneeList.ToArray();
+
+
+
+            // MALE EQUIPMENT
+            List<GameObject> maleFullHelmetsList = new List<GameObject>();
+            
+            foreach (Transform child in maleFullHelmetObject.transform)
+            {
+                maleFullHelmetsList.Add(child.gameObject);
+            }
+
+            maleHeadFullHelmets = maleFullHelmetsList.ToArray();
+
+
+            List<GameObject> maleBodiesList = new List<GameObject>();
+
+            foreach (Transform child in maleFullBodyObject.transform)
+            {
+                maleBodiesList.Add(child.gameObject);
+            }
+
+            maleBodies = maleBodiesList.ToArray();
         }
 
         protected override void Start()
@@ -56,11 +282,11 @@ namespace AS
         {
             Debug.Log("EQUIPPING NEW ITEMS");
 
-            if (player.playerInventoryManager.headEquipment != null)
-                LoadHeadEquipment(player.playerInventoryManager.headEquipment);
+      
+            LoadHeadEquipment(player.playerInventoryManager.headEquipment);
 
-            if (player.playerInventoryManager.bodyEquipment != null)
-                LoadBodyEquipment(player.playerInventoryManager.bodyEquipment);
+        
+            LoadBodyEquipment(player.playerInventoryManager.bodyEquipment);
 
             if (player.playerInventoryManager.handEquipment != null)
                 LoadHandEquipment(player.playerInventoryManager.handEquipment);
@@ -74,6 +300,142 @@ namespace AS
         public void LoadHeadEquipment(HeadEquipmentItem equipment)
         {
             // 1. UNLOAD OLD  EQUIPMENT MODELS (IF ANY)
+            UnloadHeadEquipmentModels();
+            // 2. IF EQUIPMENT IS NULL SIMPLY SET EQUPMENT IN INVENTORY TO NULL AND RETURN
+            if (equipment == null)
+            {
+                if (player.IsOwner)
+                {
+                    player.playerNetworkManager.headEquipmentID.Value = -1;  // -1 WILL NEVER BE ADN ITEM ID, SO IT WILL ALWAYS BE NULL
+                }
+
+                player.playerInventoryManager.headEquipment = null;
+                return;
+            }
+            // 3. IF YOU HAVE AN ONITEMEQUIPPED CALL ON YOUR EQUIPMENT, RUN IT NOW
+
+            // 4. SET CURRENT  EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            player.playerInventoryManager.headEquipment = equipment;
+            // 5. IF YOU NEED TO CHECK FOR  EQUIPMENT TYPE TO DISABLE CERTAIN BODY FEATURES (HOODS DISABLING HAIR ETC, FULL HELMS DISABLING HEADS) DO IT NOW
+
+            switch (equipment.headEquipmentType)
+            {
+                case HeadEquipmentType.FullHelmet:
+                    player.playerBodyManager.DisableHair();
+                    player.playerBodyManager.DisableHead();
+                    break;
+                case HeadEquipmentType.Hat:
+                    break;
+                case HeadEquipmentType.Hood:
+                    player.playerBodyManager.DisableHair();
+                    break;
+                case HeadEquipmentType.FaceCover:
+                    player.playerBodyManager.DisableFacialHair();
+                    break;
+                default:
+                    break;
+            }
+
+            // 6. LOAD  EQUIPMENT MODELS
+            foreach (var model in equipment.equipmentModels)
+            {
+                model.LoadModel(player, true);
+            }
+
+            
+            // 7. CALCULATE TOTAL EQUIPMENT LOAD (WEIGHT OF ALL YOUR WORN EQUIPMENT. THIS IMPACTS ROLL SPEED AND AT EXTREME WEIGHTS, MOVEMENT SPEED)
+
+            // 8. CALCULATE TOTAL ARMOR ABSORPTION
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+
+            if (player.IsOwner)
+            {
+                player.playerNetworkManager.headEquipmentID.Value = equipment.itemID;
+            }
+        }
+        public void UnloadHeadEquipmentModels()
+        {
+
+            foreach (var model in maleHeadFullHelmets)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in femaleHeadFullHelmets)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in hats)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in faceCovers)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in hoods)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in helmetAccessories)
+            {
+                model.SetActive(false);
+            }
+
+            player.playerBodyManager.EnableHead();
+            player.playerBodyManager.EnableHair();
+
+            // RE ENABLE HEAD
+            // RE ENABLE HAIR
+        }
+
+        public void LoadBodyEquipment(BodyEquipmentItem equipment)
+        {
+
+            // 1. UNLOAD OLD  EQUIPMENT MODELS (IF ANY)
+            UnloadBodyEquipmentModels();
+            // 2. IF EQUIPMENT IS NULL SIMPLY SET EQUPMENT IN INVENTORY TO NULL AND RETURN
+            if (equipment == null)
+            {
+                if (player.IsOwner)
+                {
+                    player.playerNetworkManager.bodyEquipmentID.Value = -1;  // -1 WILL NEVER BE ADN ITEM ID, SO IT WILL ALWAYS BE NULL
+                }
+
+                player.playerInventoryManager.bodyEquipment = null;
+                return;
+            }
+            // 3. IF YOU HAVE AN ONITEMEQUIPPED CALL ON YOUR EQUIPMENT, RUN IT NOW
+
+            // 4. SET CURRENT  EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            player.playerInventoryManager.bodyEquipment = equipment;
+            // 5. IF YOU NEED TO CHECK FOR  EQUIPMENT TYPE TO DISABLE CERTAIN BODY FEATURES (HOODS DISABLING HAIR ETC, FULL HELMS DISABLING HEADS) DO IT NOW
+
+            
+
+            // 6. LOAD  EQUIPMENT MODELS
+            foreach (var model in equipment.equipmentModels)
+            {
+                model.LoadModel(player, true);
+            }
+
+
+            // 7. CALCULATE TOTAL EQUIPMENT LOAD (WEIGHT OF ALL YOUR WORN EQUIPMENT. THIS IMPACTS ROLL SPEED AND AT EXTREME WEIGHTS, MOVEMENT SPEED)
+
+            // 8. CALCULATE TOTAL ARMOR ABSORPTION
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+
+            if (player.IsOwner)
+            {
+                player.playerNetworkManager.bodyEquipmentID.Value = equipment.itemID;
+            }
+
+            // 1. UNLOAD OLD  EQUIPMENT MODELS (IF ANY)
+            UnloadBodyEquipmentModels();
             // 2. IF EQUIPMENT IS NULL SIMPLY SET EQUPMENT IN INVENTORY TO NULL AND RETURN
             // 3. IF YOU HAVE AN ONITEMEQUIPPED CALL ON YOUR EQUIPMENT, RUN IT NOW
             // 4. SET CURRENT  EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
@@ -84,17 +446,65 @@ namespace AS
             player.playerStatsManager.CalculateTotalArmorAbsorption();
         }
 
-        public void LoadBodyEquipment(BodyEquipmentItem equipment)
+        public void UnloadBodyEquipmentModels()
         {
-            // 1. UNLOAD OLD HEAD EQUIPMENT MODELS (IF ANY)
-            // 2. IF EQUIPMENT IS NULL SIMPLY SET EQUPMENT IN INVENTORY TO NULL AND RETURN
-            // 3. IF YOU HAVE AN ONITEMEQUIPPED CALL ON YOUR EQUIPMENT, RUN IT NOW
-            // 4. SET CURRENT HEAD EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
-            // 5. IF YOU NEED TO CHECK FOR HEAD EQUIPMENT TYPE TO DISABLE CERTAIN BODY FEATURES (HOODS DISABLING HAIR ETC, FULL HELMS DISABLING HEADS) DO IT NOW
-            // 6. LOAD HEAD EQUIPMENT MODELS
-            // 7. CALCULATE TOTAL EQUIPMENT LOAD (WEIGHT OF ALL YOUR WORN EQUIPMENT. THIS IMPACTS ROLL SPEED AND AT EXTREME WEIGHTS, MOVEMENT SPEED)
-            // 8. CALCULATE TOTAL ARMOR ABSORPTION
-            player.playerStatsManager.CalculateTotalArmorAbsorption();
+            foreach (var model in rightShoulders)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in rightElbows)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in leftShoulders)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in leftElbows)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in backAccessories)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in maleBodies)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in maleRightUpperArms)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in maleLeftLowerArms)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in femaleBodies)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in femaleRightUpperArms)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (var model in femaleLeftLowerArms)
+            {
+                model.SetActive(false);
+            }
+
+            player.playerBodyManager.EnableBody();
+
         }
 
         public void LoadHandEquipment(HandEquipmentItem equipment)
@@ -122,7 +532,6 @@ namespace AS
             // 8. CALCULATE TOTAL ARMOR ABSORPTION
             player.playerStatsManager.CalculateTotalArmorAbsorption();
         }
-
 
         private void InitializeWeaponSlots()
         {

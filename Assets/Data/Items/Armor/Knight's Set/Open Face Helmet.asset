@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf5960fae7b1af146b1ab8c48cb73713, type: 3}
-  m_Name: Knight's Helm
+  m_Name: Open Face Helmet
   m_EditorClassIdentifier: 
   name: Knight Helm
   itemIcon: {fileID: 0}
@@ -27,3 +27,6 @@ MonoBehaviour:
   focus: 8
   vitality: 8
   poise: 8
+  equipmentModels:
+  - {fileID: 11400000, guid: fd27be6df4a6614458e547e66e4239be, type: 2}
+  headEquipmentType: 2

@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Knight Armor
   itemIcon: {fileID: 0}
   itemDescription: 
-  itemID: 0
+  itemID: 7
   itemWeight: 10.6
   physicalDamageAbsorpion: 12.4
   magicDamageAbsorpion: 10.9
@@ -27,3 +27,11 @@ MonoBehaviour:
   focus: 18
   vitality: 18
   poise: 25
+  equipmentModels:
+  - {fileID: 11400000, guid: 48b3e0cd2ef9bc843b2d763e5fd6378c, type: 2}
+  - {fileID: 11400000, guid: 2775efbd6f5e57f4c9a7f634227438bc, type: 2}
+  - {fileID: 11400000, guid: 65b7b6e99ff7def48806378fb19a6470, type: 2}
+  - {fileID: 11400000, guid: 72d54ec6a0c048d4e904703fb45ba2bf, type: 2}
+  - {fileID: 11400000, guid: 06dab69c6d6169f47a98eb37fe035c95, type: 2}
+  - {fileID: 11400000, guid: d4be472310535404ab39202d1335c77d, type: 2}
+  - {fileID: 11400000, guid: d44956505ff5ce6409a9419ee4c9d32b, type: 2}

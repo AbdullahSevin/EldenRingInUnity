@@ -44,6 +44,42 @@ public enum WeaponModelType
     Shield
 }
 
+public enum EquipmentModelType
+{
+    FullHelmet,     // WOULD ALWAYS HIDE FACE HAIR ETC
+    Hat,     // WOULD ALWAYS HAIR
+    Hood,            // WOULD ALWAYS HAIR
+    HelmetAcessorie,
+    FaceCover,
+    Torso,
+    Back,
+    RightShoulder,
+    RightUpperArm,
+    RightElbow,
+    RightLowerArm,
+    RightHand,
+    LeftShoulder,
+    LeftUpperArm,
+    LeftElbow,
+    LeftLowerArm,
+    LeftHand,
+    Hips,
+    HipsAttachment,
+    RightLeg,
+    RightKnee,
+    LeftLeg,
+    LeftKnee
+
+}
+
+public enum HeadEquipmentType
+{
+    FullHelmet,   // HIDE ENTIRE HEAD + FEATURES
+    Hat,          // DOESNT HIDE ANYTHING
+    Hood,         // HIDES HAIR
+    FaceCover     // HIDES BEARD
+}
+
 public enum WeaponClass
 {
     StraightSword,

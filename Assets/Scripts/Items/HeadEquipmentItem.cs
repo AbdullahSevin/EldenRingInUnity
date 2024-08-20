@@ -9,7 +9,7 @@ namespace AS
     public class HeadEquipmentItem : ArmorItem
     {
 
-
+        public HeadEquipmentType headEquipmentType;
 
 
     }
