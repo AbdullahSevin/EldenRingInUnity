@@ -46,6 +46,9 @@ namespace AS
         public SerializableDictionary<int, bool> bossesAwakened;  //  The int is boss id, bool is the awakened status
         public SerializableDictionary<int, bool> bossesDefeated;  //  The int is boss id, bool is the defeated status
 
+        [Header("World Items")]
+        public SerializableDictionary<int, bool> worldItemsLooted;  //  The int is item id, bool is the looted status
+
         [Header("Equipment")]
         public int headEquipment;
         public int bodyEquipment;
@@ -72,6 +75,7 @@ namespace AS
             sitesOfGrace = new SerializableDictionary<int, bool>();
             bossesAwakened = new SerializableDictionary<int, bool>();
             bossesDefeated = new SerializableDictionary<int, bool>();
+            worldItemsLooted = new SerializableDictionary<int, bool>();
         }
 
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 namespace AS
@@ -10,6 +11,12 @@ namespace AS
         [Header("Message Pop Up")]
         [SerializeField] TextMeshProUGUI popUpMessageText;
         [SerializeField] GameObject popUpMessageGameObject;
+
+        [Header("Item Pop Up")]
+        [SerializeField] GameObject itemPopUpGameObject;
+        [SerializeField] Image itemIcon;
+        [SerializeField] TextMeshProUGUI itemName;
+        [SerializeField] TextMeshProUGUI itemAmount;
 
         [Header("YOU DIED Pop Up")]
         [SerializeField] GameObject youDiedPopUpGameObject;
@@ -33,8 +40,10 @@ namespace AS
         public void CloseAllPopUpWindows()
         {
             popUpMessageGameObject.SetActive(false);
+            itemPopUpGameObject.SetActive(false);
 
             PlayerUIManager.instance.popUpWindowIsOpen = false;
+
         }
 
         public void SendPlayerMessagePopUp(string messageText)
@@ -43,6 +52,25 @@ namespace AS
             PlayerUIManager.instance.popUpWindowIsOpen = true;
             popUpMessageText.text = messageText;
             
+        }
+
+        public void SendItemPopUp(Item item, int amount)
+        {
+            itemAmount.enabled = false;
+            itemIcon.sprite = item.itemIcon;
+            itemName.text = item.itemName;
+
+            if (amount > 0)
+            {
+                itemAmount.enabled = true;
+                itemAmount.text = "x" + amount.ToString();
+            }
+
+            itemPopUpGameObject.SetActive(true);
+            PlayerUIManager.instance.popUpWindowIsOpen = true;
+
+
+
         }
 
         public void SendYouDiedPopUp()

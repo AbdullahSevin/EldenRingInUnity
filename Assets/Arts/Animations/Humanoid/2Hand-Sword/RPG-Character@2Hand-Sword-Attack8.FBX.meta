@@ -804,7 +804,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6429293
+      - time: 0.7475728
         functionName: CloseDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}

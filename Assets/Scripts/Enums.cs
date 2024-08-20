@@ -111,3 +111,11 @@ public enum DamageIntensity
     Heavy,
     Colossal
 }
+
+
+// USED TO DETERMINE ITEM PICUP TYPE
+public enum ItemPickupType
+{
+    WorldSpawn,
+    EnemyDrop
+}

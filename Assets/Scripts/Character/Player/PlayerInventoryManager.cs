@@ -24,6 +24,25 @@ namespace AS
         public HandEquipmentItem handEquipment;
         public LegEquipmentItem legEquipment;
 
+        [Header("Inventory")]
+        public List<Item> itemsInInventory;
+
+        public void AddItemToInventory(Item item)
+        {
+            itemsInInventory.Add(item);
+        }
+
+        public void RemoveItemFromInventory()
+        {
+            // TO DO : MAKE AN RPC HERE THAT SPAWNS ITEM ON NETWORK WHEN DROPPED
+        }
+
+
+
+
+
+
+
 
 
     }

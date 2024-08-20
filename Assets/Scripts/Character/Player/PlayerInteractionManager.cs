@@ -97,6 +97,9 @@ namespace AS
 
         public void Interact()
         {
+            // IF WE PRESS THE INTERACT BUTTON WITH OR WITHOUT AN INTERACTABLE, IT WILL CLEAR THE POP UP WINDOWS (ITEM PICKUPS MESSAGES ETC)
+            PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
+
             if (currentInteractableActions.Count == 0)
             {
                 return;
