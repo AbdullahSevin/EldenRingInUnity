@@ -610,6 +610,10 @@ namespace AS
                 {
                     return;
                 }
+
+                if (PlayerUIManager.instance.menuWindowIsOpen)
+                    return;
+
                 player.playerEquipmentManager.SwitchRightWeapon();
             }
             
@@ -624,6 +628,10 @@ namespace AS
                 {
                     return;
                 }
+
+                if (PlayerUIManager.instance.menuWindowIsOpen)
+                    return;
+
                 player.playerEquipmentManager.SwitchLeftWeapon();
             }
 

@@ -1773,6 +1773,12 @@ MonoBehaviour:
   bodyEquipment: {fileID: 0}
   handEquipment: {fileID: 0}
   legEquipment: {fileID: 0}
+  itemsInInventory:
+  - {fileID: 11400000, guid: 2697695148ab38144b2c54a33f0674c2, type: 2}
+  - {fileID: 11400000, guid: 5cbc692e3368a7145b7fa299e5915774, type: 2}
+  - {fileID: 11400000, guid: 1e3fa2f4f84196644bf0944d9c3df860, type: 2}
+  - {fileID: 11400000, guid: 0bb25d370f143d642a52134ecb2cb6f1, type: 2}
+  - {fileID: 11400000, guid: 6d5e8da9c9febe843ad506de622bc4bc, type: 2}
 --- !u!114 &4161678334230246665
 MonoBehaviour:
   m_ObjectHideFlags: 0
