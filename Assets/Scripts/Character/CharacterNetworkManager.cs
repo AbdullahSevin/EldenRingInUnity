@@ -44,6 +44,7 @@ namespace AS
         public NetworkVariable<bool> isSprinting = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isJumping = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isChargingAttack = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isRipostable = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Resources")]
         //  HEALTH
@@ -149,6 +150,34 @@ namespace AS
         {
             character.characterAnimatorManager.applyRootMotion = applyRootMotion;
             character.animator.CrossFade(animationID, 0.2f);
+        }
+
+        // A SERVER RPC IS A FUNCTION CALLED FROM A CLIENT, TO THE SERVER (IN OUR CASE THE HOST)
+        [ServerRpc]
+        public void NotifyTheServerOfInstantActionAnimationServerRpc(ulong clientID, string animationID, bool applyRootMotion)
+        {
+            // IF THIS CHARACTER IS THE HOST/SERVER, THEN ACTIVATE THE CLIENT RPC 
+            if (IsServer)
+            {
+                PlayInstantActionAnimationForAllClientsClientRpc(clientID, animationID, applyRootMotion);
+            }
+        }
+
+        // CLIENT RPC IS SENT TO ALL CLIENTS PRESENT, FROM THE SERVER
+        [ClientRpc]
+        public void PlayInstantActionAnimationForAllClientsClientRpc(ulong clientID, string animationID, bool applyRootMotion)
+        {
+            // WE MAKE SURE TO NOT RUN THE FUNTCION ON THE CHARACTER WHO SENT IT (SO WE DON'T PLAY THE ANIMATION TWICE)
+            if (clientID != NetworkManager.Singleton.LocalClientId)
+            {
+                PerformInstantActionAnimationFromServer(animationID, applyRootMotion);
+            }
+        }
+
+        private void PerformInstantActionAnimationFromServer(string animationID, bool applyRootMotion)
+        {
+            character.characterAnimatorManager.applyRootMotion = applyRootMotion;
+            character.animator.Play(animationID);
         }
 
         //  ATTACK ANIMATION

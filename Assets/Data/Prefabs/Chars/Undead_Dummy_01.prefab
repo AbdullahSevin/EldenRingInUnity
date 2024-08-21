@@ -2738,7 +2738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2715789514
+  GlobalObjectIdHash: 1415077039
   InScenePlacedSourceGlobalObjectIdHash: 4103628025
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2926,8 +2926,8 @@ MonoBehaviour:
   aiCharacterNetworkManager: {fileID: 0}
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
-  navMeshAgent: {fileID: 0}
-  currentState: {fileID: 0}
+  navMeshAgent: {fileID: 6469762833526953074}
+  currentState: {fileID: 11400000, guid: 84a57bbcb7b02be438094b0dc48b22c2, type: 2}
   idle: {fileID: 11400000, guid: 84a57bbcb7b02be438094b0dc48b22c2, type: 2}
   pursueTarget: {fileID: 11400000, guid: b139616fa1c28f84a9ffc489177065b5, type: 2}
   combatStance: {fileID: 11400000, guid: de8916bad95b6a042a04c9b01233c2c5, type: 2}
@@ -2977,6 +2977,8 @@ MonoBehaviour:
     m_InternalValue: 0
   isChargingAttack:
     m_InternalValue: 0
+  isRipostable:
+    m_InternalValue: 0
   currentHealth:
     m_InternalValue: 500
   maxHealth:
@@ -2989,6 +2991,10 @@ MonoBehaviour:
     m_InternalValue: 5
   endurance:
     m_InternalValue: 5
+  strength:
+    m_InternalValue: 1
+  strengthModifier:
+    m_InternalValue: 1
 --- !u!114 &7598462018577550298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3027,6 +3033,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   applyRootMotion: 0
   lastDamageAnimationPlayed: 
+  hit_Forward_Ping_01: hit_Forward_Ping_01
+  hit_Forward_Ping_02: hit_Forward_Ping_02
+  hit_Backward_Ping_01: hit_Backward_Ping_01
+  hit_Backward_Ping_02: hit_Backward_Ping_02
+  hit_Left_Ping_01: hit_Left_Ping_01
+  hit_Left_Ping_02: hit_Left_Ping_02
+  hit_Right_Ping_01: hit_Right_Ping_01
+  hit_Right_Ping_02: hit_Right_Ping_02
+  forward_Ping_Damage: []
+  backward_Ping_Damage: []
+  left_Ping_Damage: []
+  right_Ping_Damage: []
   hit_Forward_Medium_01: hit_Forward_Medium_01
   hit_Forward_Medium_02: hit_Forward_Medium_02
   hit_Backward_Medium_01: hit_Backward_Medium_01
@@ -3053,6 +3071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastAttackAnimationPerformed: 
+  previousPoiseDamageTaken: 0
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 0}
@@ -3068,6 +3087,12 @@ MonoBehaviour:
   minimumFOV: -35
   maximumFOV: 35
   attackRotationSpeed: 25
+  maxStance: 50
+  currentStance: 50
+  stanceregeneratedPersecond: 15
+  ignoreStanceBreak: 0
+  stanceRegenerationTimer: 0
+  defaultTimeUntilStanceRegenerationbegins: 15
   rightHandDamageCollider: {fileID: 457004018371138852}
   leftHandDamageCollider: {fileID: 6621296936226349532}
   baseDamage: 25
@@ -3122,6 +3147,20 @@ MonoBehaviour:
   blockingLightningAbsorption: 0
   blockingHolyAbsorption: 0
   blockingStability: 0
+  armorPhysicalDamageAbsorpion: 0
+  armorMagicDamageAbsorpion: 0
+  armorFireDamageAbsorpion: 0
+  armorLightningDamageAbsorpion: 0
+  armorHolyDamageAbsorpion: 0
+  armorImmunity: 0
+  armorRobutsness: 0
+  armorFocus: 0
+  armorVitality: 0
+  totalPoiseDamage: 0
+  offensivePoiseBonus: 0
+  basePoiseDefense: 0
+  defaultPoiseResetTime: 8
+  poiseResetTimer: 0
 --- !u!114 &4023332981155117798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3147,6 +3186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplatterVFX: {fileID: 0}
+  staticEffects: []
 --- !u!114 &2957205819549206878
 MonoBehaviour:
   m_ObjectHideFlags: 0

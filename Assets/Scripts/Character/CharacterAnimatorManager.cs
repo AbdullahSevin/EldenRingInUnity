@@ -198,6 +198,30 @@ namespace AS
             character.characterNetworkManager.NotifyTheServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
         }
 
+        public virtual void PlayTargetActionAnimationInstantly(string targetAnimation,
+            bool isPorformingAction,
+            bool applyRootMotion = true,
+            bool canRotate = false,
+            bool canMove = false)
+        {
+            //  Debug.Log("PLAYING ANIMATION: " + targetAnimation);
+
+            character.characterAnimatorManager.applyRootMotion = applyRootMotion;
+            character.animator.Play(targetAnimation);
+            // CAN BE USED TO STOP CHARACTER FORM ATTEMPTING NEW ACTION
+            // FOR EXAMPLE IF YOU GET DAMAGED, AND BEGIN PERFORMING A DAMAGE ANIMATION
+            // THIS FLAG WILL TURN IF YOU ARE STUNNED
+            // WE CAN THEN CHECK FOR THIS BEFORE ATTEMPTING NEW ACTIONS
+            character.isPerformingAction = isPorformingAction;
+            character.characterLocomotionManager.canRotate = canRotate;
+            character.characterLocomotionManager.canMove = canMove;
+
+            Debug.Log("Action Animation played instantly: " + targetAnimation);
+
+            // TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
+            character.characterNetworkManager.NotifyTheServerOfInstantActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+        }
+
         public virtual void PlayTargetAttackActionAnimation(WeaponItem weapon,
             AttackType attackType, string targetAnimation,
             bool isPorformingAction,

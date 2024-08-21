@@ -19,6 +19,7 @@ namespace AS
         [Header("Action Sounds")]
         public AudioClip pickUpItemSFX;
         public AudioClip rollSFX;
+        public AudioClip stanceBreakSFX;
 
         private void Awake()
         {

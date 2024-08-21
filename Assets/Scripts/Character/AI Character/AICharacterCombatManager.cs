@@ -28,12 +28,97 @@ namespace AS
         [Header("Attack Rotation Speed")]
         public float attackRotationSpeed = 25;
 
+        [Header("Stance Settings")]
+        public float maxStance;
+        public float currentStance;
+        [SerializeField] float stanceregeneratedPersecond = 15;
+        [SerializeField] bool ignoreStanceBreak;
+
+        [Header("Stance Timer")]
+        [SerializeField] float stanceRegenerationTimer = 0;
+        private float stanceTickTimer = 0;
+        [SerializeField] float defaultTimeUntilStanceRegenerationbegins = 15;
+
         protected override void Awake()
         {
             base.Awake();
 
             aiCharacter = GetComponent<AICharacterManager>();
             lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
+        }
+
+        private void FixedUpdate()
+        {
+            HandleStanceBreak();
+        }
+
+        private void HandleStanceBreak()
+        {
+            if (!aiCharacter.IsOwner)
+                return;
+
+            if (aiCharacter.isDead.Value)
+                return;
+
+            if (stanceRegenerationTimer > 0)
+            {
+                stanceRegenerationTimer -= Time.deltaTime;
+            }
+            else
+            {
+                stanceRegenerationTimer = 0;
+
+                if (currentStance < maxStance)
+                {
+                    // begin adding stance each tick
+                    stanceTickTimer += Time.deltaTime;
+
+                    if (stanceTickTimer >= 1)
+                    {
+                        stanceTickTimer = 0;
+                        currentStance += stanceregeneratedPersecond;
+                    }
+                }
+                else
+                {
+                    currentStance = maxStance;
+                }
+
+            }
+
+            if (currentStance <= 0)
+            {
+                // TO DO (OPTIONAL) IF WE ARE IN A VERY HIGH INTENSITY DAMAGE ANIMATION (LIKE BEING LAUCHED INTO THE AIR) DO NOT PLAY THE STANCE BREAK ANIMATION
+                // THIS WOULD FEEL LESS IMPACTFUL IN GAMEPLAY
+
+                DamageIntensity previousDamageIntensity = WorldUtilityManager.instance.GetDamageIntensityBasedOnPoiseDamage(previousPoiseDamageTaken);
+
+                if (previousDamageIntensity == DamageIntensity.Colossal)
+                {
+                    currentStance = 1;
+                }
+
+                // IF WE ARE BEING STABBED OR BEING RIPOSTED (CRITICALLY DAMAGED) DO NOT PAY THE STANCE BREAK ANIM, AS THIS WOULD BREAK THE STATE
+
+                currentStance = maxStance;
+
+                if (ignoreStanceBreak)
+                    return;
+
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly("Stance_Break_01", true);
+
+
+
+            }
+
+        }
+
+        public void DamageStance(int stanceDamage)
+        {
+            // WHEN STANCE IS DAMAGED, THE TIMER IS RESET, MEANING CONSTANT ATTACKS GIVE NO CHANCE AT RECOVERING STANCE THAT IS LOST
+            stanceRegenerationTimer = defaultTimeUntilStanceRegenerationbegins;
+
+            currentStance -= stanceDamage;
         }
 
         public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)

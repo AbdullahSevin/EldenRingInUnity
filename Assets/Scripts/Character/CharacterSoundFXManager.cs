@@ -69,6 +69,11 @@ namespace AS
             }
         }
 
+        public virtual void PlayStanceBreakSoundFX()
+        {
+            audioSource.PlayOneShot(WorldSoundFXManager.instance.stanceBreakSFX);
+        }
+
         public virtual void PlayBlockSoundFX()
         {
 
