@@ -19,7 +19,7 @@ namespace AS
         private void OnEnable()
         {
             button.Select();
-            button.OnSelect(null);
+            //button.OnSelect(null);
         }
 
     }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5960fae7b1af146b1ab8c48cb73713, type: 3}
   m_Name: Open Face Helmet
   m_EditorClassIdentifier: 
-  name: Knight Helm
-  itemIcon: {fileID: 0}
+  itemName: 
+  itemIcon: {fileID: 21300010, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   itemDescription: 
-  itemID: 0
+  itemID: 5
   itemWeight: 4.6
   physicalDamageAbsorpion: 4.4
   magicDamageAbsorpion: 3.8

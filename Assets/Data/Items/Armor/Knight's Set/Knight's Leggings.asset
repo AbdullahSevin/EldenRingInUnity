@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40a7c39a8e9d1342bb9c5aa8bd94ec4, type: 3}
   m_Name: Knight's Leggings
   m_EditorClassIdentifier: 
-  name: Knight Greaves
-  itemIcon: {fileID: 0}
+  itemName: 
+  itemIcon: {fileID: 21300012, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   itemDescription: 
-  itemID: 0
+  itemID: 9
   itemWeight: 6.6
   physicalDamageAbsorpion: 7.1
   magicDamageAbsorpion: 6.2
@@ -27,3 +27,4 @@ MonoBehaviour:
   focus: 11
   vitality: 11
   poise: 14
+  equipmentModels: []

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8269cfdca4af1428b01b3c94687830, type: 3}
   m_Name: Spear
   m_EditorClassIdentifier: 
-  name: Straight Sword
-  itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  itemName: 
+  itemIcon: {fileID: 21300036, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   itemDescription: Dumduz Kilic
   itemID: 3
+  itemWeight: 0
   weaponAnimator: {fileID: 22100000, guid: 684f06b224f19b2428c56aa984b1fa49, type: 2}
   weaponModelType: 0
   weaponModel: {fileID: 5165238161283648754, guid: 09cca61857afe624492a098268d6a18e,

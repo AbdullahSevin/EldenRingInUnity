@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8269cfdca4af1428b01b3c94687830, type: 3}
   m_Name: Medium Shield
   m_EditorClassIdentifier: 
-  name: shield
-  itemIcon: {fileID: 21300000, guid: 1b581588624df044d89371a0967eda5a, type: 3}
+  itemName: 
+  itemIcon: {fileID: 21300000, guid: 07caf3d1930bab14aa8f6dcdf2db871a, type: 3}
   itemDescription: Kalkan
   itemID: 4
+  itemWeight: 0
   weaponAnimator: {fileID: 22100000, guid: 7bfa3776c34ae674db00f1d23889c504, type: 2}
   weaponModelType: 1
   weaponModel: {fileID: 2638039172995845006, guid: 95dc5859485fd03449de2b7e7c601c73,

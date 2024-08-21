@@ -1479,7 +1479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 601771572
+  GlobalObjectIdHash: 4103628025
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1760,14 +1760,14 @@ MonoBehaviour:
     type: 2}
   currentTwoHandWeapon: {fileID: 0}
   weaponsInRightHandSlots:
-  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
   - {fileID: 11400000, guid: 1e3fa2f4f84196644bf0944d9c3df860, type: 2}
   - {fileID: 11400000, guid: 2697695148ab38144b2c54a33f0674c2, type: 2}
+  - {fileID: 11400000, guid: 0bb25d370f143d642a52134ecb2cb6f1, type: 2}
   rightHandWeaponIndex: 0
   weaponsInLeftHandSlots:
-  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
-  - {fileID: 11400000, guid: 2697695148ab38144b2c54a33f0674c2, type: 2}
   - {fileID: 11400000, guid: 5cbc692e3368a7145b7fa299e5915774, type: 2}
+  - {fileID: 11400000, guid: 2697695148ab38144b2c54a33f0674c2, type: 2}
+  - {fileID: 11400000, guid: 0bb25d370f143d642a52134ecb2cb6f1, type: 2}
   leftHandWeaponIndex: 0
   headEquipment: {fileID: 11400000, guid: bf8fcfe929f19b34586cb654411ca2f8, type: 2}
   bodyEquipment: {fileID: 0}

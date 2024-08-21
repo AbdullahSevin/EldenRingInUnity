@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5753e8e5e277cea49be15e78039575a4, type: 3}
   m_Name: Knight's Gauntles
   m_EditorClassIdentifier: 
-  name: Knight Gauntlets
-  itemIcon: {fileID: 0}
+  itemName: 
+  itemIcon: {fileID: 21300004, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   itemDescription: 
-  itemID: 0
+  itemID: 8
   itemWeight: 3.5
   physicalDamageAbsorpion: 3.1
   magicDamageAbsorpion: 2.7

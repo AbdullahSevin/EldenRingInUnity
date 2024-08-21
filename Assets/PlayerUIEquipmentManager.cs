@@ -19,6 +19,10 @@ namespace AS
         [SerializeField] Image leftHandSlot01;
         [SerializeField] Image leftHandSlot02;
         [SerializeField] Image leftHandSlot03;
+        [SerializeField] Image headEquipmentSlot;
+        [SerializeField] Image bodyEquipmentSlot;
+        [SerializeField] Image legEquipmentSlot;
+        [SerializeField] Image handEquipmentSlot;
 
         // THIS INVENTORY POPULATES WITH RELATED ITEMS WHEN CHANGING EQUIPMENT
         [Header("Equipment Inventory")]
@@ -36,9 +40,64 @@ namespace AS
             menu.SetActive(true);
             equipmentInventoryWindow.SetActive(false);
             ClearEquipmentInventroy();
-            RefreshWeaponSlotIcons();
+            RefreshEquipmentSlotIcons();
         }
 
+        public void RefreshMenu()
+        {
+            ClearEquipmentInventroy();
+            RefreshEquipmentSlotIcons();
+        }
+
+        public void SelectLastSelectedEquipmentSlot()
+        {
+            Button lastSelectedButton = null;
+
+            switch (currentSelectedEquipmentSlot)
+            {
+                case EquipmentType.RightWeapon01:
+                    lastSelectedButton = rightHandSlot01.GetComponentInParent<Button>();
+                    break;
+                case EquipmentType.RightWeapon02:
+                    lastSelectedButton = rightHandSlot02.GetComponentInParent<Button>();
+                    break;
+                case EquipmentType.RightWeapon03:
+                    lastSelectedButton = rightHandSlot03.GetComponentInParent<Button>();
+                    break;
+                case EquipmentType.LeftWeapon01:
+                    lastSelectedButton = leftHandSlot01.GetComponentInParent<Button>();
+                    break;
+                case EquipmentType.LeftWeapon02:
+                    lastSelectedButton = leftHandSlot02.GetComponentInParent<Button>();
+                    break;
+                case EquipmentType.LeftWeapon03:
+                    lastSelectedButton = leftHandSlot03.GetComponentInParent<Button>();
+                    break;
+                case EquipmentType.Head:
+                    lastSelectedButton = headEquipmentSlot.GetComponentInParent<Button>();
+                    break;
+                case EquipmentType.Body:
+                    lastSelectedButton = bodyEquipmentSlot.GetComponentInParent<Button>();
+                    break;
+                case EquipmentType.Legs:
+                    lastSelectedButton = legEquipmentSlot.GetComponentInParent<Button>();
+                    break;
+                case EquipmentType.Hands:
+                    lastSelectedButton = handEquipmentSlot.GetComponentInParent<Button>();
+                    break;
+            }
+
+            if (lastSelectedButton != null)
+            {
+                lastSelectedButton.Select();
+                lastSelectedButton.OnSelect(null);
+            }
+
+
+
+        }
+        
+        
         //  THIS ISFINE BUT IF YOU R USING THE A BUTTON TO COSE MENUS YOU WILL JUMP AS YOU CLOSE THE MENU   
         public void CloseEquipmentManagerMenu()
         {
@@ -47,7 +106,7 @@ namespace AS
             menu.SetActive(false);
         }
 
-        private void RefreshWeaponSlotIcons()
+        private void RefreshEquipmentSlotIcons()
         {
             PlayerManager player = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<PlayerManager>();
 
@@ -60,6 +119,10 @@ namespace AS
                 rightHandSlot01.enabled = true;
                 rightHandSlot01.sprite = rightHandWeapon01.itemIcon;
             }
+            else
+            {
+                rightHandSlot01.enabled = false;
+            }
 
             // RIGHT WEAPON 02
             WeaponItem rightHandWeapon02 = player.playerInventoryManager.weaponsInRightHandSlots[1];
@@ -68,6 +131,10 @@ namespace AS
             {
                 rightHandSlot02.enabled = true;
                 rightHandSlot02.sprite = rightHandWeapon02.itemIcon;
+            }
+            else
+            {
+                rightHandSlot02.enabled = false;
             }
 
             // RIGHT WEAPON 03
@@ -78,6 +145,10 @@ namespace AS
                 rightHandSlot03.enabled = true;
                 rightHandSlot03.sprite = rightHandWeapon03.itemIcon;
             }
+            else
+            {
+                rightHandSlot03.enabled = false;
+            }
 
             // left WEAPON 01
             WeaponItem leftHandWeapon01 = player.playerInventoryManager.weaponsInLeftHandSlots[0];
@@ -86,6 +157,10 @@ namespace AS
             {
                 leftHandSlot01.enabled = true;
                 leftHandSlot01.sprite = leftHandWeapon01.itemIcon;
+            }
+            else
+            {
+                leftHandSlot01.enabled = false;
             }
 
             // left WEAPON 02
@@ -96,6 +171,10 @@ namespace AS
                 leftHandSlot02.enabled = true;
                 leftHandSlot02.sprite = leftHandWeapon02.itemIcon;
             }
+            else
+            {
+                leftHandSlot02.enabled = false;
+            }
 
             // left WEAPON 03
             WeaponItem leftHandWeapon03 = player.playerInventoryManager.weaponsInLeftHandSlots[2];
@@ -105,8 +184,66 @@ namespace AS
                 leftHandSlot03.enabled = true;
                 leftHandSlot03.sprite = leftHandWeapon03.itemIcon;
             }
+            else
+            {
+                leftHandSlot03.enabled = false;
+            }
 
+            // HEAD EQUIPMENT
 
+            HeadEquipmentItem headEquipment = player.playerInventoryManager.headEquipment;
+
+            if (headEquipment != null)
+            {
+                headEquipmentSlot.enabled = true;
+                headEquipmentSlot.sprite = headEquipment.itemIcon;
+            }
+            else
+            {
+                headEquipmentSlot.enabled = false;
+            }
+
+            // BODY EQUIPMENT
+
+            BodyEquipmentItem bodyEquipment = player.playerInventoryManager.bodyEquipment;
+
+            if (bodyEquipment != null)
+            {
+                bodyEquipmentSlot.enabled = true;
+                bodyEquipmentSlot.sprite = bodyEquipment.itemIcon;
+            }
+            else
+            {
+                bodyEquipmentSlot.enabled = false;
+            }
+
+            // LEG EQUIPMENT
+
+            LegEquipmentItem legEquipment = player.playerInventoryManager.legEquipment;
+
+            if (legEquipment != null)
+            {
+                legEquipmentSlot.enabled = true;
+                legEquipmentSlot.sprite = legEquipment.itemIcon;
+            }
+            else
+            {
+                legEquipmentSlot.enabled = false;
+            }
+
+            // HAND EQUIPMENT
+
+            HandEquipmentItem handEquipment = player.playerInventoryManager.handEquipment;
+
+            if (handEquipment != null)
+            {
+                handEquipmentSlot.enabled = true;
+                handEquipmentSlot.sprite = handEquipment.itemIcon;
+            }
+            else
+            {
+                handEquipmentSlot.enabled = false;
+            }
 
 
 
@@ -158,6 +295,18 @@ namespace AS
                 case EquipmentType.LeftWeapon03:
                     LoadWeaponInventory();
                     break;
+                case EquipmentType.Head:
+                    LoadHeadEquipmentInventory();
+                    break;
+                case EquipmentType.Body:
+                    LoadBodyEquipmentInventory();
+                    break;
+                case EquipmentType.Legs:
+                    LoadLegEquipmentInventory();
+                    break;
+                case EquipmentType.Hands:
+                    LoadHandEquipmentInventory();
+                    break;
                 default:
                     break;
             }
@@ -184,8 +333,8 @@ namespace AS
 
             if (weaponsInInventory.Count <= 0)
             {
-                OpenEquipmentManagerMenu();
-                Debug.Log("possibly this happening");
+                RefreshMenu();
+                // Debug.Log("possibly this happening");
                 return;
             }
 
@@ -212,10 +361,361 @@ namespace AS
 
         }
 
+        private void LoadHeadEquipmentInventory()
+        {
+            List<HeadEquipmentItem> headEquipmentInInventory = new List<HeadEquipmentItem>();
+
+            PlayerManager player = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<PlayerManager>();
+
+            // SEARCH OUR ENTIRE INVENTORY, AND OUT OF ALL OF THE ITEMS IN OUR INVENTORY, IF THE ITEM IS A head ADD IT TO OUR head LIST
+
+            for (int i = 0; i < player.playerInventoryManager.itemsInInventory.Count; i++)
+            {
+                HeadEquipmentItem equipment = player.playerInventoryManager.itemsInInventory[i] as HeadEquipmentItem;
+
+                if (equipment != null)
+                {
+                    headEquipmentInInventory.Add(equipment);
+                }
+            }
+
+            if (headEquipmentInInventory.Count <= 0)
+            {
+                RefreshMenu();
+                return;
+            }
+
+            bool hasSelectedFirstInventorySlot = false;
+
+            for (int i = 0; i < headEquipmentInInventory.Count; i++)
+            {
+                GameObject inventorySlotGameObject = Instantiate(equipmentInventorySlotPrefab, equipmentInventoryContentWindow);
+                UI_EquipmentInventorySlot equipmentInventorySlot = inventorySlotGameObject.GetComponent<UI_EquipmentInventorySlot>();
+                equipmentInventorySlot.AddItem(headEquipmentInInventory[i]);
+
+                // THIS WILL SELECT THE FIRST BUTTON IN THE LIST
+                if (!hasSelectedFirstInventorySlot)
+                {
+                    hasSelectedFirstInventorySlot = true;
+                    Button inventorySlotButton = inventorySlotGameObject.GetComponent<Button>();
+                    inventorySlotButton.Select();
+                    inventorySlotButton.OnSelect(null);
+                }
+
+            }
 
 
+        }
+
+        private void LoadBodyEquipmentInventory()
+        {
+            List<BodyEquipmentItem> bodyEquipmentInInventory = new List<BodyEquipmentItem>();
+
+            PlayerManager player = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<PlayerManager>();
+
+            // SEARCH OUR ENTIRE INVENTORY, AND OUT OF ALL OF THE ITEMS IN OUR INVENTORY, IF THE ITEM IS A body ADD IT TO OUR body LIST
+
+            for (int i = 0; i < player.playerInventoryManager.itemsInInventory.Count; i++)
+            {
+                BodyEquipmentItem equipment = player.playerInventoryManager.itemsInInventory[i] as BodyEquipmentItem;
+
+                if (equipment != null)
+                {
+                    bodyEquipmentInInventory.Add(equipment);
+                }
+            }
+
+            if (bodyEquipmentInInventory.Count <= 0)
+            {
+                RefreshMenu();
+                return;
+            }
+
+            bool hasSelectedFirstInventorySlot = false;
+
+            for (int i = 0; i < bodyEquipmentInInventory.Count; i++)
+            {
+                GameObject inventorySlotGameObject = Instantiate(equipmentInventorySlotPrefab, equipmentInventoryContentWindow);
+                UI_EquipmentInventorySlot equipmentInventorySlot = inventorySlotGameObject.GetComponent<UI_EquipmentInventorySlot>();
+                equipmentInventorySlot.AddItem(bodyEquipmentInInventory[i]);
+
+                // THIS WILL SELECT THE FIRST BUTTON IN THE LIST
+                if (!hasSelectedFirstInventorySlot)
+                {
+                    hasSelectedFirstInventorySlot = true;
+                    Button inventorySlotButton = inventorySlotGameObject.GetComponent<Button>();
+                    inventorySlotButton.Select();
+                    inventorySlotButton.OnSelect(null);
+                }
+
+            }
+        }
+
+        private void LoadLegEquipmentInventory()
+        {
+            List<LegEquipmentItem> legEquipmentInInventory = new List<LegEquipmentItem>();
+
+            PlayerManager player = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<PlayerManager>();
+
+            // SEARCH OUR ENTIRE INVENTORY, AND OUT OF ALL OF THE ITEMS IN OUR INVENTORY, IF THE ITEM IS A leg ADD IT TO OUR leg LIST
+
+            for (int i = 0; i < player.playerInventoryManager.itemsInInventory.Count; i++)
+            {
+                LegEquipmentItem equipment = player.playerInventoryManager.itemsInInventory[i] as LegEquipmentItem;
+
+                if (equipment != null)
+                {
+                    legEquipmentInInventory.Add(equipment);
+                }
+            }
+
+            if (legEquipmentInInventory.Count <= 0)
+            {
+                RefreshMenu();
+                return;
+            }
+
+            bool hasSelectedFirstInventorySlot = false;
+
+            for (int i = 0; i < legEquipmentInInventory.Count; i++)
+            {
+                GameObject inventorySlotGameObject = Instantiate(equipmentInventorySlotPrefab, equipmentInventoryContentWindow);
+                UI_EquipmentInventorySlot equipmentInventorySlot = inventorySlotGameObject.GetComponent<UI_EquipmentInventorySlot>();
+                equipmentInventorySlot.AddItem(legEquipmentInInventory[i]);
+
+                // THIS WILL SELECT THE FIRST BUTTON IN THE LIST
+                if (!hasSelectedFirstInventorySlot)
+                {
+                    hasSelectedFirstInventorySlot = true;
+                    Button inventorySlotButton = inventorySlotGameObject.GetComponent<Button>();
+                    inventorySlotButton.Select();
+                    inventorySlotButton.OnSelect(null);
+                }
+
+            }
+        }
+
+        private void LoadHandEquipmentInventory()
+        {
+            List<HandEquipmentItem> handEquipmentInInventory = new List<HandEquipmentItem>();
+
+            PlayerManager player = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<PlayerManager>();
+
+            // SEARCH OUR ENTIRE INVENTORY, AND OUT OF ALL OF THE ITEMS IN OUR INVENTORY, IF THE ITEM IS A hand ADD IT TO OUR hand LIST
+
+            for (int i = 0; i < player.playerInventoryManager.itemsInInventory.Count; i++)
+            {
+                HandEquipmentItem equipment = player.playerInventoryManager.itemsInInventory[i] as HandEquipmentItem;
+
+                if (equipment != null)
+                {
+                    handEquipmentInInventory.Add(equipment);
+                }
+            }
+
+            if (handEquipmentInInventory.Count <= 0)
+            {
+                RefreshMenu();
+                return;
+            }
+
+            bool hasSelectedFirstInventorySlot = false;
+
+            for (int i = 0; i < handEquipmentInInventory.Count; i++)
+            {
+                GameObject inventorySlotGameObject = Instantiate(equipmentInventorySlotPrefab, equipmentInventoryContentWindow);
+                UI_EquipmentInventorySlot equipmentInventorySlot = inventorySlotGameObject.GetComponent<UI_EquipmentInventorySlot>();
+                equipmentInventorySlot.AddItem(handEquipmentInInventory[i]);
+
+                // THIS WILL SELECT THE FIRST BUTTON IN THE LIST
+                if (!hasSelectedFirstInventorySlot)
+                {
+                    hasSelectedFirstInventorySlot = true;
+                    Button inventorySlotButton = inventorySlotGameObject.GetComponent<Button>();
+                    inventorySlotButton.Select();
+                    inventorySlotButton.OnSelect(null);
+                }
+
+            }
+        }
+
+        public void SelectEquipmentSlot(int equipmentSlot)
+        {
+            currentSelectedEquipmentSlot = (EquipmentType)equipmentSlot;
+        }
+
+        public void UnequipSelectedItem()
+        {
+            PlayerManager player = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<PlayerManager>();
+            Item unequippedItem;
+
+            switch (currentSelectedEquipmentSlot)
+            {
+                case EquipmentType.RightWeapon01:
+                    unequippedItem = player.playerInventoryManager.weaponsInRightHandSlots[0];
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.weaponsInRightHandSlots[0] = Instantiate(WorldItemDatabase.Instance.unarmedWeapon);
+
+                        if (unequippedItem.itemID != WorldItemDatabase.Instance.unarmedWeapon.itemID)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                        }
+                    }
+
+                    if (player.playerInventoryManager.rightHandWeaponIndex == 0)
+                    {
+                        player.playerNetworkManager.currentRightHandWeaponID.Value = WorldItemDatabase.Instance.unarmedWeapon.itemID;
+                    }
+
+                    break;
+                case EquipmentType.RightWeapon02:
+                    unequippedItem = player.playerInventoryManager.weaponsInRightHandSlots[1];
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.weaponsInRightHandSlots[1] = Instantiate(WorldItemDatabase.Instance.unarmedWeapon);
+
+                        if (unequippedItem.itemID != WorldItemDatabase.Instance.unarmedWeapon.itemID)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                        }
+                    }
+
+                    if (player.playerInventoryManager.rightHandWeaponIndex == 1)
+                    {
+                        player.playerNetworkManager.currentRightHandWeaponID.Value = WorldItemDatabase.Instance.unarmedWeapon.itemID;
+                    }
+
+                    break;
+                case EquipmentType.RightWeapon03:
+                    unequippedItem = player.playerInventoryManager.weaponsInRightHandSlots[2];
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.weaponsInRightHandSlots[2] = Instantiate(WorldItemDatabase.Instance.unarmedWeapon);
+
+                        if (unequippedItem.itemID != WorldItemDatabase.Instance.unarmedWeapon.itemID)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                        }
+                    }
+
+                    if (player.playerInventoryManager.rightHandWeaponIndex == 2)
+                    {
+                        player.playerNetworkManager.currentRightHandWeaponID.Value = WorldItemDatabase.Instance.unarmedWeapon.itemID;
+                    }
+
+                    break;
+                case EquipmentType.LeftWeapon01:
+                    unequippedItem = player.playerInventoryManager.weaponsInLeftHandSlots[0];
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.weaponsInLeftHandSlots[0] = Instantiate(WorldItemDatabase.Instance.unarmedWeapon);
+
+                        if (unequippedItem.itemID != WorldItemDatabase.Instance.unarmedWeapon.itemID)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                        }
+                    }
+
+                    if (player.playerInventoryManager.leftHandWeaponIndex == 0)
+                    {
+                        player.playerNetworkManager.currentLeftHandWeaponID.Value = WorldItemDatabase.Instance.unarmedWeapon.itemID;
+                    }
+
+                    break;
+                case EquipmentType.LeftWeapon02:
+                    unequippedItem = player.playerInventoryManager.weaponsInLeftHandSlots[1];
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.weaponsInLeftHandSlots[1] = Instantiate(WorldItemDatabase.Instance.unarmedWeapon);
+
+                        if (unequippedItem.itemID != WorldItemDatabase.Instance.unarmedWeapon.itemID)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                        }
+                    }
+
+                    if (player.playerInventoryManager.leftHandWeaponIndex == 1)
+                    {
+                        player.playerNetworkManager.currentLeftHandWeaponID.Value = WorldItemDatabase.Instance.unarmedWeapon.itemID;
+                    }
+
+                    break;
+                case EquipmentType.LeftWeapon03:
+                    unequippedItem = player.playerInventoryManager.weaponsInLeftHandSlots[2];
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.weaponsInLeftHandSlots[2] = Instantiate(WorldItemDatabase.Instance.unarmedWeapon);
+
+                        if (unequippedItem.itemID != WorldItemDatabase.Instance.unarmedWeapon.itemID)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                        }
+                    }
+
+                    if (player.playerInventoryManager.leftHandWeaponIndex == 2)
+                    {
+                        player.playerNetworkManager.currentLeftHandWeaponID.Value = WorldItemDatabase.Instance.unarmedWeapon.itemID;
+                    }
+
+                    break;
+                case EquipmentType.Head:
+                    unequippedItem = player.playerInventoryManager.headEquipment;
+
+                    
+                    if (unequippedItem != null)
+                        player.playerInventoryManager.AddItemToInventory(unequippedItem);
+
+                    player.playerInventoryManager.headEquipment = null;
+                    player.playerEquipmentManager.LoadHeadEquipment(player.playerInventoryManager.headEquipment);
+
+                    break;
+                case EquipmentType.Body:
+                    unequippedItem = player.playerInventoryManager.bodyEquipment;
 
 
+                    if (unequippedItem != null)
+                        player.playerInventoryManager.AddItemToInventory(unequippedItem);
 
+                    player.playerInventoryManager.bodyEquipment = null;
+                    player.playerEquipmentManager.LoadBodyEquipment(player.playerInventoryManager.bodyEquipment);
+
+                    break;
+                case EquipmentType.Legs:
+                    unequippedItem = player.playerInventoryManager.legEquipment;
+
+
+                    if (unequippedItem != null)
+                        player.playerInventoryManager.AddItemToInventory(unequippedItem);
+
+                    player.playerInventoryManager.legEquipment = null;
+                    player.playerEquipmentManager.LoadLegEquipment(player.playerInventoryManager.legEquipment);
+
+                    break;
+                case EquipmentType.Hands:
+                    unequippedItem = player.playerInventoryManager.handEquipment;
+
+
+                    if (unequippedItem != null)
+                        player.playerInventoryManager.AddItemToInventory(unequippedItem);
+
+                    player.playerInventoryManager.handEquipment = null;
+                    player.playerEquipmentManager.LoadHandEquipment(player.playerInventoryManager.handEquipment);
+
+                    break;
+            }
+
+            // REFRESHES MENU (ICONS ETC)
+            RefreshMenu();
+
+
+        }
+        
     }
 }

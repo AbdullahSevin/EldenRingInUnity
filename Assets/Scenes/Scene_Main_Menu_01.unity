@@ -4921,6 +4921,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player UI Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 1123899838161678859, guid: ee75a015bfc5e7745929eae72de11581,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.1490565
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123899838161678859, guid: ee75a015bfc5e7745929eae72de11581,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.72537905
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123899838161678859, guid: ee75a015bfc5e7745929eae72de11581,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1427706430441349791, guid: ee75a015bfc5e7745929eae72de11581,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5105,6 +5120,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3011675801732613444, guid: ee75a015bfc5e7745929eae72de11581,
+        type: 3}
+      propertyPath: m_ReverseArrangement
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3481364480807490333, guid: ee75a015bfc5e7745929eae72de11581,
         type: 3}
@@ -5463,8 +5483,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5897927007039380626, guid: ee75a015bfc5e7745929eae72de11581,
         type: 3}
-      propertyPath: m_RaycastTarget
+      propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897927007039380626, guid: ee75a015bfc5e7745929eae72de11581,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6055391308078580812, guid: ee75a015bfc5e7745929eae72de11581,
         type: 3}
@@ -5506,6 +5531,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6996224038238421433, guid: ee75a015bfc5e7745929eae72de11581,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7138751256417290695, guid: ee75a015bfc5e7745929eae72de11581,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5514,11 +5544,16 @@ PrefabInstance:
     - target: {fileID: 7432451460464008124, guid: ee75a015bfc5e7745929eae72de11581,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00012207031
+      value: 1347
       objectReference: {fileID: 0}
     - target: {fileID: 7590482338718131949, guid: ee75a015bfc5e7745929eae72de11581,
         type: 3}
       propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898628212098117234, guid: ee75a015bfc5e7745929eae72de11581,
+        type: 3}
+      propertyPath: m_ReverseArrangement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8210825128449045823, guid: ee75a015bfc5e7745929eae72de11581,
