@@ -311,6 +311,15 @@
             "id": "53ad569a-721a-45db-8605-76402a01294e",
             "actions": [
                 {
+                    "name": "Open Character Menu",
+                    "type": "Button",
+                    "id": "e1987f53-8d0e-4111-b88f-6e81e7f05a93",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Dodge",
                     "type": "Button",
                     "id": "748d5f97-8737-41cc-87b1-02d416134b47",
@@ -474,28 +483,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "f37dff0f-2b3b-4948-b433-dc021f6a3248",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5fbea89e-7f9d-40a1-bd8f-8b6b06811343",
-                    "path": "<Keyboard>/capsLock",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "31dbdd2a-2df1-486c-b475-cc1275f9ac63",
@@ -867,6 +854,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "TwoHandRightWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ce44ef3-8953-454c-bf1a-06d09d50a572",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Character Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afe73122-4820-4a8f-99bd-a31a7023338d",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Character Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f37dff0f-2b3b-4948-b433-dc021f6a3248",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fbea89e-7f9d-40a1-bd8f-8b6b06811343",
+                    "path": "<Keyboard>/capsLock",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

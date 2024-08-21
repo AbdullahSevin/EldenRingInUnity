@@ -15,6 +15,8 @@ namespace AS
 
         [HideInInspector] public PlayerUIHudManager playerUIHudManager;
         [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
+        [HideInInspector] public PlayerUICharacterMenuManager playerUICharacterMenuManager;
+        [HideInInspector] public PlayerUIEquipmentManager playerUIEquipmentManager;
 
         [Header("UI FLAGS")]
         public bool menuWindowIsOpen = false;    //  INVENTORY SCREEN, EQUIPMENT MENU, BLACKSMITH MENU ETC
@@ -35,6 +37,8 @@ namespace AS
 
             playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
             playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
+            playerUICharacterMenuManager = GetComponentInChildren<PlayerUICharacterMenuManager>();
+            playerUIEquipmentManager = GetComponentInChildren<PlayerUIEquipmentManager>();
 
         }
 
@@ -69,6 +73,12 @@ namespace AS
             NetworkManager.Singleton.StartClient();
 
             Debug.Log("Client start attempted.");
+        }
+
+        public void CloseAllMenuWindows()
+        {
+            playerUICharacterMenuManager.CloseCharacterMenu();
+            playerUIEquipmentManager.CloseEquipmentManagerMenu();
         }
 
     }
