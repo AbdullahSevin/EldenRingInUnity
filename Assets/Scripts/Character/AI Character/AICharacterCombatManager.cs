@@ -107,6 +107,8 @@ namespace AS
 
                 aiCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly("Stance_Break_01", true);
 
+                currentStance = maxStance;
+
 
 
             }

@@ -80,7 +80,10 @@ namespace AS
             }
 
 
+            playerPerformingAction.characterCombatManager.AttemptCriticalAttack();
             PerformLightAttack(playerPerformingAction, weaponPerformingAction);
+
+            
 
         }
 
@@ -90,7 +93,7 @@ namespace AS
         {
             if (playerPerformingAction.playerNetworkManager.isTwoHandingWeapon.Value)
             {
-                Debug.Log("2 handin yea");
+                //Debug.Log("2 handin yea");
                 PerformTwoHandLightAttack(playerPerformingAction, weaponPerformingAction);
             }
             else
@@ -104,7 +107,7 @@ namespace AS
             // IF WE ARE ATTACKING CURRENTLY, AND WE ARE ABLE TO PERFORM A COMBO, PERFORM THE COMBO ATTACK
             if (playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon && playerPerformingAction.isPerformingAction)
             {
-                Debug.Log("2 handin nooo??");
+                //Debug.Log("2 handin nooo??");
                 playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon = false;
 
                 //  PERFORM A ATTACK BASED ON THE PREVIOUS ATTACK WE JUST PLAYED
@@ -121,7 +124,7 @@ namespace AS
             //  OTHERWISE, IF WE ARE NOT ALREADY ATTACKING JUST PERFORM A REGULAR ATTACK
             else if (!playerPerformingAction.isPerformingAction)
             {
-                Debug.Log("2 handin noo else if");
+               // Debug.Log("2 handin noo else if");
                 playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack01, light_Attack_01, true);
 
             }
@@ -133,7 +136,7 @@ namespace AS
             // IF WE ARE ATTACKING CURRENTLY, AND WE ARE ABLE TO PERFORM A COMBO, PERFORM THE COMBO ATTACK
             if (playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon && playerPerformingAction.isPerformingAction)
             {
-                Debug.Log("2 handin yeaaa");
+                //Debug.Log("2 handin yeaaa");
                 playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon = false;
 
                 //  PERFORM A ATTACK BASED ON THE PREVIOUS ATTACK WE JUST PLAYED
@@ -150,7 +153,7 @@ namespace AS
             //  OTHERWISE, IF WE ARE NOT ALREADY ATTACKING JUST PERFORM A REGULAR ATTACK
             else if (!playerPerformingAction.isPerformingAction)
             {
-                Debug.Log("2 handin yea else if");
+                //Debug.Log("2 handin yea else if");
                 playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack01, th_light_Attack_01, true);
 
             }

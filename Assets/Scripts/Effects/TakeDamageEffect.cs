@@ -21,7 +21,7 @@ namespace AS
 
 
         [Header("Final Damage")]
-        private int finalDamageDealt = 0;                 //  The damage the character takes after ALL calculations have been made
+        protected int finalDamageDealt = 0;                 //  The damage the character takes after ALL calculations have been made
 
         [Header("Poise")]
         public float poiseDamage = 0;
@@ -61,7 +61,7 @@ namespace AS
 
             CalculateDamage(character);
             PlayDirectionalBasedDamageAnimation(character);
-            Debug.Log("TAKE DAMAGE CS >>>   PROCESSED DIRECTIONAL ANIMATION");
+            // Debug.Log("TAKE DAMAGE CS >>>   PROCESSED DIRECTIONAL ANIMATION");
             //  CHECK FOR BUILD UPS (POISON, BLEED ETC...)
             PlayDamageSFX(character);
             PlayDamageVFX(character);
@@ -72,7 +72,7 @@ namespace AS
 
         }
 
-        private void CalculateDamage(CharacterManager character)
+        protected virtual void CalculateDamage(CharacterManager character)
         {
 
             if (!character.IsOwner)
@@ -123,7 +123,7 @@ namespace AS
 
         }
 
-        private void CalculateStanceDamage(CharacterManager character)
+        protected void CalculateStanceDamage(CharacterManager character)
         {
             AICharacterManager aiCharacter = character as AICharacterManager;
 
@@ -136,14 +136,14 @@ namespace AS
             }
         }
 
-        private void PlayDamageVFX(CharacterManager character)
+        protected void PlayDamageVFX(CharacterManager character)
         {
             //  IF WE HAVE FIRE DAMAGE PLAY FIRE VFX, OR LIGHTNING OR ETC ...
 
             character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
         }
 
-        private void PlayDamageSFX(CharacterManager character)
+        protected void PlayDamageSFX(CharacterManager character)
         {
             AudioClip phsicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
 
@@ -154,7 +154,7 @@ namespace AS
             //  "  LIGHTNING    "            "  , "     ZAP SFX
         }
 
-        private void PlayDirectionalBasedDamageAnimation(CharacterManager character)
+        protected void PlayDirectionalBasedDamageAnimation(CharacterManager character)
         {
             if (!character.IsOwner)
             {

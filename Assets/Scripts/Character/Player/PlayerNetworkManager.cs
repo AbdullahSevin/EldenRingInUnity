@@ -103,7 +103,7 @@ namespace AS
             // WE DONT NEED TO RUN THIS CODE IF WE ARE THE OWNER BECAUSE WE HAVE ALREADY DONE SO LOCALLY
             if (player.IsOwner)
             {
-                Debug.Log("returned networkmanger");
+                // Debug.Log("returned networkmanger");
                 return;
             }
 

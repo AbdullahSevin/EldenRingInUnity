@@ -103,6 +103,23 @@ namespace AS
 
         }
 
+        public Vector3 GetRipostingPositionBasedOnWeaponClass(WeaponClass weaponClass)
+        {
+            Vector3 position = new Vector3(0.11f, 0, 0.7f);
+            switch (weaponClass)
+            {
+                case WeaponClass.StraightSword: // CHANGE POSITION HERE IF YOU DESIRE TO DO SO
+                    break;
+                case WeaponClass.Spear:
+                    break;
+                case WeaponClass.MediumShield:
+                    break;
+                case WeaponClass.Fist:
+                    break;
+            }
+
+            return position;
+
+        }
     }
 }
-

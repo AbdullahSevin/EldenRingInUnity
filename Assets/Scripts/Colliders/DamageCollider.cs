@@ -79,12 +79,12 @@ namespace AS
             //Debug.Log("block nt returned");
             GetBlockingDotValues(damageTarget);
             //Debug.Log("got dot values success");
-            Debug.Log(damageTarget.characterNetworkManager.isBlocking.Value + "  " + dotValueFromAttackToDamageTarget);
+            //Debug.Log(damageTarget.characterNetworkManager.isBlocking.Value + "  " + dotValueFromAttackToDamageTarget);
             // CHECK IF THE CHARACTER BEING DAMAGED IS BLOCKING
             if (damageTarget.characterNetworkManager.isBlocking.Value && dotValueFromAttackToDamageTarget > 0.3f)
             {
                 
-                Debug.Log("block success");
+                //Debug.Log("block success");
                 // IF THE CHARACTER IS BLOKING, CHECK IF THEY ARE FACING THE CORRECT DIRECTIONTO BLOCK SUCCESFULLY
                 // if block is succesfull we add the character to the characters damaged list so it is put out of damage calculation
                 charactersDamaged.Add(damageTarget);

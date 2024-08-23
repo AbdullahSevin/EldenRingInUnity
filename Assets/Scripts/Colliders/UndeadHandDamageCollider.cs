@@ -22,9 +22,9 @@ namespace AS
         {
             directionFromAttackToDamageTarget = undeadCharacter.transform.position - damageTarget.transform.position;
             dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
-            Debug.Log($"Direction Vector: {directionFromAttackToDamageTarget}");
-            Debug.Log($"Forward Vector: {damageTarget.transform.forward}");
-            Debug.Log($"Dot Value: {dotValueFromAttackToDamageTarget}");
+            //Debug.Log($"Direction Vector: {directionFromAttackToDamageTarget}");
+            //Debug.Log($"Forward Vector: {damageTarget.transform.forward}");
+            //Debug.Log($"Dot Value: {dotValueFromAttackToDamageTarget}");
         }
 
         protected override void DamageTarget(CharacterManager damageTarget)

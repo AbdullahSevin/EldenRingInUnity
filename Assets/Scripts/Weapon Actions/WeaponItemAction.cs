@@ -19,7 +19,7 @@ namespace AS
                 playerPerformingAction.playerNetworkManager.currentWeaponBeingUsed.Value = weaponPerformingAction.itemID;
             }
 
-            Debug.Log("THE ACTION HAS FIRED");
+            // Debug.Log("THE ACTION HAS FIRED");
 
         }
 

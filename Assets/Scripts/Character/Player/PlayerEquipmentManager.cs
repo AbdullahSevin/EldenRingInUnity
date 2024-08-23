@@ -21,8 +21,8 @@ namespace AS
         [HideInInspector] public GameObject leftHandWeaponModel;    
 
         [Header("WEAPON MANAGERS")]
-        WeaponManager rightWeaponManager;
-        WeaponManager leftWeaponManager;
+        public WeaponManager rightWeaponManager;
+        public WeaponManager leftWeaponManager;
 
         [Header("DEBUG DELETE LATER")]
         [SerializeField] bool equipNewItems = false;
@@ -139,7 +139,7 @@ namespace AS
 
         public void EquipArmor()
         {
-            Debug.Log("EQUIPPING NEW ITEMS");
+           // Debug.Log("EQUIPPING NEW ITEMS");
 
 
             LoadHeadEquipment(player.playerInventoryManager.headEquipment);

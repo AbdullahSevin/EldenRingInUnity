@@ -216,7 +216,7 @@ namespace AS
             character.characterLocomotionManager.canRotate = canRotate;
             character.characterLocomotionManager.canMove = canMove;
 
-            Debug.Log("Action Animation played instantly: " + targetAnimation);
+            Debug.Log("Action Animation played instantly: " + targetAnimation + " char:  " + character);
 
             // TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
             character.characterNetworkManager.NotifyTheServerOfInstantActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);

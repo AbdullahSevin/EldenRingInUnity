@@ -2979,6 +2979,8 @@ MonoBehaviour:
     m_InternalValue: 0
   isRipostable:
     m_InternalValue: 0
+  isBeingCriticallyDamaged:
+    m_InternalValue: 0
   currentHealth:
     m_InternalValue: 500
   maxHealth:
@@ -3078,6 +3080,8 @@ MonoBehaviour:
   canPerformRollingAttack: 0
   canPerformBackstepAttack: 0
   canBlock: 1
+  criticalAttackDistanceCheck: 0.7
+  pendingCriticalDamage: 0
   actionRecoveryTimer: 0
   enablePivot: 1
   distanceFromTarget: 0
@@ -3087,8 +3091,8 @@ MonoBehaviour:
   minimumFOV: -35
   maximumFOV: 35
   attackRotationSpeed: 25
-  maxStance: 50
-  currentStance: 50
+  maxStance: 20
+  currentStance: 20
   stanceregeneratedPersecond: 15
   ignoreStanceBreak: 0
   stanceRegenerationTimer: 0
@@ -3186,6 +3190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplatterVFX: {fileID: 0}
+  criticalBloodSplatterVFX: {fileID: 0}
   staticEffects: []
 --- !u!114 &2957205819549206878
 MonoBehaviour:

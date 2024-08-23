@@ -126,7 +126,7 @@ namespace AS
 
             if (potentialAttacks.Count <= 0)
             {
-                Debug.Log("COMBAT STANCE  >>>  GET NEW ATTACK >>> NO POTENTIAL ATTACK >>> Returned");
+                // Debug.Log("COMBAT STANCE  >>>  GET NEW ATTACK >>> NO POTENTIAL ATTACK >>> Returned");
                 return;
             }
 

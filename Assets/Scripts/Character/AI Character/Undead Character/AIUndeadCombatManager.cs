@@ -25,8 +25,8 @@ namespace AS
 
             rightHandDamageCollider.poiseDamage = basePoiseDamage * attack01DamageModifier;
             leftHandDamageCollider.poiseDamage = basePoiseDamage * attack01DamageModifier;
-            Debug.Log("left poise: " + leftHandDamageCollider.poiseDamage);
-            Debug.Log("right poise: " + rightHandDamageCollider.poiseDamage);
+            //Debug.Log("left poise: " + leftHandDamageCollider.poiseDamage);
+            //Debug.Log("right poise: " + rightHandDamageCollider.poiseDamage);
         }
 
         public void SetAttack02Damage()
@@ -36,8 +36,8 @@ namespace AS
 
             rightHandDamageCollider.poiseDamage = basePoiseDamage * attack02DamageModifier;
             leftHandDamageCollider.poiseDamage = basePoiseDamage * attack02DamageModifier;
-            Debug.Log("left poise: " + leftHandDamageCollider.poiseDamage);
-            Debug.Log("right poise: " + rightHandDamageCollider.poiseDamage);
+            //Debug.Log("left poise: " + leftHandDamageCollider.poiseDamage);
+            //Debug.Log("right poise: " + rightHandDamageCollider.poiseDamage);
         }
 
         public void OpenRightHandDamageCollider()

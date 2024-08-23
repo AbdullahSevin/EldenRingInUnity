@@ -29,6 +29,10 @@ namespace AS
         public bool canPerformBackstepAttack = false;
         public bool canBlock = true;
 
+        [Header("Critical Attack")]
+        private Transform riposteReceiverTransform;
+        [SerializeField] float criticalAttackDistanceCheck = 0.7f;
+        public int pendingCriticalDamage;
 
         protected virtual void Awake()
         {
@@ -51,6 +55,99 @@ namespace AS
                 }
             }
 
+        }
+
+        // USED TO ATTEMP A BACKSTAB/RIPOSTE
+        public virtual void AttemptCriticalAttack()
+        {
+            // WE CANNOT PERFORM CRITICAL STRIKE IF WE ARE PERFORMING ANOTHER ACTION
+            if (character.isPerformingAction)
+                return;
+            // WE CANNOT PERFORM CRITICAL STRIKE IF WE ARE OUT OF STAMINA
+            if (character.characterNetworkManager.currentStamina.Value <= 0)
+                return;
+
+            // AIM A RAYCAST INFRONT OF US AND CHECK FOR ANY POTENTIAL TARGETS TO CRITICALLY ATTACK
+            RaycastHit[] hits = Physics.RaycastAll(character.characterCombatManager.lockOnTransform.position,
+                character.transform.TransformDirection(Vector3.forward), criticalAttackDistanceCheck, WorldUtilityManager.instance.GetCharacterLayers());
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                // CHECK EACH OF THE HITS 1 BY 1, GIVING THEM THEIR OWN VARIABLE
+                RaycastHit hit = hits[i];
+
+                CharacterManager targetCharacter = hit.transform.GetComponent<CharacterManager>();
+
+                if (targetCharacter != null)
+                {
+                    // IF THE CHARACTER IS THE ONE ATTEMPTING THE CRRITICAL STRIKE, GO TO THE NEXT HIT IN THE ARRAY OF TOTAL HITS.
+                    if (targetCharacter == character)
+                        continue;
+
+                    // IF WE CAN NOT DAMAGE THE TARGET THAT IS TARGETED CONTINUE TO CHECK THE NEXT HIT IN THE ARRAY OF HITS
+                    if (!WorldUtilityManager.instance.CanIDamageThisTarget(character.characterGroup, targetCharacter.characterGroup))
+                        continue;
+                    
+                    Vector3 directionFromCharacterToTarget = character.transform.position - hit.transform.position;
+                    float targetViewableAngle = Vector3.SignedAngle(directionFromCharacterToTarget, targetCharacter.transform.forward, Vector3.up);
+
+
+                    if (targetCharacter.characterNetworkManager.isRipostable.Value)
+                    {
+                        if (targetViewableAngle >= -60 && targetViewableAngle <= 60)
+                        {
+                            AttemptRiposte(hit);
+                            return;
+                        }
+                    }
+
+                    // TO DO ADD BACKSTAB CHECK
+                    
+                }
+
+            }
+
+
+
+        }
+
+        public virtual void AttemptRiposte(RaycastHit hit)
+        {
+            
+        }
+
+        public virtual void ApplyCriticalDamage()
+        {
+            character.characterEffectsManager.PlayCriticalBloodSplatterVFX(character.characterCombatManager.lockOnTransform.position);
+            character.characterSoundFXManager.PlayCriticalStrikeSoundFX();
+
+            if (character.IsOwner)
+                character.characterNetworkManager.currentHealth.Value -= pendingCriticalDamage;
+        }
+
+        public IEnumerator ForceMoveEnemyCharacterToRipostePosition(CharacterManager enemyCharacter, Vector3 ripostePosition)
+        {
+            float timer = 0;
+            
+            while (timer < 0.5f)
+            {
+                timer += Time.deltaTime;
+
+                if (riposteReceiverTransform == null)
+                {
+                    GameObject riposteTransformObject = new GameObject("Riposte Transform");
+                    riposteTransformObject.transform.parent = transform;
+                    riposteTransformObject.transform.position = Vector3.zero;
+                    riposteReceiverTransform = riposteTransformObject.transform;
+                    
+                }
+
+                riposteReceiverTransform.localPosition = ripostePosition;
+                enemyCharacter.transform.position = riposteReceiverTransform.position;
+                transform.rotation = Quaternion.LookRotation(-enemyCharacter.transform.forward);
+                yield return null;
+
+            }
         }
 
         public void EnableIsInvulnerable()

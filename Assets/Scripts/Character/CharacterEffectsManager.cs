@@ -19,6 +19,7 @@ namespace AS
 
         [Header("VFX")]
         [SerializeField] GameObject bloodSplatterVFX;
+        [SerializeField] GameObject criticalBloodSplatterVFX;
 
         [Header("Static Effects")]
         public List<StaticCharacterEffect> staticEffects =  new List<StaticCharacterEffect>();
@@ -44,6 +45,21 @@ namespace AS
             else
             {
                 GameObject bloodSplatter = Instantiate(WorldCharacterEffectsManager.instance.bloodSplatterVFX, contactPoint, Quaternion.identity);
+            }
+
+        }
+
+        public void PlayCriticalBloodSplatterVFX(Vector3 contactPoint)
+        {
+            //  IF WE MANUALLY HAVE PLACED A BLOOD SPLATTER VFX ON THIS MODEL, PLAY ITS VERSION
+            if (bloodSplatterVFX != null)
+            {
+                GameObject bloodSplatter = Instantiate(criticalBloodSplatterVFX, contactPoint, Quaternion.identity);
+            }
+            //  ELSE, USE THE GENERIC (DEFAULT VERSION) WE HAVE ELSEWHERE
+            else
+            {
+                GameObject bloodSplatter = Instantiate(WorldCharacterEffectsManager.instance.criticalBloodSplatterVFX, contactPoint, Quaternion.identity);
             }
 
         }

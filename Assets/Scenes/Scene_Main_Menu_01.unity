@@ -6111,9 +6111,21 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
         type: 3}
+      propertyPath: criticalBloodSplatterVFX
+      value: 
+      objectReference: {fileID: 3548588485384254792, guid: ab655e979320bf64ab66d91927977b18,
+        type: 3}
+    - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
+        type: 3}
       propertyPath: staticEffects.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
+        type: 3}
+      propertyPath: takeCriticalDamageEffect
+      value: 
+      objectReference: {fileID: 11400000, guid: 84f3906e61c00c149b71fa2785233297,
+        type: 2}
     - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
         type: 3}
       propertyPath: instantEffects.Array.size
@@ -7032,6 +7044,11 @@ PrefabInstance:
       propertyPath: stanceBreakSFX
       value: 
       objectReference: {fileID: 8300000, guid: 8f4b087e18c3ec848b2f525a0f9d31f5, type: 3}
+    - target: {fileID: 886594965411540445, guid: 069897da8df750143b7a1b5b6c48b748,
+        type: 3}
+      propertyPath: criticalStrikeSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c6cf65be4a8a934dab1d62f6475380f, type: 3}
     - target: {fileID: 886594965411540445, guid: 069897da8df750143b7a1b5b6c48b748,
         type: 3}
       propertyPath: physicalDamageSFX.Array.size
