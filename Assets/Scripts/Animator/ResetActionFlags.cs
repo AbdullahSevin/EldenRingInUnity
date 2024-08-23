@@ -34,6 +34,7 @@ namespace AS
                 character.characterNetworkManager.isAttacking.Value = false;
                 character.characterNetworkManager.isRipostable.Value = false;
                 character.characterNetworkManager.isBeingCriticallyDamaged.Value = false;
+                character.characterCombatManager.canBeBackstabbed = false;
             }
             
         }

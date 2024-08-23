@@ -56,6 +56,7 @@ namespace AS
         [Header("TRIGGER INPUTS")]
         [SerializeField] bool RT_Input = false;
         [SerializeField] bool Hold_RT_Input = false;
+        [SerializeField] bool LT_Input = false;
 
         [Header("BUMPER INPUTS")]
         [SerializeField] bool two_Hand_Input = false;
@@ -170,6 +171,7 @@ namespace AS
                 playerControls.PlayerActions.RT.performed += i => RT_Input = true;
                 playerControls.PlayerActions.HoldRT.performed += i => Hold_RT_Input = true;
                 playerControls.PlayerActions.HoldRT.canceled += i => Hold_RT_Input = false;
+                playerControls.PlayerActions.LT.performed += i => LT_Input = true;
 
                 //  TWO HAND
                 playerControls.PlayerActions.TwoHandWeapon.performed += i => two_Hand_Input = true;
@@ -261,6 +263,7 @@ namespace AS
             HandleLBInput();
             HandleRTInput();
             HandleChargeRTInput();
+            HandleLTInput();
             HandleSwitchRightWeaponInput();
             HandleSwitchLeftWeaponInput();
             HandleQuedInputs();
@@ -599,6 +602,21 @@ namespace AS
                 }
             }
             
+        }
+
+        private void HandleLTInput()
+        {
+            if (LT_Input)
+            {
+                LT_Input = false;
+
+                WeaponItem weaponPerformingAshOfWar = player.playerCombatManager.SelectWeaponToPerformAshOfWar();
+
+                //  TO DO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+                weaponPerformingAshOfWar.ashOfWarAction.AttempToPerformAction(player);
+
+            }
         }
 
         private void HandleSwitchRightWeaponInput()

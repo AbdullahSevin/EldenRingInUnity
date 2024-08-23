@@ -140,7 +140,7 @@ namespace AS
 
                 //  IF WE ARE NOT GROUNDED, PLAY AN AERIAL DEATH ANIMATION
 
-                if (!manuallySelectDeathAnimation)
+                if (!manuallySelectDeathAnimation && !characterNetworkManager.isBeingCriticallyDamaged.Value)
                 {
                     characterAnimatorManager.PlayTargetActionAnimation("Dead_01", true);
                 }

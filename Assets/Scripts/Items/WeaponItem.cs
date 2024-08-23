@@ -51,7 +51,7 @@ namespace AS
         public float running_Attack_01_Modifier = 1.5f;
         public float rolling_Attack_01_Modifier = 1.2f;
         public float backstep_Attack_01_Modifier = 1.2f;
-        public float riposte_Attack_01_Modifier = 3.3f;
+
 
         //  CRITICAL DAMAGE MODIFIER ETC
 
@@ -81,6 +81,7 @@ namespace AS
         public WeaponItemAction oh_RB_Action;  //  ONE HAND RIGHT BUMPER ACTÝON
         public WeaponItemAction oh_RT_Action;  //  ONE HAND RIGHT TRIGGER ACTÝON
         public WeaponItemAction oh_LB_Action;  //  ONE HAND LEFT BUMPER ACTÝON
+        public AshOfWar ashOfWarAction;
 
         [Header("SFX")]
         public AudioClip[] whooshes;

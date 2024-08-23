@@ -26,6 +26,10 @@ namespace AS
         [Header("Leg Equipment")]
         [SerializeField] List<LegEquipmentItem> legEquipment = new List<LegEquipmentItem>();
 
+        [Header("Ashes Of War")]
+        [SerializeField] List<AshOfWar> ashesOfWar = new List<AshOfWar>();
+
+
 
         //  A LIST OF EVERY ITEM WE HAVE IN THE GAME
         [Header("Items")]
@@ -64,6 +68,10 @@ namespace AS
             {
                 items.Add(leg);
             }
+            foreach (var item in ashesOfWar)
+            {
+                items.Add(item);
+            }
 
 
             //  ASSIGN ALL OF OUR ITEMS A UNIQUE ITEM ID
@@ -98,6 +106,11 @@ namespace AS
         public HandEquipmentItem GetHandEquipmentItemByID(int ID)
         {
             return handEquipment.FirstOrDefault(equipment => equipment.itemID == ID);
+        }
+
+        public AshOfWar GetAshOfWarByID(int ID)
+        {
+            return ashesOfWar.FirstOrDefault(item => item.itemID == ID);
         }
 
     }

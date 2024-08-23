@@ -46,7 +46,7 @@ namespace AS
         public override void AttemptRiposte(RaycastHit hit)
         {
             base.AttemptRiposte(hit);
-            Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!This does something");
+            //Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!This does something");
             CharacterManager targetCharacter = hit.transform.gameObject.GetComponent<CharacterManager>();
 
             // IF TARGET CHAR IS NULL RETURN
@@ -64,10 +64,17 @@ namespace AS
             MeleeWeaponItem riposteWeapon;
             MeleeWeaponDamageCollider riposteCollider;
 
-            // TODO: CHECK IF WE ARE TWO HANDLING RIGHT OR LEFT WEAPON (THIS WILL CHANGE THE RIPOSTE WEAPON)
-
-            riposteWeapon = player.playerInventoryManager.currentRightHandWeapon as MeleeWeaponItem;
-            riposteCollider = player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider;
+            
+            if (player.playerNetworkManager.isTwoHandingLeftWeapon.Value)
+            {
+                riposteWeapon = player.playerInventoryManager.currentLeftHandWeapon as MeleeWeaponItem;
+                riposteCollider = player.playerEquipmentManager.leftWeaponManager.meleeDamageCollider;
+            }
+            else
+            {
+                riposteWeapon = player.playerInventoryManager.currentRightHandWeapon as MeleeWeaponItem;
+                riposteCollider = player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider;
+            }
 
             // THE RIPOSTE ANIMATOIN WILL CHANGE DEFENDNG ON THE WEAPON'S ANIMATO CONTROLLER
             character.characterAnimatorManager.PlayTargetActionAnimationInstantly("Riposte_01", true);
@@ -108,6 +115,82 @@ namespace AS
                 damageEffect.holyDamage,
                 damageEffect.poiseDamage);
             Debug.Log("RIPOSTING TARGET: " + hit);
+        }
+
+        public override void AttemptBackstab(RaycastHit hit)
+        {
+            base.AttemptBackstab(hit);
+            //Debug.Log("backstab does something");
+            CharacterManager targetCharacter = hit.transform.gameObject.GetComponent<CharacterManager>();
+
+            // IF TARGET CHAR IS NULL RETURN
+            if (targetCharacter == null)
+                return;
+
+            // IF TARGET CHAR IS NOT RIPOSTABLE SOMEHOW, RETUNR
+            if (!targetCharacter.characterCombatManager.canBeBackstabbed)
+                return;
+
+            // IF TARGET IS ALREADY BEING CRITICALLY STRIKED BY SOMEONE ELSE, RETURN
+            if (targetCharacter.characterNetworkManager.isBeingCriticallyDamaged.Value)
+                return;
+
+            MeleeWeaponItem backstabWeapon;
+            MeleeWeaponDamageCollider backstabCollider;
+
+            
+            if (player.playerNetworkManager.isTwoHandingLeftWeapon.Value)
+            {
+                backstabWeapon = player.playerInventoryManager.currentLeftHandWeapon as MeleeWeaponItem;
+                backstabCollider = player.playerEquipmentManager.leftWeaponManager.meleeDamageCollider;
+            }
+            else
+            {
+                backstabWeapon = player.playerInventoryManager.currentRightHandWeapon as MeleeWeaponItem;
+                backstabCollider = player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider;
+            }
+
+            
+
+            // THE RIPOSTE ANIMATOIN WILL CHANGE DEFENDNG ON THE WEAPON'S ANIMATO CONTROLLER
+            character.characterAnimatorManager.PlayTargetActionAnimationInstantly("Backstab_01", true);
+
+            // DURING CRITICAL STRIKE ANIMATION YOU ARE INVULNERABLE
+            if (character.IsOwner)
+                character.characterNetworkManager.isInvulnerable.Value = true;
+
+            // makE a new damae effect for this damage type
+
+            TakeCriticalDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeCriticalDamageEffect);
+
+            // 2. APPLY ALL OF THE DAMAGE STATS FROM THE COLLIDER TO THE DANAGE EFFECT
+            damageEffect.physicalDamage = backstabCollider.physicalDamage;
+            damageEffect.magicDamage = backstabCollider.magicDamage;
+            damageEffect.fireDamage = backstabCollider.fireDamage;
+            damageEffect.lightningDamage = backstabCollider.lightningDamage;
+            damageEffect.holyDamage = backstabCollider.holyDamage;
+            damageEffect.poiseDamage = backstabCollider.poiseDamage;
+
+            // 3. MULTIPLAY THE DAMAGE BY WEAPOS backstab MODIFIER
+            damageEffect.physicalDamage *= backstabWeapon.backstab_Attack_01_Modifier;
+            damageEffect.magicDamage *= backstabWeapon.backstab_Attack_01_Modifier;
+            damageEffect.fireDamage *= backstabWeapon.backstab_Attack_01_Modifier;
+            damageEffect.lightningDamage *= backstabWeapon.backstab_Attack_01_Modifier;
+            damageEffect.holyDamage *= backstabWeapon.backstab_Attack_01_Modifier;
+            damageEffect.poiseDamage *= backstabWeapon.backstab_Attack_01_Modifier;
+
+            // USE A SERVER RPC SEND THE RIPOSTE TO THE TARGET, WHERE THEY WILL PLAY THE PROPER ANMATION ON THEIR END, AND TAKE DAMAGE
+            targetCharacter.characterNetworkManager.NotifyTheServerOfBackstabServerRpc(
+                targetCharacter.NetworkObjectId, character.NetworkObjectId,
+                "Backstabbed_01",
+                backstabWeapon.itemID,
+                damageEffect.physicalDamage,
+                damageEffect.magicDamage,
+                damageEffect.fireDamage,
+                damageEffect.lightningDamage,
+                damageEffect.holyDamage,
+                damageEffect.poiseDamage);
+            Debug.Log("BACKSTABBING TARGET: " + hit);
         }
 
         public virtual void DrainStaminaBasedOnAttack()
@@ -171,7 +254,15 @@ namespace AS
 
         }
 
-        
+        public WeaponItem SelectWeaponToPerformAshOfWar()
+        {
+            // TODO SELECT WEAPON BASED ON SETUP
+
+            WeaponItem selectedWeapon = player.playerInventoryManager.currentLeftHandWeapon;
+            player.playerNetworkManager.SetCharacterActionHand(false);
+            player.playerNetworkManager.currentWeaponBeingUsed.Value = selectedWeapon.itemID;
+            return selectedWeapon;
+        }
 
     }
 

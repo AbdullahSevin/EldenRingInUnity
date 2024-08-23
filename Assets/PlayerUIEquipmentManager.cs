@@ -14,15 +14,25 @@ namespace AS
 
         [Header("Weapon Slots")]
         [SerializeField] Image rightHandSlot01;
+        private Button rightHandSlot01Button;
         [SerializeField] Image rightHandSlot02;
+        private Button rightHandSlot02Button;
         [SerializeField] Image rightHandSlot03;
+        private Button rightHandSlot03Button;
         [SerializeField] Image leftHandSlot01;
+        private Button leftHandSlot01Button;
         [SerializeField] Image leftHandSlot02;
+        private Button leftHandSlot02Button;
         [SerializeField] Image leftHandSlot03;
+        private Button leftHandSlot03Button;
         [SerializeField] Image headEquipmentSlot;
+        private Button headEquipmentSlotButton;
         [SerializeField] Image bodyEquipmentSlot;
+        private Button bodyEquipmentSlotButton;
         [SerializeField] Image legEquipmentSlot;
+        private Button legEquipmentSlotButton;
         [SerializeField] Image handEquipmentSlot;
+        private Button handEquipmentSlotButton;
 
         // THIS INVENTORY POPULATES WITH RELATED ITEMS WHEN CHANGING EQUIPMENT
         [Header("Equipment Inventory")]
@@ -33,10 +43,28 @@ namespace AS
         [SerializeField] Item currentSelectedItem;
 
 
+        private void Awake()
+        {
+            rightHandSlot01Button      = rightHandSlot01.GetComponentInParent<Button>(true);
+            rightHandSlot02Button      = rightHandSlot02.GetComponentInParent<Button>(true);
+            rightHandSlot03Button      = rightHandSlot03.GetComponentInParent<Button>(true);
+ 
+            leftHandSlot01Button      = leftHandSlot01.GetComponentInParent<Button>(true);
+            leftHandSlot02Button      = leftHandSlot02.GetComponentInParent<Button>(true);
+            leftHandSlot03Button      = leftHandSlot03.GetComponentInParent<Button>(true);
+ 
+            headEquipmentSlotButton  = headEquipmentSlot.GetComponentInParent<Button>(true);
+            bodyEquipmentSlotButton  = bodyEquipmentSlot.GetComponentInParent<Button>(true);
+            legEquipmentSlotButton  = legEquipmentSlot.GetComponentInParent<Button>(true);
+            handEquipmentSlotButton  = handEquipmentSlot.GetComponentInParent<Button>(true);
+
+        }
+
 
         public void OpenEquipmentManagerMenu()
         {
             PlayerUIManager.instance.menuWindowIsOpen = true;
+            ToggleEquipmentButtons(true);
             menu.SetActive(true);
             equipmentInventoryWindow.SetActive(false);
             ClearEquipmentInventroy();
@@ -49,41 +77,59 @@ namespace AS
             RefreshEquipmentSlotIcons();
         }
 
+        private void ToggleEquipmentButtons(bool isEnabled)
+        {
+            rightHandSlot01Button.enabled = isEnabled;
+            rightHandSlot02Button.enabled = isEnabled;
+            rightHandSlot03Button.enabled = isEnabled;
+
+            leftHandSlot01Button.enabled = isEnabled;
+            leftHandSlot02Button.enabled = isEnabled;
+            leftHandSlot03Button.enabled = isEnabled;
+
+            headEquipmentSlotButton.enabled = isEnabled;
+            bodyEquipmentSlotButton.enabled = isEnabled;
+            legEquipmentSlotButton.enabled = isEnabled;
+            handEquipmentSlotButton.enabled = isEnabled;
+        }
+
         public void SelectLastSelectedEquipmentSlot()
         {
             Button lastSelectedButton = null;
 
+            ToggleEquipmentButtons(true);
+
             switch (currentSelectedEquipmentSlot)
             {
                 case EquipmentType.RightWeapon01:
-                    lastSelectedButton = rightHandSlot01.GetComponentInParent<Button>();
+                    lastSelectedButton = rightHandSlot01Button;
                     break;
                 case EquipmentType.RightWeapon02:
-                    lastSelectedButton = rightHandSlot02.GetComponentInParent<Button>();
+                    lastSelectedButton = rightHandSlot02Button;
                     break;
                 case EquipmentType.RightWeapon03:
-                    lastSelectedButton = rightHandSlot03.GetComponentInParent<Button>();
+                    lastSelectedButton = rightHandSlot03Button;
                     break;
                 case EquipmentType.LeftWeapon01:
-                    lastSelectedButton = leftHandSlot01.GetComponentInParent<Button>();
+                    lastSelectedButton = leftHandSlot01Button;
                     break;
                 case EquipmentType.LeftWeapon02:
-                    lastSelectedButton = leftHandSlot02.GetComponentInParent<Button>();
+                    lastSelectedButton = leftHandSlot02Button;
                     break;
                 case EquipmentType.LeftWeapon03:
-                    lastSelectedButton = leftHandSlot03.GetComponentInParent<Button>();
+                    lastSelectedButton = leftHandSlot03Button;
                     break;
                 case EquipmentType.Head:
-                    lastSelectedButton = headEquipmentSlot.GetComponentInParent<Button>();
+                    lastSelectedButton = headEquipmentSlotButton;
                     break;
                 case EquipmentType.Body:
-                    lastSelectedButton = bodyEquipmentSlot.GetComponentInParent<Button>();
+                    lastSelectedButton = bodyEquipmentSlotButton;
                     break;
                 case EquipmentType.Legs:
-                    lastSelectedButton = legEquipmentSlot.GetComponentInParent<Button>();
+                    lastSelectedButton = legEquipmentSlotButton;
                     break;
                 case EquipmentType.Hands:
-                    lastSelectedButton = handEquipmentSlot.GetComponentInParent<Button>();
+                    lastSelectedButton = handEquipmentSlotButton;
                     break;
             }
 
@@ -93,7 +139,7 @@ namespace AS
                 lastSelectedButton.OnSelect(null);
             }
 
-
+            equipmentInventoryWindow.SetActive(false);
 
         }
         
@@ -271,7 +317,7 @@ namespace AS
 
         public void LoadEquipmentInventory()
         {
-            
+            ToggleEquipmentButtons(false);
             equipmentInventoryWindow.SetActive(true);
             Debug.Log("LoadEquipmentInventory worked: inv window set active true");
 
@@ -333,8 +379,10 @@ namespace AS
 
             if (weaponsInInventory.Count <= 0)
             {
+                // TODO SEND THE PLAYER A POP UP MESSAGE THAT HE HAS NONE OF ITEM TYPE IN INVENTORY
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
-                // Debug.Log("possibly this happening");
                 return;
             }
 
@@ -381,6 +429,9 @@ namespace AS
 
             if (headEquipmentInInventory.Count <= 0)
             {
+                // TODO SEND THE PLAYER A POP UP MESSAGE THAT HE HAS NONE OF ITEM TYPE IN INVENTORY
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -427,6 +478,9 @@ namespace AS
 
             if (bodyEquipmentInInventory.Count <= 0)
             {
+                // TODO SEND THE PLAYER A POP UP MESSAGE THAT HE HAS NONE OF ITEM TYPE IN INVENTORY
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -471,6 +525,9 @@ namespace AS
 
             if (legEquipmentInInventory.Count <= 0)
             {
+                // TODO SEND THE PLAYER A POP UP MESSAGE THAT HE HAS NONE OF ITEM TYPE IN INVENTORY
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -515,6 +572,9 @@ namespace AS
 
             if (handEquipmentInInventory.Count <= 0)
             {
+                // TODO SEND THE PLAYER A POP UP MESSAGE THAT HE HAS NONE OF ITEM TYPE IN INVENTORY
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }

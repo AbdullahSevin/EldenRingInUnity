@@ -121,5 +121,24 @@ namespace AS
             return position;
 
         }
+
+        public Vector3 GetBackstabPositionBasedOnWeaponClass(WeaponClass weaponClass)
+        {
+            Vector3 position = new Vector3(0.12f, 0, 0.74f);
+            switch (weaponClass)
+            {
+                case WeaponClass.StraightSword: // CHANGE POSITION HERE IF YOU DESIRE TO DO SO
+                    break;
+                case WeaponClass.Spear:
+                    break;
+                case WeaponClass.MediumShield:
+                    break;
+                case WeaponClass.Fist:
+                    break;
+            }
+
+            return position;
+
+        }
     }
 }

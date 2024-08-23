@@ -6531,6 +6531,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2165239460681933769, guid: 9b1701cf27b15b34c8cb8b5bae424c85,
         type: 3}
+      propertyPath: ashesOfWar.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2165239460681933769, guid: 9b1701cf27b15b34c8cb8b5bae424c85,
+        type: 3}
       propertyPath: weapons.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 0bb25d370f143d642a52134ecb2cb6f1,
@@ -6540,6 +6545,12 @@ PrefabInstance:
       propertyPath: weapons.Array.data[4]
       value: 
       objectReference: {fileID: 11400000, guid: 5cbc692e3368a7145b7fa299e5915774,
+        type: 2}
+    - target: {fileID: 2165239460681933769, guid: 9b1701cf27b15b34c8cb8b5bae424c85,
+        type: 3}
+      propertyPath: ashesOfWar.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 45106a9858ffbef479a0ead553aab283,
         type: 2}
     - target: {fileID: 2165239460681933769, guid: 9b1701cf27b15b34c8cb8b5bae424c85,
         type: 3}
