@@ -89,7 +89,24 @@ namespace AS
             }
         }
 
+        protected override void CheckForParry(CharacterManager damageTarget)
+        {
+            if (charactersDamaged.Contains(damageTarget))
+                return;
 
+            if (!undeadCharacter.characterNetworkManager.isParryable.Value)
+                return;
+
+            if (!damageTarget.IsOwner)
+                return;
+
+            if (damageTarget.characterNetworkManager.isParrying.Value)
+            {
+                charactersDamaged.Add(damageTarget);
+                damageTarget.characterNetworkManager.NotifyServerOfParryServerRpc(undeadCharacter.NetworkObjectId);
+                //damageTarget.characterAnimatorManager.PlayTargetActionAnimationInstantly("Parry_Land_01", true);
+            }
+        }
 
     }
 }

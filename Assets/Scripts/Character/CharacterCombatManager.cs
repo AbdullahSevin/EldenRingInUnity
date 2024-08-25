@@ -214,6 +214,23 @@ namespace AS
             }
         }
 
+        public void EnableIsParrying()
+        {
+            if (character.IsOwner)
+            {
+                character.characterNetworkManager.isParrying.Value = true;
+            }
+
+        }
+
+        public void DisableIsParrying()
+        {
+            if (character.IsOwner)
+            {
+                character.characterNetworkManager.isParrying.Value = false;
+            }
+        }
+
         public void EnableIsRipostable()
         {
             if (character.IsOwner)
@@ -252,6 +269,13 @@ namespace AS
 
 
         }
+
+        public virtual void CloseAllDamageColliders()
+        {
+
+        }
+
+
 
     }
 }

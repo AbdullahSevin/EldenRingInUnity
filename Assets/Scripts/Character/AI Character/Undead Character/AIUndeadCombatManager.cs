@@ -62,7 +62,14 @@ namespace AS
             leftHandDamageCollider.DisableDamageCollider();
         }
 
+        public override void CloseAllDamageColliders()
+        {
+            base.CloseAllDamageColliders();
 
+            rightHandDamageCollider.DisableDamageCollider();
+            leftHandDamageCollider.DisableDamageCollider();
+
+        }
 
 
 

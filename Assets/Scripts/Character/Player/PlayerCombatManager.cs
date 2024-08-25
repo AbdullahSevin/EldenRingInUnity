@@ -42,6 +42,13 @@ namespace AS
 
         }
 
+        public override void CloseAllDamageColliders()
+        {
+            base.CloseAllDamageColliders();
+
+            player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider.DisableDamageCollider();
+            player.playerEquipmentManager.leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
+        }
 
         public override void AttemptRiposte(RaycastHit hit)
         {

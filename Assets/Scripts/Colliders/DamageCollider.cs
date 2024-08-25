@@ -8,6 +8,7 @@ namespace AS
 {
     public class DamageCollider : MonoBehaviour
     {
+        
         [Header("Collider")]
         [SerializeField] protected Collider damageCollider;
 
@@ -40,27 +41,24 @@ namespace AS
            
             CharacterManager damageTarget = other.GetComponentInParent<CharacterManager>();
 
-            //  NOT USING THIS ONE
-            //if (damageTarget = null)
-            //{
-            //    damageTarget = other.GetComponent<CharacterManager>();
-            //}
-
             if (damageTarget != null)
             {
+                
                 contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+
+                //  CHECK IF WE CAN DAMAGE THIS TARGET BASED ON FRIENDLY FIRE
+
+                //  CHECK IF OUR ATTACK TYPE CAN BE BLOCKED
+                //  CHECK IF TARGET IS BLOCKING
+                CheckForBlock(damageTarget);
+
+                // CHECK IF TARGET IS PARRYING
+                CheckForParry(damageTarget);
+
+                //  DAMAGE
+                if (!damageTarget.characterNetworkManager.isInvulnerable.Value)
+                    DamageTarget(damageTarget);
             }
-
-            //  CHECK IF WE CAN DAMAGE THIS TARGET BASED ON FRIENDLY FIRE
-
-            //  CHECK IF OUR ATTACK TYPE CAN BE BLOCKED
-            //  CHECK IF TARGET IS BLOCKING
-            CheckForBlock(damageTarget);
-
-
-            //  DAMAGE
-
-            DamageTarget(damageTarget);
         }
 
 
@@ -108,6 +106,11 @@ namespace AS
             
         }
 
+        protected virtual void CheckForParry(CharacterManager damageTarget)
+        {
+
+        }
+
         protected virtual void GetBlockingDotValues(CharacterManager damageTarget)
         {
             //for projectýle attacks
@@ -140,8 +143,6 @@ namespace AS
             damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
 
         }
-
-        
 
         public virtual void EnableDamageCollider()
         {

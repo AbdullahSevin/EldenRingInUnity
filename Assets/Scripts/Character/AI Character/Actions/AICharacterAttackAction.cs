@@ -10,6 +10,7 @@ namespace AS
     {
         [Header("Attack")]
         [SerializeField] private string attackAnimation;
+        [SerializeField] bool isParryable = true;
 
         [Header("Combo Action")]
         public AICharacterAttackAction comboAction;  //  The combo action of this attack action
@@ -30,6 +31,7 @@ namespace AS
             //aiCharacter.characterAnimatorManager.PlayTargetAttackActionAnimation(attackType, attackAnimation, true);
 
             aiCharacter.characterAnimatorManager.PlayTargetActionAnimation(attackAnimation, true);
+            aiCharacter.aiCharacterNetworkManager.isParryable.Value = true;
 
 
         }
