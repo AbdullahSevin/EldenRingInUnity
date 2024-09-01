@@ -5655,7 +5655,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -401}
+  m_AnchoredPosition: {x: 0, y: -613}
   m_SizeDelta: {x: 0, y: 814}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2073117014
@@ -6105,6 +6105,24 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
         type: 3}
+      propertyPath: kamehameha_Beam_VFX
+      value: 
+      objectReference: {fileID: 8812124621181868576, guid: 29436d0933b4bcd41aa6d76941156654,
+        type: 3}
+    - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
+        type: 3}
+      propertyPath: kamehameha_Burst_VFX
+      value: 
+      objectReference: {fileID: 9057778215283270173, guid: 7b315237e9adc1248a9d9b8621656401,
+        type: 3}
+    - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
+        type: 3}
+      propertyPath: kamehameha_Charge_VFX
+      value: 
+      objectReference: {fileID: 873728295497205165, guid: e1f4e12db9804f841b0433ca89efd33a,
+        type: 3}
+    - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
+        type: 3}
       propertyPath: takeBlockedDamageEffect
       value: 
       objectReference: {fileID: 11400000, guid: e903c4dcfc5e142419909e449922e2f9,
@@ -6131,6 +6149,12 @@ PrefabInstance:
       propertyPath: instantEffects.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
+        type: 3}
+      propertyPath: kamehameha_Small_Charge_VFX
+      value: 
+      objectReference: {fileID: 873728295497205165, guid: 917bb87e11922de449cbdd900c06d1ec,
+        type: 3}
     - target: {fileID: 7080213157438044371, guid: f30b6dee793fb134c95838e72cb1e362,
         type: 3}
       propertyPath: staticEffects.Array.data[0]
@@ -7045,6 +7069,11 @@ PrefabInstance:
       propertyPath: rollSFX
       value: 
       objectReference: {fileID: 8300000, guid: c91428bf3b256ea4581fbcf54d620d3d, type: 3}
+    - target: {fileID: 886594965411540445, guid: 069897da8df750143b7a1b5b6c48b748,
+        type: 3}
+      propertyPath: kamehamehaSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c8032ee68183c34fbc919f60148065e, type: 3}
     - target: {fileID: 886594965411540445, guid: 069897da8df750143b7a1b5b6c48b748,
         type: 3}
       propertyPath: pickUpItemSFX

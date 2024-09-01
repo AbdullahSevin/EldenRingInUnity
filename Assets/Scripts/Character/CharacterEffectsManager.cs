@@ -20,6 +20,10 @@ namespace AS
         [Header("VFX")]
         [SerializeField] GameObject bloodSplatterVFX;
         [SerializeField] GameObject criticalBloodSplatterVFX;
+        [SerializeField] GameObject kamehameha_Small_Charge_VFX;
+        [SerializeField] GameObject kamehameha_Charge_VFX;
+        [SerializeField] GameObject kamehameha_Burst_VFX;
+        [SerializeField] GameObject kamehameha_Beam_VFX;
 
         [Header("Static Effects")]
         public List<StaticCharacterEffect> staticEffects =  new List<StaticCharacterEffect>();
@@ -114,6 +118,90 @@ namespace AS
                 {
                     staticEffects.RemoveAt(i);
                 }
+            }
+
+        }
+
+
+        public void PlayKamehamehaSmallChargeVFX()
+        {
+            GameObject kamehamehaHandObject = character.characterSpecialMovesManager.kamehamehaHandTransformObject;
+            Debug.Log("releasepoint:   " + kamehamehaHandObject);
+            //  IF WE MANUALLY HAVE PLACED A BLOOD SPLATTER VFX ON THIS MODEL, PLAY ITS VERSION
+            if (kamehameha_Charge_VFX != null)
+            {
+                GameObject kamehamehaWave = Instantiate(kamehameha_Small_Charge_VFX, kamehamehaHandObject.transform.position, Quaternion.identity);
+                kamehamehaWave.transform.SetParent(kamehamehaHandObject.transform);
+
+            }
+            //  ELSE, USE THE GENERIC (DEFAULT VERSION) WE HAVE ELSEWHERE
+            else
+            {
+                GameObject kamehamehaWave = Instantiate(WorldCharacterEffectsManager.instance.kamehameha_Small_Charge_VFX, kamehamehaHandObject.transform.position, Quaternion.identity);
+                kamehamehaWave.transform.SetParent(kamehamehaHandObject.transform);
+
+            }
+
+        }
+
+
+        public void PlayKamehamehaChargeVFX()
+        {
+            GameObject kamehamehaHandObject = character.characterSpecialMovesManager.kamehamehaHandTransformObject;
+            Debug.Log("releasepoint:   " + kamehamehaHandObject);
+            //  IF WE MANUALLY HAVE PLACED A BLOOD SPLATTER VFX ON THIS MODEL, PLAY ITS VERSION
+            if (kamehameha_Charge_VFX != null)
+            {
+                GameObject kamehamehaWave = Instantiate(kamehameha_Charge_VFX, kamehamehaHandObject.transform.position, Quaternion.identity);
+                kamehamehaWave.transform.SetParent(kamehamehaHandObject.transform);
+
+            }
+            //  ELSE, USE THE GENERIC (DEFAULT VERSION) WE HAVE ELSEWHERE
+            else
+            {
+                GameObject kamehamehaWave = Instantiate(WorldCharacterEffectsManager.instance.kamehameha_Charge_VFX, kamehamehaHandObject.transform.position, Quaternion.identity);
+                kamehamehaWave.transform.SetParent(kamehamehaHandObject.transform);
+
+            }
+
+        }
+
+        public void PlayKamehamehaBurstVFX()
+        {
+            GameObject releasePointObject = character.characterSpecialMovesManager.kamehamehaReleaseTransformObject;
+            //  IF WE MANUALLY HAVE PLACED A BLOOD SPLATTER VFX ON THIS MODEL, PLAY ITS VERSION
+            if (kamehameha_Burst_VFX != null)
+            {
+                GameObject kamehamehaWave = Instantiate(kamehameha_Burst_VFX, releasePointObject.transform.position, Quaternion.identity);
+                kamehamehaWave.transform.SetParent(releasePointObject.transform);
+
+            }
+            //  ELSE, USE THE GENERIC (DEFAULT VERSION) WE HAVE ELSEWHERE
+            else
+            {
+                GameObject kamehamehaWave = Instantiate(WorldCharacterEffectsManager.instance.kamehameha_Burst_VFX, releasePointObject.transform.position, Quaternion.identity);
+                kamehamehaWave.transform.SetParent(releasePointObject.transform);
+            }
+
+        }
+
+        public void PlayKamehamehaBeamVFX()
+        {
+            GameObject releasePointObject = character.characterSpecialMovesManager.kamehamehaReleaseTransformObject;
+            Vector3 kamehamehaDirection = character.characterSpecialMovesManager.kamehamehaReleaseTransformObject.transform.forward;
+            //  IF WE MANUALLY HAVE PLACED A BLOOD SPLATTER VFX ON THIS MODEL, PLAY ITS VERSION
+            if (kamehameha_Beam_VFX != null)
+            {
+                GameObject kamehamehaWave = Instantiate(kamehameha_Beam_VFX, releasePointObject.transform.position, Quaternion.LookRotation(kamehamehaDirection));
+                kamehamehaWave.transform.SetParent(releasePointObject.transform);
+
+            }
+            //  ELSE, USE THE GENERIC (DEFAULT VERSION) WE HAVE ELSEWHERE
+            else
+            {
+                GameObject kamehamehaWave = Instantiate(WorldCharacterEffectsManager.instance.kamehameha_Beam_VFX, releasePointObject.transform.position, Quaternion.LookRotation(kamehamehaDirection));
+                kamehamehaWave.transform.SetParent(releasePointObject.transform);
+
             }
 
         }

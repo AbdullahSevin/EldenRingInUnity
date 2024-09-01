@@ -134,3 +134,11 @@ public enum ItemPickupType
     WorldSpawn,
     EnemyDrop
 }
+
+
+public enum SpecialMove
+{
+    Kamehameha,
+    Kienzan,
+    FinalFlash
+}

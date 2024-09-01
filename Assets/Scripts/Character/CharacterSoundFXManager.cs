@@ -85,6 +85,12 @@ namespace AS
         }
 
 
+        public void PlayKamehamehaSoundFX()
+        {
+            audioSource.PlayOneShot(WorldSoundFXManager.instance.kamehamehaSFX);
+        }
+
+
     }
 
 }

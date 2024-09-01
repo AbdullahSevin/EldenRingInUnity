@@ -169,6 +169,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSlot: 0
   currentWeaponModel: {fileID: 0}
+--- !u!1 &4179058457067888988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2882627502382861479}
+  m_Layer: 7
+  m_Name: KamehamehaHandVFXPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2882627502382861479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4179058457067888988}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1, y: 0.1, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8343940290288805492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7183715449484417996
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +277,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSlot: 1
   currentWeaponModel: {fileID: 0}
+--- !u!1 &8647172871842912377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3003564139364063661}
+  m_Layer: 7
+  m_Name: KamehamehaReleasePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3003564139364063661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8647172871842912377}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.138, y: 0.698, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8335289354262803371}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2128024732136221753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -705,6 +767,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1176686548608896205, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
       propertyPath: m_Layer
@@ -870,6 +937,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 1
       addedObject: {fileID: 1695144108754272094}
+    - targetCorrespondingSourceObject: {fileID: -7011284792763705418, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+        type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 3003564139364063661}
     - targetCorrespondingSourceObject: {fileID: 6582942952909536244, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
       insertIndex: -1
@@ -886,6 +957,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5713604027348891591}
+    - targetCorrespondingSourceObject: {fileID: 2221872609835778665, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2882627502382861479}
     - targetCorrespondingSourceObject: {fileID: -3990698397054048210, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
       insertIndex: -1
@@ -911,6 +986,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1118105768141700785}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1137100738588380719}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
       insertIndex: -1
@@ -942,10 +1021,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2279601104469166460}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8912483969536143293}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
@@ -955,6 +1030,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4092246107875816947}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2279601104469166460}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cda0258ea2b8b394b85e8bb5d1ce3254,
         type: 3}
       insertIndex: -1
@@ -1479,7 +1558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4103628025
+  GlobalObjectIdHash: 601771572
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1512,6 +1591,7 @@ MonoBehaviour:
   characterLocomotionManager: {fileID: 0}
   characterUIManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
+  characterSpecialMovesManager: {fileID: 0}
   characterGroup: 0
   isPerformingAction: 0
   respawnCharacters: 0
@@ -1526,6 +1606,7 @@ MonoBehaviour:
   playerInteractionManager: {fileID: 0}
   playerEffectsManager: {fileID: 0}
   playerBodyManager: {fileID: 0}
+  playerSpecialMovesManager: {fileID: 0}
 --- !u!114 &-3626920088269914178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,12 +1620,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastAttackAnimationPerformed: 
+  previousPoiseDamageTaken: 0
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 1695144108754272094}
   canPerformRollingAttack: 0
   canPerformBackstepAttack: 0
   canBlock: 1
+  canBeBackstabbed: 1
+  criticalAttackDistanceCheck: 0.7
+  pendingCriticalDamage: 0
   currentWeaponBeingUsed: {fileID: 0}
   canComboWithMainHandWeapon: 0
 --- !u!114 &1118105768141700785
@@ -1584,6 +1669,20 @@ MonoBehaviour:
   jumpForwardSpeed: 10
   freeFallSpeed: 2
   dodgeStaminaCost: 5
+--- !u!114 &-1137100738588380719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052467624509725004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c8d2ccb72e89340acf46d8739a56dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kamehamehaHandTransformObject: {fileID: 4179058457067888988}
+  kamehamehaReleaseTransformObject: {fileID: 8647172871842912377}
 --- !u!114 &1433877843247259183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1617,6 +1716,10 @@ MonoBehaviour:
     m_InternalValue: 0
   isBlocking:
     m_InternalValue: 0
+  isParrying:
+    m_InternalValue: 0
+  isParryable:
+    m_InternalValue: 0
   isAttacking:
     m_InternalValue: 0
   isInvulnerable:
@@ -1628,6 +1731,14 @@ MonoBehaviour:
   isJumping:
     m_InternalValue: 0
   isChargingAttack:
+    m_InternalValue: 0
+  isRipostable:
+    m_InternalValue: 0
+  isBeingCriticallyDamaged:
+    m_InternalValue: 0
+  isPerformingSpecialMove:
+    m_InternalValue: 0
+  isPerformingKamehameha:
     m_InternalValue: 0
   currentHealth:
     m_InternalValue: 950
@@ -1758,16 +1869,17 @@ MonoBehaviour:
     type: 2}
   currentLeftHandWeapon: {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b,
     type: 2}
-  currentTwoHandWeapon: {fileID: 0}
+  currentTwoHandWeapon: {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b,
+    type: 2}
   weaponsInRightHandSlots:
-  - {fileID: 11400000, guid: 1e3fa2f4f84196644bf0944d9c3df860, type: 2}
+  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
   - {fileID: 11400000, guid: 2697695148ab38144b2c54a33f0674c2, type: 2}
-  - {fileID: 11400000, guid: 0bb25d370f143d642a52134ecb2cb6f1, type: 2}
+  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
   rightHandWeaponIndex: 0
   weaponsInLeftHandSlots:
-  - {fileID: 11400000, guid: 5cbc692e3368a7145b7fa299e5915774, type: 2}
+  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
   - {fileID: 11400000, guid: 2697695148ab38144b2c54a33f0674c2, type: 2}
-  - {fileID: 11400000, guid: 0bb25d370f143d642a52134ecb2cb6f1, type: 2}
+  - {fileID: 11400000, guid: 6555fdc5dbe6bc740ac3ffd7e239254b, type: 2}
   leftHandWeaponIndex: 0
   headEquipment: {fileID: 11400000, guid: bf8fcfe929f19b34586cb654411ca2f8, type: 2}
   bodyEquipment: {fileID: 0}
@@ -1797,6 +1909,8 @@ MonoBehaviour:
   backSlot: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
   leftHandWeaponModel: {fileID: 0}
+  rightWeaponManager: {fileID: 0}
+  leftWeaponManager: {fileID: 0}
   equipNewItems: 0
   hatsObject: {fileID: 8642059095677795847, guid: 787c19fd52fbde843925dbb25424d2d0,
     type: 3}
@@ -2014,36 +2128,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168ebf60219e539498749b28e05f078d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodSplatterVFX: {fileID: 0}
+  bloodSplatterVFX: {fileID: 3548588485384254792, guid: e010d7d1c054bd641a08a05822733a88,
+    type: 3}
+  criticalBloodSplatterVFX: {fileID: 3548588485384254792, guid: ab655e979320bf64ab66d91927977b18,
+    type: 3}
+  kamehameha_Small_Charge_VFX: {fileID: 873728295497205165, guid: 917bb87e11922de449cbdd900c06d1ec,
+    type: 3}
+  kamehameha_Charge_VFX: {fileID: 873728295497205165, guid: e1f4e12db9804f841b0433ca89efd33a,
+    type: 3}
+  kamehameha_Burst_VFX: {fileID: 9057778215283270173, guid: 7b315237e9adc1248a9d9b8621656401,
+    type: 3}
+  kamehameha_Beam_VFX: {fileID: 8812124621181868576, guid: 29436d0933b4bcd41aa6d76941156654,
+    type: 3}
   staticEffects: []
   effectToTest: {fileID: 11400000, guid: f1af74c0978c2f74c966e3754900c63e, type: 2}
   processEffect: 0
---- !u!143 &2279601104469166460
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7052467624509725004}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1.65
-  m_Radius: 0.2
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &8912483969536143293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2103,6 +2202,32 @@ MonoBehaviour:
   - {fileID: 9200403604221021776}
   - {fileID: 3804782284540912907}
   femaleEyebrows: {fileID: 1910727501803631806}
+--- !u!143 &2279601104469166460
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052467624509725004}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.65
+  m_Radius: 0.2
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!82 &9002243105292092526
 AudioSource:
   m_ObjectHideFlags: 0

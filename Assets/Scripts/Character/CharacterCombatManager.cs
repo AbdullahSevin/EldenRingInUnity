@@ -36,6 +36,10 @@ namespace AS
         [SerializeField] float criticalAttackDistanceCheck = 0.7f;
         public int pendingCriticalDamage;
 
+        
+        
+
+
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();
@@ -275,7 +279,12 @@ namespace AS
 
         }
 
+        
 
+        public virtual void AttemptToPerformTeleport()
+        {
+
+        }
 
     }
 }

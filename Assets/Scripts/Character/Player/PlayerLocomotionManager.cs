@@ -68,6 +68,7 @@ namespace AS
                 // IF NOT LOCKED ON PASS MOVE AMOUNT
                 if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)
                 {
+
                     player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
                 }
                 // IF LOCKED ON PASS HORIZONTAL AND VERTICAL
@@ -86,6 +87,8 @@ namespace AS
             HandleRotation();
             HandleJumpingMovement();
             HandleFreeFallMovement();
+            
+            
         }
 
         private void GetMovementValues()

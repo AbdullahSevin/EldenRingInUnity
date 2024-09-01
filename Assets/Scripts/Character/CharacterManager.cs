@@ -23,6 +23,7 @@ namespace AS
         [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
         [HideInInspector] public CharacterUIManager characterUIManager;
         [HideInInspector] public CharacterStatsManager characterStatsManager;
+        [HideInInspector] public CharacterSpecialMovesManager characterSpecialMovesManager;
 
 
         [Header("Character Group")]
@@ -50,6 +51,7 @@ namespace AS
             characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
             characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
             characterUIManager = GetComponent<CharacterUIManager>();
+            characterSpecialMovesManager = GetComponent<CharacterSpecialMovesManager>();
         }
 
         protected virtual void Start()

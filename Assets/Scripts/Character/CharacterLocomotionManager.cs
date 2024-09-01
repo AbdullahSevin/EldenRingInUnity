@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.UI;
 
 
 namespace AS
@@ -34,7 +35,7 @@ namespace AS
 
         public void Start()
         {
-
+            
         }
 
         protected virtual void Update()

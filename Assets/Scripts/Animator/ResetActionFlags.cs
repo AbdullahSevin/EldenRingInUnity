@@ -22,6 +22,7 @@ namespace AS
             character.characterAnimatorManager.applyRootMotion = false;
             character.characterLocomotionManager.canRotate = true;
             character.characterLocomotionManager.canMove = true;
+            Debug.Log("Resetted Action Flags");
             character.characterLocomotionManager.isRolling = false  ;
             character.characterCombatManager.DisableCanDoCombo();
             character.characterCombatManager.DisableCanDoRollingAttack();
@@ -36,6 +37,8 @@ namespace AS
                 character.characterNetworkManager.isBeingCriticallyDamaged.Value = false;
                 character.characterCombatManager.canBeBackstabbed = false;
                 character.characterNetworkManager.isParrying.Value = false;
+                character.characterNetworkManager.isPerformingSpecialMove.Value = false;
+                character.characterNetworkManager.isPerformingKamehameha.Value = false;
             }
             
         }

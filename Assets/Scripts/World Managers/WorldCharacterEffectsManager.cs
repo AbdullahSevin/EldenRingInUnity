@@ -12,6 +12,11 @@ namespace AS
         [Header("VFX")]
         public GameObject bloodSplatterVFX;
         public GameObject criticalBloodSplatterVFX;
+        public GameObject kamehameha_Small_Charge_VFX;
+        public GameObject kamehameha_Charge_VFX;
+        public GameObject kamehameha_Burst_VFX;
+        public GameObject kamehameha_Beam_VFX;
+
 
         [Header("Damage")]
         public TakeDamageEffect takeDamageEffect;

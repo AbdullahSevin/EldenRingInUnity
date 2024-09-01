@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.Interactions;
 using UnityEngine.SceneManagement;
 
 
 namespace AS
-    // just trying my new wireless keyboard, ignore this line.
+// just trying my new wireless keyboard, ignore this line.
 {
     public class PlayerInputManager : MonoBehaviour
     {
@@ -74,7 +76,35 @@ namespace AS
         [Header("UI INPUTS")]
         [SerializeField] bool openCharacterMenuInput = false;
         [SerializeField] bool closeMenuInput = false;
-        
+
+        [Header("SPECIALS")]
+        [SerializeField] bool specialMoveInput_K = false;
+        [SerializeField] bool check_Kamehameha = false;
+        [SerializeField] public bool isTryingForSpecialMoveInput = false;
+        [SerializeField] private List<string> specialMovesInputList;
+        Coroutine specialMoveListCleanCoroutine;
+
+        [SerializeField] float specialMoveCountDownTime;
+        // SPECIAL MOVES DICTIONARY
+        private Dictionary<string, SpecialMove> specialMovesDictionary = new Dictionary<string, SpecialMove>()
+{
+    { string.Join("", new List<string> { "K", "A", "M", "E", "H", "A", "M", "E", "H", "A" }), SpecialMove.Kamehameha },
+    { string.Join("", new List<string> { "K", "I", "E", "N", "Z", "A", "N" }), SpecialMove.Kienzan },
+    { string.Join("", new List<string> { "K", "F", "I", "N", "A", "L", "F", "L", "A", "S", "H" }), SpecialMove.FinalFlash }
+};
+
+
+        // SPECIAL MOVES LIST OF LISTS
+        List<List<string>> listOfSpecialMovesLists = new List<List<string>>()
+{
+    new List<string> { "K", "A", "M", "E", "H", "A", "M", "E", "H", "A" },
+    new List<string> { "K", "I", "E", "N", "Z", "A", "N" },
+    new List<string> { "K", "F", "I", "N", "A", "L", "F", "L", "A", "S", "H" }
+    // GOTTA ADD "K" FOR THE FIRST MEMBER OF THE LIST FOR EVERY SPECIAL MOVE, DON'T ASK WHY :D, JUST DO IT.
+};
+
+        [Header("SKILLS")]
+        [SerializeField] bool teleport_Input;
 
 
 
@@ -218,6 +248,44 @@ namespace AS
                 playerControls.PlayerActions.OpenCharacterMenu.performed += i => openCharacterMenuInput = true;
 
 
+                // SPECIALS
+                playerControls.Specials.K.performed += i => specialMoveInput_K = true;
+
+                playerControls.Specials.A.performed += i => specialMoveInput_Key_Handler("A");
+                playerControls.Specials.B.performed += i => specialMoveInput_Key_Handler("B");
+                playerControls.Specials.C.performed += i => specialMoveInput_Key_Handler("C");
+                playerControls.Specials.D.performed += i => specialMoveInput_Key_Handler("D");
+                playerControls.Specials.E.performed += i => specialMoveInput_Key_Handler("E");
+                playerControls.Specials.F.performed += i => specialMoveInput_Key_Handler("F");
+                playerControls.Specials.G.performed += i => specialMoveInput_Key_Handler("G");
+                playerControls.Specials.H.performed += i => specialMoveInput_Key_Handler("H");
+                playerControls.Specials.I.performed += i => specialMoveInput_Key_Handler("I");
+                playerControls.Specials.J.performed += i => specialMoveInput_Key_Handler("J");
+                playerControls.Specials.K.performed += i => specialMoveInput_Key_Handler("K");
+                playerControls.Specials.L.performed += i => specialMoveInput_Key_Handler("L");
+                playerControls.Specials.M.performed += i => specialMoveInput_Key_Handler("M");
+                playerControls.Specials.N.performed += i => specialMoveInput_Key_Handler("N");
+                playerControls.Specials.O.performed += i => specialMoveInput_Key_Handler("O");
+                playerControls.Specials.P.performed += i => specialMoveInput_Key_Handler("P");
+                playerControls.Specials.Q.performed += i => specialMoveInput_Key_Handler("Q");
+                playerControls.Specials.R.performed += i => specialMoveInput_Key_Handler("R");
+                playerControls.Specials.S.performed += i => specialMoveInput_Key_Handler("S");
+                playerControls.Specials.T.performed += i => specialMoveInput_Key_Handler("T");
+                playerControls.Specials.U.performed += i => specialMoveInput_Key_Handler("U");
+                playerControls.Specials.V.performed += i => specialMoveInput_Key_Handler("V");
+                playerControls.Specials.W.performed += i => specialMoveInput_Key_Handler("W");
+                playerControls.Specials.X.performed += i => specialMoveInput_Key_Handler("X");
+                playerControls.Specials.Y.performed += i => specialMoveInput_Key_Handler("Y");
+                playerControls.Specials.Z.performed += i => specialMoveInput_Key_Handler("Z");
+
+
+
+                // SKILLS
+                playerControls.PlayerActions.Teleport.performed += i => teleport_Input = true;
+
+
+
+
             }
             playerControls.Enable();
         }
@@ -270,6 +338,8 @@ namespace AS
             HandleInteractionInput();
             HandleCloseUIInput();
             HandleOpenCharacterMenuInput();
+            HandleTeleportInput();
+            HandleSpecialMoveInput();
         }
 
         // TWO HAND
@@ -425,6 +495,10 @@ namespace AS
         // MOVEMENT
         private void HandlePlayerMovementInput()
         {
+            if (PlayerInputManager.instance.isTryingForSpecialMoveInput)
+            {
+                return;
+            }
             verticalInput = movementInput.y;
             horizontalInput = movementInput.x;
 
@@ -614,6 +688,9 @@ namespace AS
 
                 //  TO DO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
+                if (player.isPerformingAction)
+                    return;
+
                 weaponPerformingAshOfWar.ashOfWarAction.AttempToPerformAction(player);
 
             }
@@ -632,6 +709,12 @@ namespace AS
                 if (PlayerUIManager.instance.menuWindowIsOpen)
                     return;
 
+                if (player.isPerformingAction)
+                    return;
+
+                if (PlayerInputManager.instance.isTryingForSpecialMoveInput)
+                    return;
+
                 player.playerEquipmentManager.SwitchRightWeapon();
             }
             
@@ -648,6 +731,13 @@ namespace AS
                 }
 
                 if (PlayerUIManager.instance.menuWindowIsOpen)
+                    return;
+
+                if (player.isPerformingAction) 
+                    return;
+                
+
+                if (PlayerInputManager.instance.isTryingForSpecialMoveInput)
                     return;
 
                 player.playerEquipmentManager.SwitchLeftWeapon();
@@ -740,7 +830,6 @@ namespace AS
             }
         }
 
-
         private void HandleCloseUIInput()
         {
             if (closeMenuInput)
@@ -755,6 +844,113 @@ namespace AS
 
         }
 
+        private void HandleTeleportInput()
+        {
+            if (teleport_Input)
+            {
+                teleport_Input = false;
+
+                player.playerCombatManager.AttemptToPerformTeleport();
+
+
+            }
+                
+        }
+
+        private void HandleSpecialMoveInput()
+        {
+            // CHECK IF WE INPUTTED K
+            if (specialMoveInput_K)
+            {
+                // INPUT K IS STARTER OF ALL SPECIAL MOVE INPUTS, FOR KAMEHAMEHA IT STAYS DIRECTLY WITH K
+                specialMoveInput_K = false;
+                if (PlayerUIManager.instance.menuWindowIsOpen)
+                {
+                    return;
+                }
+
+                if (isTryingForSpecialMoveInput)
+                {
+                    specialMovesInputList.Add("K");
+                    DecideToPerformSpecialMoveOrClearListOrContinueInputting();
+                    Debug.Log(string.Join(" ", specialMovesInputList));
+                }
+
+                    // CHECK IF WE ARE ATTEMPTING TO WRITE ANOTHER SPECIAL MOVE ATM
+                if (!isTryingForSpecialMoveInput)
+                {
+                    // IF NOT SET IS TRYING FOR SPECIAL MOVE INPUT TO TRUE
+                    isTryingForSpecialMoveInput = true;
+                    // SEND THE FIRST LETTER OF THE KAMEHAMEHA SPECIAL MOVE
+                    SpecialMoveListAndCountDownerStarter("K");
+                }
+                
+            }
+
+            // Handle other special moves similarly
+        }
+
+        private void SpecialMoveListAndCountDownerStarter(string specialMoveFirstLetter, float countDownTime = 3f)
+        {
+            // MAKE A LIST TO STORE INPUTS FOR SPECIAL MOVE'S NAME WRITING TRY
+            specialMovesInputList = new List<string> { specialMoveFirstLetter };
+            Debug.Log("K");
+
+            specialMoveCountDownTime = countDownTime;
+            
+            // START A COROUTINE TO WAIT FOR X SECONDS AND THEN CLEAN THE LIST RESULTING VIA TIMEOUT, (FAILED SPECIAL MOVE ATTEMPT)
+            specialMoveListCleanCoroutine = StartCoroutine(specialMoveCountDownerAndListCleaner(countDownTime));
+
+        }
+
+        private void specialMoveInput_Key_Handler(string inputtedKey)
+        {
+
+            if (isTryingForSpecialMoveInput)
+            {
+                specialMovesInputList.Add(inputtedKey);
+                DecideToPerformSpecialMoveOrClearListOrContinueInputting();
+                Debug.Log(string.Join(" ", specialMovesInputList));
+            }
+        }
+
+        private IEnumerator specialMoveCountDownerAndListCleaner(float countDownTime)
+        {
+            yield return new WaitForSecondsRealtime(countDownTime);
+            Debug.Log("Time Out");
+            SpecialMovesListCleaner();
+        }
+
+        public void SpecialMovesListCleaner()
+        {
+            if (specialMoveListCleanCoroutine != null)
+            {
+                StopCoroutine(specialMoveListCleanCoroutine);
+                specialMoveListCleanCoroutine = null;
+            }
+            specialMovesInputList.Clear();
+            isTryingForSpecialMoveInput = false;
+        }
+
+        private void DecideToPerformSpecialMoveOrClearListOrContinueInputting()
+        {
+            foreach (var specialMove in listOfSpecialMovesLists)
+            {
+                
+                if (specialMove.Take(specialMovesInputList.Count).SequenceEqual(specialMovesInputList))
+                {
+                    if (specialMove.Count == specialMovesInputList.Count)
+                    {
+                        // perform special move
+                        SpecialMove specialMoveEnum = specialMovesDictionary[string.Join("", specialMove)];
+                        player.playerSpecialMovesManager.AttemptToPerformSpecialMove(specialMoveEnum);
+                        SpecialMovesListCleaner();
+                    }
+                    return;
+                }
+            }
+            SpecialMovesListCleaner();
+        }
 
 
 

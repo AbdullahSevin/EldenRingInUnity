@@ -214,7 +214,9 @@ namespace AS
             // WE CAN THEN CHECK FOR THIS BEFORE ATTEMPTING NEW ACTIONS
             character.isPerformingAction = isPorformingAction;
             character.characterLocomotionManager.canRotate = canRotate;
+            Debug.Log(canRotate);
             character.characterLocomotionManager.canMove = canMove;
+            Debug.Log("YETER ULANNNN");
 
             Debug.Log("Action Animation played instantly: " + targetAnimation + " char:  " + character);
 

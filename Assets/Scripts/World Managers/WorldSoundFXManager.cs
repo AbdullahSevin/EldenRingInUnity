@@ -22,6 +22,9 @@ namespace AS
         public AudioClip stanceBreakSFX;
         public AudioClip criticalStrikeSFX;
 
+        [Header("Special Move")]
+        public AudioClip kamehamehaSFX;
+
         private void Awake()
         {
             if (instance == null)

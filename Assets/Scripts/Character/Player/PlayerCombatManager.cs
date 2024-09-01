@@ -271,6 +271,46 @@ namespace AS
             return selectedWeapon;
         }
 
+        public override void AttemptToPerformTeleport()
+        {
+            if (player.playerNetworkManager.isLockedOn.Value)
+            {
+                //if (currentTarget == null || currentTarget.isDead.Value)
+                //{
+                //    return;
+                //}
+
+                //// CALCULATE THE POSITION TO TELEPORT BEHIND THE TARGET
+                //Vector3 teleportOffset = currentTarget.transform.position - currentTarget.transform.forward;
+
+                //// TELEPORT THE PLAYER
+                //player.transform.position = teleportOffset;
+
+                //// ROTATE THE PLAYER TO MAKE HIM FACE THE SAME DIRECTION AS THE TARGET
+                //player.transform.rotation = Quaternion.LookRotation(currentTarget.transform.forward);
+
+
+                if (currentTarget == null || currentTarget.isDead.Value)
+                {
+                    return;
+                }
+
+                // CALCULATE THE POSITION TO TELEPORT BEHIND THE TARGET
+                Vector3 teleportOffset = currentTarget.transform.position + (currentTarget.transform.forward * 2);
+
+                // TELEPORT THE PLAYER
+                player.transform.position = teleportOffset;
+
+                // ROTATE THE PLAYER TO MAKE HIM FACE THE SAME DIRECTION AS THE TARGET
+                player.transform.rotation = Quaternion.LookRotation(-currentTarget.transform.forward);
+
+            }
+        }
+
+
+
+
+
     }
 
 }

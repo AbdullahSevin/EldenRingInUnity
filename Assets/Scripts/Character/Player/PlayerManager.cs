@@ -27,6 +27,7 @@ namespace AS
         [HideInInspector] public PlayerInteractionManager playerInteractionManager;
         [HideInInspector] public PlayerEffectsManager playerEffectsManager;
         [HideInInspector] public PlayerBodyManager playerBodyManager;
+        [HideInInspector] public PlayerSpecialMovesManager playerSpecialMovesManager;
 
         protected override void Awake()
         {
@@ -43,6 +44,7 @@ namespace AS
             playerInteractionManager = GetComponent<PlayerInteractionManager>();
             playerEffectsManager = GetComponent<PlayerEffectsManager>();
             playerBodyManager = GetComponent<PlayerBodyManager>();
+            playerSpecialMovesManager = GetComponent<PlayerSpecialMovesManager>();
             // DontDestroyOnLoad(gameObject);
         }
 
